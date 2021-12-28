@@ -1,0 +1,40 @@
+.galeriContent{
+    margin: 104px 90px 150px 90px;
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.galeriCard{
+    width: 346px;
+    height: 354px;
+    border:1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.galeriCardImgContainer{
+    width: 338px;
+    height: 268px;
+    background-color: #ECECEC;
+    margin: 4px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.galeriCardTitleContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+}
+
+.galeriCardTitle{
+    font-size: 18px;
+    font-weight: 800;
+    font-family: 'inter',sans-serif;
+    line-height: 24.3px;
+    color: #6B7280;
+}

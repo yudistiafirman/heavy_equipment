@@ -1,0 +1,82 @@
+.tentangContainer{
+    width: 231px;
+    height: 200px;
+    background-color: #071243;
+    position:absolute;
+    left:13%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.tentangContainer a{
+        font-family: 'inter',sans-serif;
+        font-size: 14px;
+        text-align: left;
+        line-height: 19.6px;
+        font-weight: 600;
+        color: #ffffff;
+}
+
+ .linkContainer :hover{
+    color: #FDC232;
+}
+
+.latarContainer{
+    padding-top: 182px;
+}
+
+.latarContentContainer{
+    margin: 100px 90px 120px 90px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.latarContentDesc{
+    width: 780px;
+}
+
+.latarTitle{
+    font-size: 18px;
+    font-family: 'inter',sans-serif;
+    font-weight: 800;
+    color: #6B7280;
+    margin-bottom: 16px;
+}
+
+.latarContent{
+    font-size: 15px;
+    font-family: 'inter',sans-serif;
+    font-weight: 500;
+    color: #6B7280;
+    line-height: 22px;
+}
+
+.lihatJuga{
+    width: 320px;
+    height: 188px;
+    background-color: #FBFBFB;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.lihatJugaTitle{
+    font-size: 18px;
+    font-family: 'inter',sans-serif;
+    font-weight: 800;
+    color: #6B7280;
+    line-height: 24.3px;
+    margin-left: 20px;
+}
+
+.lihatJugaContent{
+    font-size: 15px;
+    font-family: 'inter',sans-serif;
+    font-weight: 600;
+    color:  #FDC232;
+    line-height: 20.25px;
+    margin-left: 20px;
+    cursor: pointer;
+}

@@ -1,0 +1,61 @@
+.pelayananContainer{
+    width: 306px;
+    height: 244px;
+    background-color: #071243;
+    position:absolute;
+    left:25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.pelayananContainer a{
+    font-family: 'inter',sans-serif;
+    font-size: 14px;
+    text-align: left;
+    line-height: 19.6px;
+    font-weight: 600;
+    color: #ffffff;
+margin-left: 16px;
+}
+
+.pelayanList :hover{
+    color: #FDC232;
+}
+
+.accordion{
+    width:96%;
+    margin-bottom:24px
+}
+
+/* PENJUALAN SECTION */
+
+.penjualanCard {
+    width: 360px;
+    height: 272px;
+    cursor: pointer;
+  }
+
+  .penjualanCard .penjualanCardInner {
+    padding: 32px 24px 32px 24px;
+  }
+
+  .lihatDetailPelayananCard{
+      border-radius: 4px;
+      width: 131px;
+      height: 44px;
+      background-color: #071243;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .lihatDetailDesc{
+      color: #ffffff;
+      font-weight: 500;
+      font-family: 'roboto',sans-serif;
+      font-size: 14px;
+      line-height: 16px;
+  }
+
+  /* PENJUALAN SECTION */

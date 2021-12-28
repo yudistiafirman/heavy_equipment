@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+.navbar{
+    height: 182;
+    position: fixed;
+    width: 100%;
+    background-color: #ffffff;
+    z-index: 99;
+}
+
+.header{
+    height: 126px;
+    background-color: #ffffff;
+    margin:0px 90px 0px 90px;
+    flex-direction: row;
+    justify-content: space-between;
+    display: flex;
+
+}
+
+.contactSeparator{
+    width: 1px;
+    height: 48px;
+    margin: 0px 48px 0px 48px;
+    background-color: #E5E7EB;
+    align-items: center;
+}
+
+.imageLogo{
+    width: 194px;
+    height: 80px;
+    margin: 23px 0px 23px 0px;
+}
+
+.callMe{
+    font-family:  'Inter', sans-serif;
+    font-size: 14px;
+    text-align: right;
+    line-height: 19.6px;
+    font-weight: 600;
+}
+
+.phoneAndEmail{
+    display: flex;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15.6px;
+    margin-top: 7px;
+}
+
+.phoneInformation{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 25px;
+   border: none;
+   color: #4B5563;
+}
+
+.emailInformation{
+    margin-right: 0px;
+}
+
+.phoneLogo{
+    width: 10px;
+    height: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 6px;
+}
+
+.transBtn{
+    width: 80px;
+    height: 30px;
+    border: 1px solid #F1F5F9;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.translate{
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    font-family: 'inter',sans-serif;
+    flex: 0.5;
+    font-weight: 400;
+}
+
+.navigation{
+    height: 56px;
+    flex-direction: row;
+   background-color: #071243;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border-bottom: 1px solid #FDC234;
+}
+
+ul{
+    display: flex;
+    justify-content: space-between;
+}
+
+ul li{
+    display: inline-flex;
+    font-family: 'inter',sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19.6px;
+    margin-right: 45px;
+    color: #ffffff;
+    justify-content: center;
+    align-items: center;
+
+}
+
+li a {
+    color: #ffffff;
+}
+
+li :hover{
+    color:#FDC232
+}
+
+
+
+

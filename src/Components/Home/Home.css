@@ -1,0 +1,312 @@
+.homeContainer {
+  padding-top: 182px;
+  width: 100%;
+}
+
+/* JUMBOTRON */
+
+.jumbotron {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.1));
+}
+
+.campaign {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  z-index: 1;
+  top: 50%;
+  margin-left: 130px;
+}
+
+.textWithBtn {
+  width: 100%;
+}
+
+.heroBtnContainer {
+  position: absolute;
+  top: 50%;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btnHero {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.btnHero :active {
+  background-color: #ffffff;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  opacity: 0.2;
+}
+
+.heroMediumText {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 36px;
+  font-family: 'inter', sans-serif;
+  margin-bottom: 16px;
+}
+
+.heroOrangeText {
+  color: #fdc232;
+  font-weight: 800;
+  font-size: 48px;
+  font-family: 'inter', sans-serif;
+  margin-bottom: 40px;
+}
+
+.heroSmallText {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 15px;
+  font-family: 'inter', sans-serif;
+}
+
+.heroDots {
+  position: absolute;
+  top: 94%;
+  z-index: 3;
+  display: flex;
+  width: 100vw;
+  height: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.dots {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 100%;
+  width: 8px;
+  height: 8px;
+  margin-right: 12px;
+}
+
+/* JUMBOTRON */
+
+/* SERVICES */
+#ourServices {
+  padding-top: 110px;
+  padding-bottom: 60px;
+  margin: 0px 90px 0px 90px;
+}
+
+.servicesTitle {
+  display: flex;
+  margin-bottom: 48px;
+}
+.marginSeparator {
+  width: 2px;
+  height: 40px;
+  background-color: #071244;
+}
+
+.titleContainer {
+  margin-left: 16px;
+}
+
+.titleForYou {
+  font-size: 30px;
+  font-weight: 800;
+  font-family: 'inter', sans-serif;
+  color: #071244;
+}
+
+.forYouDesc {
+  font-size: 15px;
+  font-weight: 500;
+  font-family: 'inter', sans-serif;
+  line-height: 20.25px;
+  color: #6b7280;
+  width: 300px;
+}
+
+.ourServicesCardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 470px;
+}
+
+.servicesCard {
+  width: 360px;
+  height: 232px;
+  cursor: pointer;
+}
+
+.servicesCard .servicesCardInner {
+  padding: 32px 24px 32px 24px;
+}
+
+.iconContainer {
+  width: 72px;
+  height: 72px;
+  border-radius: 10px;
+  background-color: #c4c4c4;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.servicesCardTitle {
+  font-size: 18px;
+  font-weight: 600;
+  font-family: 'inter', sans-serif;
+  color: #071244;
+}
+
+.servicesCardTitle :hover {
+  color: #fdc232;
+}
+
+.servicesCardDesc {
+  font-size: 14px;
+  font-weight: 400;
+  font-family: 'inter', sans-serif;
+  color: #6b7280;
+  width: 324px;
+  line-height: 19.6px;
+}
+/* SERVICES */
+
+/* PELATIHAN POPULER */
+.pelatihanContainer{
+   height: 528px;
+   width: 100%;
+   box-sizing: border-box;
+   position: relative;
+}
+
+.pelatihanInnerContainer{
+    margin: 90px 90px 90px 103px ;
+    display: flex;
+    justify-content: space-between;
+ 
+}
+
+.pelatihanCardContainer{
+    width: 60%;
+    height: 100%;
+}
+ .pelatihanCard{
+
+    height: 335px;
+  
+}
+
+.pelatihanCardInner{
+  border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-right: 10px;
+    margin-left: 10px;
+    height: 100%;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    background-color: #ffffff;
+
+}
+
+.imageContainer{
+  height: 123px;
+  background-color: #C4C4C4;
+  ;
+}
+.pelatihanCardTitle{
+  width: 181px;
+  height: 48px;
+  font-family: 'inter',sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000000;
+  margin: 24px 23px 12px 4px 
+}
+
+.pelatihanCardDesc{
+  margin: 0px 16px 16px 4px;
+  width: 184px;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: 'inter',sans-serif;
+  line-height: 19.6px;
+
+}
+
+.pelatihanCardBtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute; 
+  bottom: 0; 
+  left: 0;
+  width: 100%; 
+  text-align: center; 
+  margin: 0; padding: 32px 0; 
+	
+  /* "transparent" only works here because == rgba(0,0,0,0) */
+  background-image: linear-gradient(to top, transparent, #e5e5e5);
+}
+
+.pelatihanCardBtn.active{
+  background-image: linear-gradient(to top, transparent, #fff);
+}
+
+.cardBtnTitle{
+  font-size: 14px;
+  font-weight: 800;
+  font-family: 'inter',sans-serif;
+  line-height: 19.6px;
+  color:#000000;
+  ;
+}
+
+.ellipseOrange{
+  position: absolute;
+  top:20%;
+  left:0;
+  right: 0;
+}
+
+.ellipseBlue{
+  position: absolute;
+  top:50%;
+  left:-2%;
+  right: 0;
+}
+/* PELATIHAN POPULER */
+
+
+/* HOME GALERI */
+
+.homeGaleriContainer{
+  margin:0px 90px 0px 90px
+}
+/* HOME GALERI */
+
+.clientContainer{
+  width: 100%;
+  height: 222px;
+ background-color:  #F9F9F9;
+ display: flex;
+ flex-direction: row;
+ justify-content: space-around;
+ align-items: center;
+}
+
+.logo{
+  width: 191px;
+  height: 94px;
+  border-radius: 10px;
+  background-color: #ECECEC;
+}

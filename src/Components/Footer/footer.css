@@ -1,0 +1,52 @@
+.footer{
+    background-color: #071243;
+    width: 100%;
+}
+
+.footerContent{
+   
+    height: 276px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0px 90px 0px 90px;
+   
+  
+}
+.footerInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.hecFooter{
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 800;
+    font-family: 'inter',sans-serif;
+    margin-bottom: 24px;
+}
+
+.hecAddress{
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 400;
+    margin-bottom: 12px;
+}
+
+.footerLogo{
+    display: flex;
+}
+
+.copyRights{
+    height: 64px;
+    border-top: 1px solid #ffffff;
+    background-color: #071243;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-family: 'inter',sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+
+}
