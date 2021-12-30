@@ -7,6 +7,12 @@
     z-index: 99;
 }
 
+.navbarInfoContainer{
+    display: flex;
+    margin: 39px 0px 44px 0px;
+    align-items: center
+}
+
 .header{
     height: 126px;
     background-color: #ffffff;
@@ -29,6 +35,10 @@
     width: 194px;
     height: 80px;
     margin: 23px 0px 23px 0px;
+}
+
+.hamburgerMenu{
+    display: none;
 }
 
 .callMe{
@@ -100,14 +110,19 @@
    align-items: center;
    justify-content: center;
    border-bottom: 1px solid #FDC234;
+ 
 }
 
-ul{
+.mobileInfoContainer{
+    display: none;
+}
+
+.navigation ul{
     display: flex;
     justify-content: space-between;
 }
 
-ul li{
+.navigation ul li{
     display: inline-flex;
     font-family: 'inter',sans-serif;
     font-weight: 600;
@@ -120,14 +135,54 @@ ul li{
 
 }
 
-li a {
+.navigation li a {
     color: #ffffff;
 }
 
-li :hover{
+.navigation li :hover{
     color:#FDC232
 }
 
+/* BREAK POINTS */
 
+@media only screen and (max-width: 969px) {
+    .navigation{
+        display: none;
+    }
+
+    .navbarInfoContainer{
+        display: none;
+    }
+
+    .header{
+        height: 100%;
+        align-items: center;
+        margin: 0px 18px 0px 18px
+    }
+
+    .hamburgerMenu{
+        display: block;
+        width: 18px;
+        margin-right: 27px;
+        margin-top: 5px;
+    }
+
+    .imageLogo{
+        width: 102px;
+        height: 42px;
+    }
+
+    .navbar{
+        height: 88px;
+    }
+
+    .mobileInfoContainer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 5px;
+    }
+    
+  }
 
 

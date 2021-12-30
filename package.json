@@ -15,6 +15,7 @@
     "react-animated-slider-2": "^1.1.5",
     "react-dom": "^17.0.2",
     "react-facebook-photo-grid": "^1.0.10",
+    "react-flexible-sliding-menu": "^0.1.9",
     "react-icons": "^4.3.1",
     "react-responsive-carousel": "^3.2.22",
     "react-router-dom": "^6.1.1",

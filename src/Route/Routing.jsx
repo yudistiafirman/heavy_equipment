@@ -25,10 +25,17 @@ import LabourSupply from '../Components/PelayananKami/LabourSupply'
 import Konsultan from '../Components/PelayananKami/Konsultan'
 import Penjualan from '../Components/PelayananKami/Penjualan'
 import Jasa from '../Components/PelayananKami/Jasa'
-
+import DetailPelatihan from '../Components/InfoPelatihan/DetailPelatihan';
+import CareerDetail from '../Components/Career/CareerDetail';
+import DetailPenjualan from '../Components/PelayananKami/DetailPenjualan';
+import DetailService from '../Components/PelayananKami/DetailService';
+import MenuProvider from "react-flexible-sliding-menu";
+import SlidingMenu from '../Components/SlidingMenu/SlidingMenu';
 const Routing = () => {
     return (
+  
         <Router>
+              <MenuProvider MenuComponent={SlidingMenu} animation="push" >
           <div>
           <Navbar/>
           <Routes>
@@ -45,14 +52,18 @@ const Routing = () => {
              <Route path="/labour" element={<LabourSupply/>} />
              <Route path="/konsultan" element={<Konsultan/>} />
              <Route path="/penjualan" element={<Penjualan/>} />
+             <Route path="/detailPenjualan" element={<DetailPenjualan/>} />
              <Route path="/jasa" element={<Jasa/>} />
+             <Route path="/detailJasa" element={<DetailService/>} />
              <Route path="/infoPelatihan" element={<InfoPelatihan/>} />
+             <Route path="/detailPelatihan" element={<DetailPelatihan/>} />
              <Route path="/career" element={<Career/>} />
+             <Route path="/detailCareer" element={<CareerDetail/>} />
              <Route path="/kontak" element={<Kontak/>} />
           </Routes>
           <Footer/>
             </div>
-          
+            </MenuProvider>
         </Router>
     )
 }
