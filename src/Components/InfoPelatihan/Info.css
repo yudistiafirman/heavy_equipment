@@ -318,11 +318,11 @@
 }
 @media only screen and (max-width: 490px){
     .infoPelatihanCard{
-        width: 100%;
+        width: 98%;
     }
 
     .careerCard{
-        width: 100%;
+        width: 98%;
     }
 }
 @media only screen and (max-width: 976px){

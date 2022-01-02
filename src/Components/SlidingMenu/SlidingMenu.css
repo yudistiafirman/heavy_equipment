@@ -92,7 +92,8 @@
   height: 64px;
   display: flex;
   margin-left: 16px;
+  margin-top: 5px;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
 
 }

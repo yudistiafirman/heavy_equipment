@@ -56,7 +56,7 @@ const PelatihanPopuler = () => {
   const settings = {
     slidesToShow: width <= 969 ? 1 : width <= 1200 ? 2:3,
     slidesToScroll: 1,
-    width: 100
+    infinite:false
   }
   return (
     <div className='pelatihanContainer'>
@@ -75,7 +75,7 @@ const PelatihanPopuler = () => {
           <Slider {...settings}>
             {pelatihanPopularContent.map((v, i) => {
               return (
-                <div key={i} className='pelatihanCard'>
+                <div key={i}>
                   <div
                     className='pelatihanCardInner'
                     onMouseEnter={() => setCardContentIdx(i)}
