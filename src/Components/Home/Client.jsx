@@ -9,7 +9,7 @@ const Client = () => {
         <div className='clientContainer'>
             {
                 logo.map((v,i)=>{
-                    return    <div style={{marginLeft:i===0?'20px':'0px'}} className="logo">
+                    return    <div key={i} style={{marginLeft:i===0?'20px':'0px'}} className="logo">
                           
                     </div>
                 })

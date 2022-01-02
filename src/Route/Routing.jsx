@@ -39,7 +39,7 @@ const Routing = () => {
           <div>
           <Navbar/>
           <Routes>
-             <Route path="/" exact element={<Home/>} />
+             <Route path="/"  element={<Home/>} />
              <Route path="/tentangHec" element={<TentangHec/>} />
              <Route path="/pelayanKami" element={<PelayananKami/>} />
              <Route path="/galeri" element={<Galeri/>} />

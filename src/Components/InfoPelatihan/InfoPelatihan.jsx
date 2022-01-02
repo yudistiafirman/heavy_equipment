@@ -158,7 +158,7 @@ const [startDate,SetStartDate]=useState(new Date())
           <Slider {...settings}>
             {infoPelatihanContent.map((v, i) => {
               return (
-                <div>
+                <div key={i}>
                   <div
                     onMouseEnter={() => setCardContentIdx(i)}
 className = 'infoPelatihanCard'

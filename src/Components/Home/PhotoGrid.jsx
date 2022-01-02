@@ -23,8 +23,6 @@ export default function PictureGrid(props) {
       if (images.length === 1) {
         return (
           <div
-            container
-            justify="center"
             style={{
               backgroundImage: `url(${images[0]}`,
               backgroundSize: "cover",
@@ -65,15 +63,13 @@ export default function PictureGrid(props) {
       if (images.length === 1) {
         if (isAVideo(images[0])) {
           return (
-            <Grid container direction="row" justify="center">
+            <Grid container direction="row" justifyContent="center">
               <video width="95%" height="400" src={images[0]} controls />
             </Grid>
           );
         } else {
           return (
             <div
-              container
-              justify="center"
               style={{
                 backgroundImage: `url(${images[0]}`,
                 backgroundSize: "cover",
@@ -97,7 +93,7 @@ export default function PictureGrid(props) {
                 if (isAVideo(image)) {
                   return (
                     <Grid item md={12} lg={12} xl={12} xs={12} sm={12}>
-                      <Grid container direction="row" justify="center">
+                      <Grid container direction="row" justifyContent="center">
                         <video width="100%" height="290" src={image} controls />
                       </Grid>
                     </Grid>
@@ -108,7 +104,7 @@ export default function PictureGrid(props) {
                     <Grid
                       container
                       direction="row"
-                      justify="center"
+                      justifyContent="center"
                       style={{
                         backgroundImage: `url(${image}`,
                         width: "auto",
@@ -137,7 +133,7 @@ export default function PictureGrid(props) {
                     <Grid
                       container
                       direction="row"
-                      justify="center"
+                      justifyContent="center"
                       style={{
                         backgroundImage: `url(${image}`,
                         width: "auto",
@@ -165,7 +161,7 @@ export default function PictureGrid(props) {
               <Grid
                 container
                 direction="row"
-                justify="center"
+                justifyContent="center"
                 style={{
                   backgroundImage: `url(${images[0]}`,
                   // width: 250,
@@ -186,7 +182,7 @@ export default function PictureGrid(props) {
                   if (isAVideo(image)) {
                     return (
                       <Grid item md={12} lg={12} xl={12} xs={12} sm={12}>
-                        <Grid container direction="row" justify="center">
+                        <Grid container direction="row" justifyContent="center">
                           <video
                             width="100%"
                             height="auto"
@@ -202,7 +198,7 @@ export default function PictureGrid(props) {
                       <Grid
                         container
                         direction="row"
-                        justify="center"
+                        justifyContent="center"
                         style={{
                           backgroundImage: `url(${image}`,
                           width: "auto",
@@ -231,7 +227,7 @@ export default function PictureGrid(props) {
               <Grid
                 container
                 direction="row"
-                justify="center"
+                justifyContent="center"
                 style={{
                   backgroundImage: `url(${images[0]}`,
                   // width: 250,
@@ -252,7 +248,7 @@ export default function PictureGrid(props) {
                   if (isAVideo(image)) {
                     return (
                       <Grid item md={12} lg={12} xl={12} xs={12} sm={12}>
-                        <Grid container direction="row" justify="center">
+                        <Grid container direction="row" justifyContent="center">
                           <video
                             width="100%"
                             height="auto"
@@ -267,7 +263,7 @@ export default function PictureGrid(props) {
                     <Grid
                       container
                       direction="row"
-                      justify="center"
+                      justifyContent="center"
                       style={{
                         backgroundImage: `url(${image}`,
                         width: "auto",
@@ -295,7 +291,7 @@ export default function PictureGrid(props) {
               <Grid
                 container
                 direction="column"
-                justify="center"
+                justifyContent="center"
                 style={{
                   backgroundImage: `url(${images[0]}`,
                   // width: 250,
@@ -321,7 +317,7 @@ export default function PictureGrid(props) {
                             <Grid
                               container
                               direction="row"
-                              justify="center"
+                              justifyContent="center"
                               alignItems="center"
                               style={{
                                 backgroundImage: `url(${image}`,
@@ -365,7 +361,7 @@ export default function PictureGrid(props) {
                                 <Grid
                                   container
                                   direction="row"
-                                  justify="center"
+                                  justifyContent="center"
                                 >
                                   <video
                                     width="100%"
@@ -382,7 +378,7 @@ export default function PictureGrid(props) {
                               <Grid
                                 container
                                 direction="row"
-                                justify="center"
+                                justifyContent="center"
                                 style={{
                                   backgroundImage: `url(${image}`,
                                   width: "auto",
@@ -405,7 +401,7 @@ export default function PictureGrid(props) {
                             <Grid
                               container
                               direction="row"
-                              justify="center"
+                              justifyContent="center"
                               style={{
                                 backgroundImage: `url(${image}`,
                                 width: "auto",
@@ -428,7 +424,7 @@ export default function PictureGrid(props) {
                             <Grid
                               container
                               direction="row"
-                              justify="center"
+                              justifyContent="center"
                               style={{
                                 backgroundImage: `url(${image}`,
                                 width: "auto",
@@ -475,7 +471,7 @@ export default function PictureGrid(props) {
           }}
           hideActions={true}
         >
-          <Grid container direction="row" justify="center">
+          <Grid container direction="row" justifyContent="center">
             <img style={{ maxWidth: "100%" }} src={showImage}></img>
           </Grid>
         </Dialog>

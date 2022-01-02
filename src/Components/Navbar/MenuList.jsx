@@ -80,8 +80,8 @@ const onChangeRoute=(idx)=>{
         <ul>
             {
                 menuList.map((value,index)=>{
-                  return  <li onMouseOut={onHoverOut} onMouseEnter={()=>onHover(index)}  >
-                        <Link id='menuList' onClick={()=>onChangeRoute(index)} style={{color: location.pathname === value.to ?"#FDC232":"" ,display:'flex',alignItems:'center'}}  to={value.to !== '' && value.to}>{value.title.toUpperCase()}
+                  return  <li key={index} onMouseOut={onHoverOut} onMouseEnter={()=>onHover(index)}  >
+                        <Link id='menuList'  onClick={()=>onChangeRoute(index)} style={{color: location.pathname === value.to ?"#FDC232":"" ,display:'flex',alignItems:'center'}}  to={value.to !== '' && value.to}>{value.title.toUpperCase()}
                         {menuHasDropDown.includes(index) && <AiFillCaretDown style={{marginLeft:'7px',color:hoverIdx && hoverIdx === index ?'#FDC232':''}}/> }
                         </Link>
                      
