@@ -8,7 +8,7 @@ import PelatihanPopuler from './PelatihanPopuler'
 const Home = () => {
     return (
         <div className='homeContainer'>
-            {/* <section style={{ position:'relative'}}  id='jumbotron'>
+            <section style={{ position:'relative'}}  id='jumbotron'>
                 <Jumbotron/>
             </section>
             <section  id='ourServices'>
@@ -18,13 +18,12 @@ const Home = () => {
                     <PelatihanPopuler/>
             </section>
             <section style={{marginBottom:'211px'}} id="homeGaleri">
-                    <HomeGaleri/>
+                    {/* <HomeGaleri/> */}
             </section>
             <section>
                         <Client/>
             </section>
-               */}
-            <h1>hai</h1>
+              
         </div>
     )
 }
