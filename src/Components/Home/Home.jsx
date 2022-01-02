@@ -10,9 +10,10 @@ const Home = () => {
         <div className='homeContainer'>
             <section style={{ position:'relative'}}  id='jumbotron'>
                 {/* <Jumbotron/> */}
+                <h1>hai</h1>
             </section>
             <section  id='ourServices'>
-                 <OurServices/>
+                 {/* <OurServices/> */}
             </section>
             <section style={{marginBottom:'257px'}} id='pelatihanPopuler'>
                     {/* <PelatihanPopuler/> */}
@@ -21,7 +22,7 @@ const Home = () => {
                     {/* <HomeGaleri/> */}
             </section>
             <section>
-                        <Client/>
+                        {/* <Client/> */}
             </section>
               
         </div>
