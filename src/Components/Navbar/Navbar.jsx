@@ -107,8 +107,8 @@ const handleSlide =()=>{
           <div className="socialMedia">
             <img alt='#' src={Linkedin} style={{width:'16px',height:'16px',marginRight:'14px'}}/>
             <img alt='#'  src={Yt} style={{width:'23px',height:'16px',marginRight:'14px'}}/>
-            <img alt='#' onClick={()=>window.location = 'https://www.instagram.com/heavyequipmentcentre'}  src={Instagram} style={{width:'16px',height:'16px',marginRight:'14px',cursor:'pointer'}}/>
-            <img alt='#' onClick={()=> window.location = 'https://www.facebook.com/profile.php?id=100075861904489'}  src={Fb} style={{width:'16px',height:'16px',cursor:'pointer'}}/>
+            <img alt='#'  src={Instagram} style={{width:'16px',height:'16px',marginRight:'14px',cursor:'pointer'}}/>
+            <img alt='#' src={Fb} style={{width:'16px',height:'16px',cursor:'pointer'}}/>
           </div>
           </div>
       
