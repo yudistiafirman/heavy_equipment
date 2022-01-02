@@ -1,6 +1,5 @@
-import React from 'react'
+import React,{ useState ,useLayoutEffect}  from 'react'
 import CareerPict from './assets/career.jpg'
-import { useState ,useLayoutEffect} from 'react/cjs/react.development'
 import FilledInput from '@mui/material/FilledInput'
 import InputAdornment from '@mui/material/InputAdornment'
 import IconButton from '@mui/material/IconButton'

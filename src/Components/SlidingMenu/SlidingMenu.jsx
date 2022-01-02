@@ -168,8 +168,8 @@ const onChangeRouteSideMenu=()=>{
             <div className="slidingSocialMedia">
             <img src={Linkedin} style={{width:'16px',height:'16px',marginRight:'14px'}}/>
             <img src={Yt} style={{width:'23px',height:'16px',marginRight:'14px'}}/>
-            <img   src={Instagram} style={{width:'16px',height:'16px',marginRight:'14px',cursor:'pointer'}}/>
-            <img  src={Fb} style={{width:'16px',height:'16px'}}/>
+            <img onClick={()=>window.location = 'https://www.instagram.com/heavyequipmentcentre'}   src={Instagram} style={{width:'16px',height:'16px',marginRight:'14px',cursor:'pointer'}}/>
+            <img  onClick={()=> window.location = 'https://www.facebook.com/profile.php?id=100075861904489'}  src={Fb} style={{width:'16px',height:'16px'}}/>
           </div>
         </div>
     )

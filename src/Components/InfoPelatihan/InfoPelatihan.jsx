@@ -1,8 +1,7 @@
-import React, { useLayoutEffect } from 'react'
+import React, { useLayoutEffect,useState } from 'react'
 
 import PelatihanPict from './assets/Pelatihan.jpg'
 
-import { useState } from 'react/cjs/react.development'
 import FilledInput from '@mui/material/FilledInput'
 import InputAdornment from '@mui/material/InputAdornment'
 import IconButton from '@mui/material/IconButton'
