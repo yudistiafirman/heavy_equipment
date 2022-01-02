@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid, IconButton, Dialog, Paper } from "@material-ui/core";
+import { Grid,Dialog, } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-import CloseIcon from "@material-ui/icons/Close";
 
 export default function PictureGrid(props) {
   const useStyles = makeStyles((theme) => ({
