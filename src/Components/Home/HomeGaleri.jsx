@@ -19,7 +19,7 @@ const HomeGaleri = () => {
           </div>
         </div>
         <div className="galeriGrid">
-            <Photogrid images={images}  maxWidth={1200}/>
+            <Photogrid images={images} />
         </div>
         </div>
     )

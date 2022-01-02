@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import Labour from './assets/labour.jpg'
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -7,23 +7,27 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import { AiFillCaretDown } from "react-icons/ai";
 const LabourSupply = () => {
-    let navigate = useNavigate()
     return (
       <div className='latarContainer'>
-        <div className='jumbotron'>
-          <img
-            height='442px'
-            style={{ resize: 'horizontal', overflow: 'auto' }}
-            width='100%'
-            src={Labour}
-          />
-        </div>
-        <div className='campaign'>
-          <div className='textWithBtn'>
-            <div className='heroMediumText'>Labour</div>
-            <div className='heroOrangeText'>Supply</div>
-          </div>
-        </div>
+                <div 
+            style={{
+              backgroundImage:`url(${Labour})`,
+              backgroundRepeat:'no-repeat',
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+            
+            className='jumbotron'>
+              <div className="jumbotronContent">
+              <div className='subMenuCampaign'>
+              <div className='textWithBtn'>
+                <div className='heroMediumText'>Labour</div>
+                <div className='heroOrangeText'>Supply</div>
+              </div>
+            </div>
+              </div>
+         
+            </div>
         <div className='latarContentContainer'>
           <div className='latarContentDesc'>
           <div className='latarTitle'>Labour Supply</div>
@@ -101,18 +105,18 @@ const LabourSupply = () => {
           </div>
           <div className='lihatJuga'>
             <div className='lihatJugaTitle'>Lihat Juga</div>
-            <div onClick={() => navigate('/program')} className='lihatJugaContent'>
+            <Link onClick={() => window.scrollTo(0)} to='/program' className='lihatJugaContent'>
             Program Pendidikan dan Pelatihan
-            </div>
-            <div onClick={() => navigate('/konsultan')} className='lihatJugaContent'>
+            </Link>
+            <Link onClick={() => window.scrollTo(0)} to='/konsultan' className='lihatJugaContent'>
               Konsultan
-            </div>
-            <div onClick={() => navigate('/penjualan')} className='lihatJugaContent'>
+            </Link>
+            <Link onClick={() => window.scrollTo(0)} to='/penjualan' className='lihatJugaContent'>
               Penjualan Sparepart Alat Berat
-            </div>
-            <div onClick={() => navigate('/jasa')} className='lihatJugaContent'>
+            </Link>
+            <Link onClick={() => window.scrollTo(0)} to='/jasa' className='lihatJugaContent'>
               Jasa Servis Alat Berat
-            </div>
+            </Link>
           </div>
         </div>
       </div>

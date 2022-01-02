@@ -87,3 +87,12 @@
   transform: translateX(-120%);
   display: none;
 }
+
+.slidingSocialMedia{
+  height: 64px;
+  display: flex;
+  margin-left: 16px;
+  justify-content: flex-start;
+  align-items: center;
+
+}

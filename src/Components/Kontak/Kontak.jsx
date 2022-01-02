@@ -1,25 +1,28 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import TextField from '@mui/material/TextField'
 import KontakPict from './assets/kontak.jpg'
 const Kontak = () => {
-  let navigate = useNavigate()
   return (
     <div className='latarContainer'>
-      <div className='jumbotron'>
-        <img
-          height='442px'
-          style={{ resize: 'horizontal', overflow: 'auto' }}
-          width='100%'
-          src={KontakPict}
-        />
-      </div>
-      <div className='campaign'>
-        <div className='textWithBtn'>
-          <div className='heroMediumText'>Kontak</div>
-          <div className='heroOrangeText'>Kami</div>
-        </div>
-      </div>
+           <div 
+            style={{
+              backgroundImage:`url(${KontakPict})`,
+              backgroundRepeat:'no-repeat',
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+            
+            className='jumbotron'>
+              <div className="jumbotronContent">
+              <div className='subMenuCampaign'>
+              <div className='textWithBtn'>
+                <div className='heroMediumText'>Kontak</div>
+                <div className='heroOrangeText'>Kami</div>
+              </div>
+            </div>
+              </div>
+         
+            </div>
       <div className='latarContentContainer'>
         <div className='latarContentDesc'>
           <div className='latarTitle'>Halo, kami disini</div>
@@ -91,13 +94,13 @@ const Kontak = () => {
             Jl. Soekarno Hatta No 633A, Sukapura,
           </div>
           <div style={{ marginBottom: '32px' }} className='latarContent'>
-            Kiaracondong, Bandung, Jawa Barat 40286
+            Kiaracondong, Bandung, Jawa Barat 40285
           </div>
           <div style={{ marginBottom: '8px' }} className='latarTitle'>
             Telepon{' '}
           </div>
           <div style={{ marginBottom: '32px' }} className='latarContent'>
-            <a style={{ color: 'blue', borderBottom: 'blue' }}>
+            <a href="tel:+68112131122" style={{ color: 'blue', borderBottom: 'blue' }}>
               +62 8112131122
             </a>
           </div>
@@ -105,7 +108,7 @@ const Kontak = () => {
             Email{' '}
           </div>
           <div style={{ marginBottom: '32px' }} className='latarContent'>
-            <a style={{ color: 'blue', borderBottom: 'blue' }}>
+            <a href="mailto:hequipmentcentre@gmail.com" style={{ color: 'blue', borderBottom: 'blue' }}>
               hequipmentcentre@gmail.com
             </a>
           </div>

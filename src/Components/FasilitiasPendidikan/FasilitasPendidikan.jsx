@@ -1,5 +1,4 @@
 import React from 'react'
-import { useNavigate } from "react-router-dom";
 import Fasilitas from './fasilitas.jpg'
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -9,20 +8,25 @@ import { AiFillCaretDown } from "react-icons/ai";
 const FasilitasPendidikan = () => {
     return (
         <div className='latarContainer'>
-          <div className='jumbotron'>
-            <img
-              height='442px'
-              style={{ resize: 'horizontal', overflow: 'auto' }}
-              width='100%'
-              src={Fasilitas}
-            />
-          </div>
-          <div className='campaign'>
-            <div className='textWithBtn'>
-              <div className='heroMediumText'>Fasilitas dan</div>
-              <div className='heroOrangeText'>Pelatihan</div>
+                <div 
+            style={{
+              backgroundImage:`url(${Fasilitas})`,
+              backgroundRepeat:'no-repeat',
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+            
+            className='jumbotron'>
+              <div className="jumbotronContent">
+              <div className='subMenuCampaign'>
+              <div className='textWithBtn'>
+                <div className='heroMediumText'>Fasilitas dan</div>
+                <div className='heroOrangeText'>Pelatihan</div>
+              </div>
             </div>
-          </div>
+              </div>
+         
+            </div>
           <div className='latarContentContainer'>
             <div className='latarContentDesc'>
             <div className='latarTitle'>Program dan Pelatihan</div>

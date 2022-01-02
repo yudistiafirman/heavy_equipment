@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useLayoutEffect } from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
@@ -36,13 +36,27 @@ const pelatihanPopularContent = [
       'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
   }
 ]
-const settings = {
-  slidesToShow: 3,
-  slidesToScroll: 1,
-  width: 100
+
+function useWindowSize() {
+  const [size, setSize] = useState([0, 0]);
+  useLayoutEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener('resize', updateSize);
+    updateSize();
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+  return size;
 }
 const PelatihanPopuler = () => {
   const [cardIdx, setCardContentIdx] = useState(0)
+  const [width,height] =useWindowSize()
+  const settings = {
+    slidesToShow: width <= 969 ? 1 : width <= 1200 ? 2:3,
+    slidesToScroll: 1,
+    width: 100
+  }
   return (
     <div className='pelatihanContainer'>
       <div className='pelatihanInnerContainer'>

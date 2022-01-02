@@ -11,7 +11,7 @@ const Home = () => {
             <section style={{ position:'relative'}}  id='jumbotron'>
                 <Jumbotron/>
             </section>
-            <section style={{marginBottom:'257px'}} id='ourServices'>
+            <section  id='ourServices'>
                  <OurServices/>
             </section>
             <section style={{marginBottom:'257px'}} id='pelatihanPopuler'>

@@ -5,14 +5,17 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import { AiFillCaretDown } from "react-icons/ai";
+import { useNavigate } from 'react-router-dom';
 const DetailService = () => {
+
+  const navigate = useNavigate()
     return (
         <div className='detailPelatihanContainer'>
             <div className="detailInnerContainer">
                 <div  className="routingDetail">
-                    <div className="routingInActive">Home</div>
+                    <div onClick={()=> navigate('/')} className="routingInActive">Home</div>
                     <div className="routingInActive">/</div>
-                    <div className="routingInActive">Jasa Service Alat Berat</div>
+                    <div onClick={()=> navigate('/jasa')} className="routingInActive">Jasa Service Alat Berat</div>
                     <div className="routingInActive">/</div>
                     <div style={{color:'#000000'}} className="routingInActive">Jasa Servis 1</div>
                 </div>
@@ -90,10 +93,10 @@ const DetailService = () => {
            
             </div>
             <div style={{marginTop:'40px'}} className="lihatJuga">
-            <div className="lihatJugaTitle">Lihat Juga</div>
-            <div className="lihatJugaContent">Jasa Servis 1</div>
-            <div className="lihatJugaContent">Jasa Servis 2</div>
-            <div className="lihatJugaContent">Jasa Servis 3</div>
+            <div  onClick={()=> navigate('/jasa')} className="lihatJugaTitle">Lihat Juga</div>
+            <div  onClick={()=> navigate('/jasa')} className="lihatJugaContent">Jasa Servis 1</div>
+            <div  onClick={()=> navigate('/jasa')}  className="lihatJugaContent">Jasa Servis 2</div>
+            <div  onClick={()=> navigate('/jasa')} className="lihatJugaContent">Jasa Servis 3</div>
         </div>
         </div>
     )

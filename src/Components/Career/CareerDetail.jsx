@@ -1,6 +1,5 @@
 import React from 'react'
 import { FaShareAlt }from 'react-icons/fa'
-import CheckIcon from '../InfoPelatihan/assets/iconCheck.png'
 const CareerDetail = () => {
     return (
         <div className='detailPelatihanContainer'>
@@ -58,7 +57,7 @@ const CareerDetail = () => {
                         <div className="checkDesc">Jangan lupa untuk melampirkan CV terbaru anda dan rekrutmen ini tanpa dipungut biaya sepeserpun</div>
                     </div>
                     <div className="bestOffer">
-                        <div style={{width:'244px'}} className="hubungiBtn">
+                        <div  className="hubungiBtn">
                             <div  className="hubungiBtnTitle">Lamar Sekarang</div>
                         </div>
                     </div>

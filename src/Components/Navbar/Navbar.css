@@ -90,6 +90,8 @@
     justify-content: space-between;
     overflow: hidden;
     cursor: pointer;
+    margin-top: 35px;
+    margin-bottom: 12px;
 }
 
 .translate{
@@ -141,6 +143,10 @@
 
 .navigation li :hover{
     color:#FDC232
+}
+
+.socialMedia{
+    display: flex;
 }
 
 /* BREAK POINTS */

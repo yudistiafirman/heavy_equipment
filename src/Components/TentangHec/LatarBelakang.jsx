@@ -1,24 +1,44 @@
 import React from 'react'
 import J1 from '../Home/assets/J1.jpg'
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 const LatarBelakang = () => {
-    let navigate = useNavigate();
+
+
+    const latarNavigate=[
+      {
+        title:'Visi Misi',
+        to:'/visi'
+      },
+      {
+        title:'Nilai Inti',
+        to:'/nilai'
+      },
+      {
+        title:'Struktur Organisasi',
+        to:'/visi'
+      },
+    ]
   return (
     <div className='latarContainer'>
-      <div className='jumbotron'>
-        <img
-          height='442px'
-          style={{ resize: 'horizontal', overflow: 'auto' }}
-          width='100%'
-          src={J1}
-        />
-      </div>
-      <div className='campaign'>
-        <div className='textWithBtn'>
-          <div className='heroMediumText'>Latar</div>
-          <div className='heroOrangeText'>Belakang</div>
-        </div>
-      </div>
+               <div 
+            style={{
+              backgroundImage:`url(${J1})`,
+              backgroundRepeat:'no-repeat',
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+            
+            className='jumbotron'>
+              <div className="jumbotronContent">
+              <div className='subMenuCampaign'>
+              <div className='textWithBtn'>
+                <div className='heroMediumText'>Latar</div>
+                <div className='heroOrangeText'>Belakang</div>
+              </div>
+            </div>
+              </div>
+         
+            </div>
       <div className='latarContentContainer'>
         <div className='latarContentDesc'>
           <div className='latarTitle'>Latar Belakang Perusahaan</div>
@@ -54,9 +74,11 @@ const LatarBelakang = () => {
         </div>
         <div className="lihatJuga">
             <div className="lihatJugaTitle">Lihat Juga</div>
-            <div onClick={()=>navigate('/visi')} className="lihatJugaContent">Visi Misi</div>
-            <div onClick={()=>navigate('/nilai')} className="lihatJugaContent">Nilai Inti</div>
-            <div onClick={()=>navigate('/so')} className="lihatJugaContent">Struktur Organisasi</div>
+            {
+              latarNavigate.map((value,index)=>{
+                return <Link onClick={()=>window.scrollTo(0)} to={value.to} className="lihatJugaContent">{value.title}</Link>
+              })
+            }
         </div>
       </div>
     </div>

@@ -1,16 +1,66 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState,useLayoutEffect} from 'react'
 import GaleriPict from './assets/Galeri.jpg'
 import './Galeri.css'
 import { Grid, Dialog } from "@material-ui/core";
 import J1 from '../Home/assets/J1.jpg'
 import J2 from '../Home/assets/J2.jpg'
-import J3 from '../Home/assets/J3.jpg'
-import J4 from '../Home/assets/J4.jpg'
-
+import Slider from 'react-slick'
+function useWindowSize() {
+  const [size, setSize] = useState([0, 0]);
+  useLayoutEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener('resize', updateSize);
+    updateSize();
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+  return size;
+}
 const Galeri = () => {
   const [cardIdx, setCardContentIdx] = useState(0)
   const [showImage,SetShowImages]=useState(null)
+  const [width,height]=useWindowSize()
+  const [pageHoverIdx,SetPageHoverIdx]=useState(0)
+
+
+  const settings = {
+    dots: true,
+    arrows: false,
+    infinite: false,
+
+    speed: 500,
+    slidesToShow: width <= 600 ?3 : width <= 739?3: width <= 967 ? 3 : 3,
+    vertical :width <= 967? true :false,
+    verticalSwiping: width <= 967? true : false,
+    rows:width <= 600 ? 1 : width <= 739?1: width <= 967 ? 1 : 2,
+    slidesToScroll: 1,
+    afterChange: (index)=>SetPageHoverIdx(index),
+    dotsClass: "slick-dots slick-thumb",
+    customPaging: i => (
+  
+        <div
+        onClickCapture={()=>SetPageHoverIdx(i)}
+         style={{
+          width: "25px",
+          height:"25px",
+          color: i === pageHoverIdx ?"#FFFFFF":"#BCBCBC",
+          border: "1px #BCBCBC solid",
+          margin:'30px',
+          display:'flex',
+          justifyContent:'center',
+          alignItems:'center',
+          borderRadius:'6px',
+          backgroundColor:i === pageHoverIdx ? "#FDC232":""
+        }}
+        >
+        {i+1}
+        </div>
+    
+    ),
+  
+}
+
     const galeriContent=[
         {
             title:'Judul Galeri 1',
@@ -21,51 +71,72 @@ const Galeri = () => {
             images:J2
         },
         {
-            title:'Judul Galeri 3',
-            images:J3
+          title:'Judul Galeri 3',
+          images:J1
         },
         {
-            title:'Judul Galeri 4',
-            images:J4
+          title:'Judul Galeri 4',
+          images:J1
         },
         {
-            title:'Judul Galeri 5',
-            images:J1
+          title:'Judul Galeri 5',
+          images:J1
         },
         {
-            title:'Judul Galeri 6',
-            images:J1
+          title:'Judul Galeri 6',
+          images:J1
         },
+        {
+          title:'Judul Galeri 7',
+          images:J1
+        },
+  
     ]
     return (
       <div className='latarContainer'>
-        <div className='jumbotron'>
-          <img
-            height='442px'
-            style={{ resize: 'horizontal', overflow: 'auto' }}
-            width='100%'
-            src={GaleriPict}
-          />
-        </div>
-        <div className='campaign'>
-          <div className='textWithBtn'>
-            <div className='heroMediumText'>Galeri</div>
-            <div className='heroOrangeText'>HEC</div>
-          </div>
-        </div>
-        <div className='galeriContent'>
+                  <div 
+            style={{
+              backgroundImage:`url(${GaleriPict})`,
+              backgroundRepeat:'no-repeat',
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+            
+            className='jumbotron'>
+              <div className="jumbotronContent">
+              <div className='subMenuCampaign'>
+              <div className='textWithBtn'>
+                <div className='heroMediumText'>Galeri</div>
+                <div className='heroOrangeText'>Hec</div>
+              </div>
+            </div>
+              </div>
+         
+            </div>
+        <div  className="galeriContent">
+
+     
+        <Slider className='galeriCardSlider'  {...settings}  >
             {
                 galeriContent.map((v,i)=>{
-                  return  <div
+                 
+                  return (<div
+                  style={{border:'1px solid black'}}
                   onClick={()=>SetShowImages(v.images)}
-                  onMouseEnter={() => setCardContentIdx(i)}
-                  style={{
-                  boxShadow: cardIdx === i
-                  ? 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px'
-                  : '',
-              backgroundColor: cardIdx === i ? '#FFFFFF' : '#E5E5E5'}} className="galeriCard">
-                      <div className="galeriCardImgContainer">
-                          <img style={{width:'100%',height:'100%'}} src={v.images}/>
+                  onMouseEnter={() => setCardContentIdx(i)}>
+                    <div className='galeriCard'>
+                    <div 
+                    
+                    className="galeriCardImgContainer"
+                    style={{
+                      backgroundImage:`url(${v.images})`,
+                      backgroundRepeat:'no-repeat',
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }}
+                    
+                    >
+                         
                       </div>
                       <div className="galeriCardTitleContainer">
                         <div 
@@ -74,9 +145,14 @@ const Galeri = () => {
                             }}
                         className='galeriCardTitle' >{v.title}</div>
                       </div>
+                    </div>
+                 
                   </div>
+                  )
+                  
                 })
             }
+        </Slider>
         </div>
         {showImage && (
         <Dialog
@@ -89,7 +165,7 @@ const Galeri = () => {
           hideActions={true}
         >
           <Grid container direction="row" justify="center">
-            <img style={{ maxWidth: "100%" }} src={showImage}></img>
+            <img alt='#' style={{ maxWidth: "100%" }} src={showImage}></img>
           </Grid>
         </Dialog>
       )}

@@ -1,24 +1,28 @@
 import React from 'react'
 import J2 from '../Home/assets/J2.jpg'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 const VisiDanMisi = () => {
-  let navigate = useNavigate()
   return (
     <div className='latarContainer'>
-      <div className='jumbotron'>
-        <img
-          height='442px'
-          style={{ resize: 'horizontal', overflow: 'auto' }}
-          width='100%'
-          src={J2}
-        />
-      </div>
-      <div className='campaign'>
-        <div className='textWithBtn'>
-          <div className='heroMediumText'>Visi</div>
-          <div className='heroOrangeText'>Misi</div>
-        </div>
-      </div>
+          <div 
+            style={{
+              backgroundImage:`url(${J2})`,
+              backgroundRepeat:'no-repeat',
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+            
+            className='jumbotron'>
+              <div className="jumbotronContent">
+              <div className='subMenuCampaign'>
+              <div className='textWithBtn'>
+                <div className='heroMediumText'>Visi</div>
+                <div className='heroOrangeText'>Misi</div>
+              </div>
+            </div>
+              </div>
+         
+            </div>
       <div className='latarContentContainer'>
         <div className='latarContentDesc'>
           <div className='latarTitle'>Visi</div>
@@ -53,15 +57,15 @@ const VisiDanMisi = () => {
         </div>
         <div className='lihatJuga'>
           <div className='lihatJugaTitle'>Lihat Juga</div>
-          <div onClick={() => navigate('/latar')} className='lihatJugaContent'>
+          <Link onClick={() => window.scrollTo(0)} to='/latar' className='lihatJugaContent'>
             Latar Belakang
-          </div>
-          <div onClick={() => navigate('/nilai')} className='lihatJugaContent'>
+          </Link>
+          <Link onClick={() => window.scrollTo(0)} to='/nilai' className='lihatJugaContent'>
             Nilai Inti
-          </div>
-          <div onClick={() => navigate('/so')} className='lihatJugaContent'>
+          </Link>
+          <Link onClick={() => window.scrollTo(0)} to='/so' className='lihatJugaContent'>
             Struktur Organisasi
-          </div>
+          </Link>
         </div>
       </div>
     </div>

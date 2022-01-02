@@ -291,11 +291,11 @@ export default function PictureGrid(props) {
         );
       } else {
         return (
-          <Grid container spacing={1}>
-            <Grid item md={6} lg={6} xl={6} xs={6} sm={6}>
+          <Grid  container spacing={1}>
+            <Grid item md={6} lg={6} xl={6} xs={12} sm={12}>
               <Grid
                 container
-                direction="row"
+                direction="column"
                 justify="center"
                 style={{
                   backgroundImage: `url(${images[0]}`,
@@ -311,8 +311,8 @@ export default function PictureGrid(props) {
                 }}
               ></Grid>
             </Grid>{" "}
-            <Grid item md={6} lg={6} xl={6} xs={6} sm={6}>
-              <Grid container spacing={1}>
+            <Grid item md={6} lg={6} xl={6} xs={12} sm={12}>
+              <Grid container  spacing={1}>
                 {images.map((image, index) => {
                   if (index != 0) {
                     if (index > 3 && images.length > 5) {
@@ -456,7 +456,7 @@ export default function PictureGrid(props) {
     }
   };
   return (
-    <div style={{ width: props.width, maxWidth: props.maxWidth }}>
+    <div style={{ width: '100%', maxWidth: props.maxWidth }}>
       {showGallaryView === false
         ? displayImage(props.images) != null && (
             <div>{displayImage(props.images)}</div>

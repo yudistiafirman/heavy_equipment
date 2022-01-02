@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link,useLocation } from 'react-router-dom'
 import './TentangHec.css'
 
 const TentangHec = ({onPressDropDownTentang}) => {
-
+const location =useLocation()
     const tentangHecNav=[
         {
             title:'Latar Belakang',
@@ -27,7 +27,7 @@ const TentangHec = ({onPressDropDownTentang}) => {
             {
                 tentangHecNav.map((v,i)=>{
                     return <div onClick={()=>onPressDropDownTentang(false)} className='linkContainer'  style={{marginLeft:'16px'}}>
-                        <Link onClick={()=>window.scrollTo(0)}  to={v.to}>{v.title.toUpperCase()}</Link>
+                        <Link onClick={()=>window.scrollTo(0)}  style={{color: location.pathname === v.to ?"#FDC232":""}}   to={v.to}>{v.title.toUpperCase()}</Link>
                     </div>
                 })
             }

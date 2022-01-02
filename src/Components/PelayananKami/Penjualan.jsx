@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PenjualanPict from './assets/penjualan.jpg'
 const Penjualan = () => {
     let navigate = useNavigate()
@@ -28,30 +28,35 @@ const Penjualan = () => {
     ]
     return (
       <div className='latarContainer'>
-        <div className='jumbotron'>
-          <img
-            height='442px'
-            style={{ resize: 'horizontal', overflow: 'auto' }}
-            width='100%'
-            src={PenjualanPict}
-          />
-        </div>
-        <div className='campaign'>
-          <div className='textWithBtn'>
-            <div className='heroMediumText'>Penjualan Sparepart</div>
-            <div className='heroOrangeText'>Alat Berat</div>
-          </div>
-        </div>
+                <div 
+            style={{
+              backgroundImage:`url(${PenjualanPict})`,
+              backgroundRepeat:'no-repeat',
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+            
+            className='jumbotron'>
+              <div className="jumbotronContent">
+              <div className='subMenuCampaign'>
+              <div className='textWithBtn'>
+                <div className='heroMediumText'>Penjualan Sparepart</div>
+                <div className='heroOrangeText'>Alat Berat</div>
+              </div>
+            </div>
+              </div>
+         
+            </div>
         <div className='latarContentContainer'>
           <div className='latarContentDesc'>
           <div className='latarTitle'>Penjualan Sparepart</div>
           <div style={{marginBottom:'20px'}} className='latarContent'>
           Menjadi perusahaan jasa layanan support alat berat yang professional dan synergi dengan customer di seluruh Indonesia.
           </div>
-          <div style={{height:'100%',display:'flex',flexDirection:'row',flexWrap:'wrap'}}>
+          <div className='penjualanDanServiceList'>
                 {
                     penjualanContent.map((v,i)=>{
-                        return <div key={i} style={{marginRight:i === 2 && '0px'}} style={{borderRadius:cardIdx === i?'10px':'',boxShadow:cardIdx === i?'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px':'',backgroundColor:cardIdx === i?'#FFFFFF':'#E5E5E5'}} onMouseEnter={()=>setCardContentIdx(i)} className="penjualanCard ">
+                        return <div key={i} onClick={()=>navigate('/detailPenjualan')} style={{borderRadius:cardIdx === i?'10px':'',boxShadow:cardIdx === i?'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px':'',backgroundColor:cardIdx === i?'#FFFFFF':'#E5E5E5',marginRight:i === 2 && '0px'}} onMouseEnter={()=>setCardContentIdx(i)}  className="penjualanCard ">
                             <div className="penjualanCardInner">
                                 <div className="iconContainer">
                                     {v.icon}
@@ -73,18 +78,18 @@ const Penjualan = () => {
           </div>
           <div className='lihatJuga'>
             <div className='lihatJugaTitle'>Lihat Juga</div>
-            <div onClick={() => navigate('/program')} className='lihatJugaContent'>
+            <Link onClick={() => window.scrollTo(0)} to='/program' className='lihatJugaContent'>
             Program Pendidikan dan Pelatihan
-            </div>
-            <div onClick={() => navigate('/konsultan')} className='lihatJugaContent'>
+            </Link>
+            <Link onClick={() => window.scrollTo(0)} to='/konsultan' className='lihatJugaContent'>
               Konsultan
-            </div>
-            <div onClick={() => navigate('/labour')} className='lihatJugaContent'>
+            </Link>
+            <Link onClick={() => window.scrollTo(0)} to='/labour' className='lihatJugaContent'>
              Labour Supply
-            </div>
-            <div onClick={() => navigate('/jasa')} className='lihatJugaContent'>
+            </Link>
+            <Link onClick={() => window.scrollTo(0)} to='/jasa' className='lihatJugaContent'>
               Jasa Servis Alat Berat
-            </div>
+            </Link>
           </div>
         </div>
       </div>

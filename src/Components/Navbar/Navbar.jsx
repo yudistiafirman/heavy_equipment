@@ -10,6 +10,9 @@ import PelayananKami from '../PelayananKami/PelayananKami'
 import {FaBars,FaPhoneAlt,FaRegEnvelope} from 'react-icons/fa'
 import { MenuContext } from "react-flexible-sliding-menu";
 import Backdrop from '@mui/material/Backdrop';
+import Fb from './assets/facebook.png'
+import Yt from './assets/youtube.png'
+import Linkedin from './assets/linkedin.png'
 function useWindowSize() {
   const [size, setSize] = useState([0, 0]);
   useLayoutEffect(() => {
@@ -77,6 +80,7 @@ const handleSlide =()=>{
        
 
           <div className='contactSeparator' />
+          <div style={{height:'100px',alignSelf:'center'}}>
           <div className='transBtn'>
             <span
               onClick={() => SetIsIdPress(!isIdPressed)}
@@ -99,6 +103,13 @@ const handleSlide =()=>{
               EN
             </span>
           </div>
+          <div className="socialMedia">
+            <img src={Linkedin} style={{width:'16px',height:'16px',marginRight:'14px'}}/>
+            <img src={Yt} style={{width:'23px',height:'16px',marginRight:'14px'}}/>
+            <img src={Fb} style={{width:'16px',height:'16px'}}/>
+          </div>
+          </div>
+      
         </div>
         <div className="mobileInfoContainer">
           <a style={{marginRight:'21px'}} href="tel:+68112131122">

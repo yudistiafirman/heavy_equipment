@@ -4,6 +4,16 @@
     border:1px solid black
 }
 
+.infoPelatihanCard{
+    width: 220px;
+    height: 335px;
+    border: 1px solid #C4C4C4;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom:20px;
+}
+
 .detailPelatihanContainer{
     margin: 0px 90px 178px 90px;
     padding-top: 182px;
@@ -14,12 +24,13 @@
 .detailInnerContainer{
     margin-top: 40px;
     margin-right: 80px;
+    width: 100%;
 }
 
 .routingDetail{
     display: flex;
     justify-content: space-between;
-    width:377px;
+    width:368px;
     margin-bottom:40px
 }
 
@@ -44,7 +55,7 @@
 }
 
 .detailContentContainer{
-    width: 780px;
+    width: 100%;
 }
 
 .detailTitleContainer{
@@ -160,6 +171,7 @@
     align-items: center;
     background-color: #071243;
     border-radius: 4px;
+    width: 244px;
     cursor: pointer;
 }
 
@@ -174,7 +186,7 @@
 
 .lihatPelatihanPopular{
     margin-top: 40px;
-    width: 100%;
+    width: 320px;
     background-color: #FBFBFB;
     height: 228px;
     border-radius: 10px;
@@ -191,5 +203,152 @@
     line-height: 20.25px;
     letter-spacing: -0.18px;
     margin-bottom: 20px;
+}
+
+.infoContainer{
+    width: 80%;
+}
+
+.infoContentContainer{
+    margin: 100px 90px 120px 90px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.titlePencarian{
+
+        height: 68px;
+        color: #000000;
+        font-size: 15px;
+        font-weight: bold;
+        font-family: "inter;sans-serif";
+        border-bottom: 1px solid #F5F5F5 ;
+        display: flex;
+        align-items: center
+      
+}
+
+.filterPencarianContainer{
+    
+        width: 280px;
+        height: 420px;
+        border: 1px solid #F5F5F5;
+        margin-top: 26px;
+        border-radius: 10px;
+    
+}
+
+.filterPencarianBtnMobile{
+    width: 100%;
+    height: 36px;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    margin-top:24px;
+    margin-bottom: 40px;
+    font-size: 14px;
+    color:#071243;
+    display: none;
+}
+
+.filterModal{
+    width: 100%;
+    height: 640px;
+}
+
+.filterModalTitle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12); 
+}
+
+.tampilkanBerdasarkanContent{
+    color: #FDC232;
+    font-size: 14px;
+    font-weight: 800;
+    font-family: "inter,sans-serif";
+    border: 1px solid #071243;
+    border-radius: 40px;
+    padding:10px;
+  
+  }
+
+.tampilkanBerdasarkanBtn{
+   
+    cursor:pointer;
+    margin-left:16px;
+    margin-right:16px
+  }
+
+  .tampilkanBerdasarkanBtn :hover{
+      color: #FFFFFF;
+      background-color: #FDC232;
+      padding:10px;
+      border: 1px solid #ffffff;
+  }
+
+  .careerCard{
+    width: 220px;
+    height: 210px;
+    border: 1px solid #C4C4C4;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 40px;
+  }
+
+
+
+@media only screen and (max-width: 969px) {
+    .detailPelatihanContainer{
+        margin: 0px 16px 178px 16px;
+        padding-top: 88px;
+        flex-direction: column;
+    } 
+
+
+    .routingInActive{
+        margin-right: 20px;
+    }
+
+    .nilaiPlusContainer{
+        margin-bottom: 70px;
+    }
+}
+@media only screen and (max-width: 490px){
+    .infoPelatihanCard{
+        width: 100%;
+    }
+
+    .careerCard{
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 976px){
+    .infoContainer{
+        width: 100%;
+    }
+
+    .infoContentContainer{
+        flex-direction: column-reverse;
+        margin: 48px 16px 96px 16px;
+    }
+    .filterPencarianContainer{
+        display: none;
+    }
+
+    .filterPencarianBtnMobile{
+        display: inline;
+    }
+
+    .lihatPelatihanPopular{
+        width: 100%;
+    }
+    .advantagesPelatihanInnerContainer{
+        flex-direction: column;
+    }
+    .hubungiBtn{
+        width: 100%;
+    }
 }
 

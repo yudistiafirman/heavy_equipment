@@ -33,10 +33,6 @@
     margin-bottom: 12px;
 }
 
-.footerLogo{
-    display: flex;
-}
-
 .copyRights{
     height: 64px;
     border-top: 1px solid #ffffff;
@@ -49,4 +45,20 @@
     font-weight: 400;
     font-size: 12px;
 
+}
+
+@media only screen and (max-width: 969px) {
+    .footerContent{
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        margin: 0px 16px 24px 16px;
+    }
+
+    .copyRightsTitle{
+        margin: 0px 16px 0px 16px;
+    }
+
+    .footerLogo{
+        margin-top: 40px;
+    }
 }

@@ -6,17 +6,34 @@
 /* JUMBOTRON */
 
 .jumbotron {
-  position: relative;
-  background-color: rgba(0, 0, 0, 0.1));
+  height: 442px;
+}
+
+
+.jumbotronContent{
+  flex-direction: column;
+  justify-content: center;
+  display: flex;
+  height: 100%;
+  border: 1px solid black;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .campaign {
-  position: absolute;
   width: 100%;
   height: 50px;
   z-index: 1;
-  top: 50%;
-  margin-left: 130px;
+  margin-left: 90px;
+ 
+}
+
+.subMenuCampaign{
+  width: 100%;
+  height: 50px;
+  z-index: 1;
+  margin-left: 90px;
+ 
 }
 
 .textWithBtn {
@@ -25,7 +42,7 @@
 
 .heroBtnContainer {
   position: absolute;
-  top: 50%;
+  top: 45%;
   width: 100vw;
   display: flex;
   justify-content: space-between;
@@ -42,6 +59,15 @@
   cursor: pointer;
   z-index: 2;
 }
+
+.btnHero.left{
+  margin-left: 40px;
+}
+
+.btnHero.right{
+  margin-right: 40px;
+}
+
 
 .btnHero :active {
   background-color: #ffffff;
@@ -71,6 +97,7 @@
   color: #ffffff;
   font-weight: 500;
   font-size: 15px;
+  width: 100%;
   font-family: 'inter', sans-serif;
 }
 
@@ -99,7 +126,7 @@
 #ourServices {
   padding-top: 110px;
   padding-bottom: 60px;
-  margin: 0px 90px 0px 90px;
+  margin: 0px 90px 257px 90px;
 }
 
 .servicesTitle {
@@ -276,6 +303,7 @@
   top:20%;
   left:0;
   right: 0;
+  z-index: 1;
 }
 
 .ellipseBlue{
@@ -283,6 +311,7 @@
   top:50%;
   left:-2%;
   right: 0;
+  z-index: 1;
 }
 /* PELATIHAN POPULER */
 
@@ -305,14 +334,108 @@
 }
 
 .logo{
-  width: 191px;
+  flex:0.5;
   height: 94px;
+  margin-right: 20px;
   border-radius: 10px;
   background-color: #ECECEC;
 }
+
+@media only screen and (max-width: 475px){
+  .pelatihanCardInner{
+    width: 200px;
+  }
+} 
 
 @media only screen and (max-width: 969px) {
   .homeContainer{
     padding-top: 88px;
   }
+
+  .heroMediumText{
+    font-size: 16px;
+  }
+
+  .heroOrangeText{
+    font-size: 24px;
+  }
+
+  .heroSmallText{
+    font-size: 14px;
+    width: 328px;
+  }
+
+  #ourServices {
+    margin:0px 16px 160px 16px
+  }
+
+  .servicesContainer{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pelatihanCardContainer{
+    width: 50%;
+    height: 100%;
+    z-index: 2;
+}
+
+  .pelatihanInnerContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ourServicesCardContainer{
+    flex-wrap: nowrap;
+    height: 100%;
+  }
+
+  .jumbotron{
+    height: 360px;
+  }
+
+  .pelatihanInnerContainer{
+    margin: 90px 16px 90px 16px ;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+ 
+}
+.pelatihanCardInner{
+  width: 220px;
+  margin: auto;
+}
+.galeriGrid{
+  width: 100%;
+  
+}
+
+.homeGaleriContainer{
+  margin:0px 16px 0px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.campaign{
+  margin-left: 50px;
+}
+
+.btnHero.left{
+  margin-left: 5px;
+}
+
+.heroBtnContainer{
+  top:40%
+}
+
+.subMenuCampaign{
+  margin-left: 16px;
+}
+
+  
 }

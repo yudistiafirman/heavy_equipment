@@ -1,15 +1,19 @@
 import React, { useState,useCallback } from 'react'
 import './SlidingMenu.css'
-import {Link} from 'react-router-dom'
+import {Link,useLocation} from 'react-router-dom'
 import { FaChevronRight } from "react-icons/fa";
 import { HiArrowNarrowLeft } from "react-icons/hi";
 import Logo from '../Navbar/assets/hec.png'
+import Fb from '../Navbar/assets/facebook.png'
+import Yt from '../Navbar/assets/youtube.png'
+import Linkedin from '../Navbar/assets/linkedin.png'
 const SlidingMenu = ({onPressDropDownTentang, onPressDropDownPelayanan}) => {
     const [menuIdx,SetMenuIdx]= useState(0)
     const [hoverIdx,SetHoverIdx]= useState(null)
     const menuHasDropDown =[1,2]
     const [tentangMenu,SetTentangMenu]=useState(false)
     const [pelayanMenu,SetPelayananMenu]=useState(false)
+    const location =useLocation()
     const menuList =[
      {
         title:'Home',
@@ -118,7 +122,7 @@ const onChangeRouteSideMenu=()=>{
                 {
                 menuList.map((value,index)=>{
                   return  <div className='link-Container'   >
-                        <Link onClick={()=>onChangeRoute(index)} style={{color: menuIdx === index ?"#FDC232":"" ,display:'flex',alignItems:'center',justifyContent:'flex-start',width:'210px'}}  to={value.to !== ''&& value.to}>{value.title.toUpperCase()}
+                        <Link onClick={()=>onChangeRoute(index)} style={{color: location.pathname === value.to ?"#FDC232":"" ,display:'flex',alignItems:'center',justifyContent:'flex-start',width:'210px'}}  to={value.to !== ''&& value.to}>{value.title.toUpperCase()}
                         {menuHasDropDown.includes(index) && <FaChevronRight style={{marginLeft:'auto'}}/> }
                         </Link>
                      
@@ -134,7 +138,7 @@ const onChangeRouteSideMenu=()=>{
                 {
                 tentangHecNav.map((value,index)=>{
                   return  <div className='link-Container'   >
-                        <Link onClick={onChangeRouteSideMenu} style={{display:'flex',alignItems:'center',justifyContent:'flex-start',width:'210px'}}  to={value.to}>{value.title.toUpperCase()}
+                        <Link onClick={onChangeRouteSideMenu} style={{color: location.pathname === value.to ?"#FDC232":"" ,display:'flex',alignItems:'center',justifyContent:'flex-start',width:'210px'}}  to={value.to}>{value.title.toUpperCase()}
                         </Link>
                      
                     </div>
@@ -150,7 +154,7 @@ const onChangeRouteSideMenu=()=>{
                 {
                 pelayanContent.map((value,index)=>{
                   return  <div className='link-Container'   >
-                        <Link onClick={onChangeRouteSideMenu} style={{display:'flex',alignItems:'center',justifyContent:'flex-start',width:'210px'}}  to={value.to}>{value.title.toUpperCase()}
+                        <Link onClick={onChangeRouteSideMenu} style={{ color: location.pathname === value.to ?"#FDC232":"" ,display:'flex',alignItems:'center',justifyContent:'flex-start',width:'210px'}}  to={value.to}>{value.title.toUpperCase()}
                         </Link>
                      
                     </div>
@@ -160,6 +164,11 @@ const onChangeRouteSideMenu=()=>{
             </div>
                 </div>
             </div>
+            <div className="slidingSocialMedia">
+            <img src={Linkedin} style={{width:'16px',height:'16px',marginRight:'14px'}}/>
+            <img src={Yt} style={{width:'23px',height:'16px',marginRight:'14px'}}/>
+            <img src={Fb} style={{width:'16px',height:'16px'}}/>
+          </div>
         </div>
     )
 }

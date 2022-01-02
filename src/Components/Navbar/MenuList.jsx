@@ -1,11 +1,15 @@
-import React, { useCallback, useState } from 'react'
-import {Link} from 'react-router-dom'
+import React, { useCallback, useEffect, useState } from 'react'
+import {Link, useLocation} from 'react-router-dom'
 import dropDownIcon from './assets/dropDown.png'
 import { AiFillCaretDown } from "react-icons/ai";
 const MenuList = ({onPressDropDownTentang, onPressDropDownPelayanan}) => {
     const [menuIdx,SetMenuIdx]= useState(0)
     const [hoverIdx,SetHoverIdx]= useState(null)
     const menuHasDropDown =[1,2]
+    const location = useLocation()
+ 
+
+
     const menuList =[
      {
         title:'Home',
@@ -17,7 +21,7 @@ const MenuList = ({onPressDropDownTentang, onPressDropDownPelayanan}) => {
      },
      {
         title:'Pelayanan Kami',
-        to:'/pelayanKami'
+        to:''
      },
      {
         title:'Galeri',
@@ -77,7 +81,7 @@ const onChangeRoute=(idx)=>{
             {
                 menuList.map((value,index)=>{
                   return  <li onMouseOut={onHoverOut} onMouseEnter={()=>onHover(index)}  >
-                        <Link id='menuList' onClick={()=>onChangeRoute(index)} style={{color: menuIdx === index ?"#FDC232":"" ,display:'flex',alignItems:'center'}}  to={value.to}>{value.title.toUpperCase()}
+                        <Link id='menuList' onClick={()=>onChangeRoute(index)} style={{color: location.pathname === value.to ?"#FDC232":"" ,display:'flex',alignItems:'center'}}  to={value.to !== '' && value.to}>{value.title.toUpperCase()}
                         {menuHasDropDown.includes(index) && <AiFillCaretDown style={{marginLeft:'7px',color:hoverIdx && hoverIdx === index ?'#FDC232':''}}/> }
                         </Link>
                      

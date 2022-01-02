@@ -4,7 +4,6 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import J1 from './assets/J1.jpg'
 import J2 from './assets/J2.jpg'
-import J3 from './assets/J3.jpg'
 import J4 from './assets/J4.jpg'
 import { FaChevronLeft } from 'react-icons/fa'
 import { FaChevronRight } from 'react-icons/fa'
@@ -57,16 +56,17 @@ const Jumbotron = () => {
       <Slider ref={slider} {...settings}>
         {content.map((item, index) => (
           <div key={index}>
-            <div className='jumbotron'>
-              <img
-                height='442px'
-                style={{ resize: 'horizontal', overflow: 'auto' }}
-                width='100%'
-                src={item.image}
-              />
-            </div>
-
-            <div className='campaign'>
+            <div 
+            style={{
+              backgroundImage:`url(${item.image})`,
+              backgroundRepeat:'no-repeat',
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+            
+            className='jumbotron'>
+              <div className="jumbotronContent">
+              <div className='campaign'>
               <div className='textWithBtn'>
                 <div className='heroMediumText'>Apapun Keperluan Anda</div>
                 <div className='heroOrangeText'>Kami hadir untuk anda</div>
@@ -76,21 +76,24 @@ const Jumbotron = () => {
                 </div>
               </div>
             </div>
+              </div>
+         
+            </div>
+
+    
           </div>
         ))}
       </Slider>
       <div className='heroBtnContainer'>
         <div
           onClick={() => slider.current.slickPrev()}
-          style={{ marginLeft: '56px', cursor: 'pointer' }}
-          className='btnHero'
+          className='btnHero left'
         >
           <FaChevronLeft color='#ffffff' />
         </div>
         <div
           onClick={() => slider.current.slickNext()}
-          style={{ marginRight: '56px' }}
-          className='btnHero'
+          className='btnHero right'
         >
           <FaChevronRight color='#ffffff' />
         </div>

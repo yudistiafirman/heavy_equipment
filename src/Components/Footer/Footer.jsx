@@ -20,7 +20,10 @@ const Footer = () => {
         </div>
       </div>
       <div className="copyRights">
-      ©2021 PT. Heavy Equipment Centre, all rights reserved     |     Development by FM
+        <div className="copyRightsTitle">
+        ©2021 PT. Heavy Equipment Centre, all rights reserved     |     Development by FM
+        </div>
+      
       </div>
     </div>
   )

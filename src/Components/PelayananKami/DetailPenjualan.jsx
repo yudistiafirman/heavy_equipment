@@ -5,15 +5,17 @@ import J2 from '../Home/assets/J2.jpg'
 import J3 from '../Home/assets/J3.jpg'
 import J4 from '../Home/assets/J4.jpg'
 import PhotoGrid from '../Home/PhotoGrid'
+import { useNavigate } from 'react-router-dom';
 const DetailPenjualan = () => {
+    const navigate = useNavigate()
     const images =[J1,J2,J3,J4,J1]
     return (
         <div className='detailPelatihanContainer'>
             <div className="detailInnerContainer">
                 <div style={{width:'60%'}} className="routingDetail">
-                    <div className="routingInActive">Home</div>
+                    <div onClick={()=> navigate('/')}  className="routingInActive">Home</div>
                     <div className="routingInActive">/</div>
-                    <div className="routingInActive">Penjualan Sparepart Alat Berat</div>
+                    <div onClick={()=> navigate('/penjualan')}  className="routingInActive">Penjualan Sparepart Alat Berat</div>
                     <div className="routingInActive">/</div>
                     <div style={{color:'#000000'}} className="routingInActive">Nama alat berat 1</div>
                 </div>
@@ -43,9 +45,9 @@ const DetailPenjualan = () => {
             </div>
             <div style={{marginTop:'40px'}} className="lihatJuga">
             <div className="lihatJugaTitle">Lihat Juga</div>
-            <div className="lihatJugaContent">Nama alat berat 1</div>
-            <div className="lihatJugaContent">Nama alat berat 2</div>
-            <div className="lihatJugaContent">Nama alat berat 3</div>
+            <div onClick={()=> navigate('/penjualan')}  className="lihatJugaContent">Nama alat berat 1</div>
+            <div onClick={()=> navigate('/penjualan')}  className="lihatJugaContent">Nama alat berat 2</div>
+            <div onClick={()=> navigate('/penjualan')}  className="lihatJugaContent">Nama alat berat 3</div>
         </div>
         </div>
     )

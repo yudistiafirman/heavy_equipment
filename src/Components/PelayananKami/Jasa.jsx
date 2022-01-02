@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import JasaPict from './assets/jasa.jpg'
 const Jasa = () => {
     let navigate = useNavigate()
@@ -28,30 +28,35 @@ const Jasa = () => {
     ]
     return (
       <div className='latarContainer'>
-        <div className='jumbotron'>
-          <img
-            height='442px'
-            style={{ resize: 'horizontal', overflow: 'auto' }}
-            width='100%'
-            src={JasaPict}
-          />
-        </div>
-        <div className='campaign'>
-          <div className='textWithBtn'>
-            <div className='heroMediumText'>Jasa Servis </div>
-            <div className='heroOrangeText'>Alat Berat</div>
-          </div>
-        </div>
+                  <div 
+            style={{
+              backgroundImage:`url(${JasaPict})`,
+              backgroundRepeat:'no-repeat',
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+            
+            className='jumbotron'>
+              <div className="jumbotronContent">
+              <div className='subMenuCampaign'>
+              <div className='textWithBtn'>
+                <div className='heroMediumText'>Jasa Servis</div>
+                <div className='heroOrangeText'>Alat Berat</div>
+              </div>
+            </div>
+              </div>
+         
+            </div>
         <div className='latarContentContainer'>
           <div className='latarContentDesc'>
-          <div className='latarTitle'>Penjualan Sparepart</div>
+          <div className='latarTitle'>Jasa Servis Alat Berat</div>
           <div style={{marginBottom:'20px'}} className='latarContent'>
           Menjadi perusahaan jasa layanan support alat berat yang professional dan synergi dengan customer di seluruh Indonesia.
           </div>
-          <div style={{height:'100%',display:'flex',flexDirection:'row',flexWrap:'wrap'}}>
+          <div className='penjualanDanServiceList'>
                 {
                     jasaContent.map((v,i)=>{
-                        return <div key={i} style={{marginRight:i === 2 && '0px'}} style={{borderRadius:cardIdx === i?'10px':'',boxShadow:cardIdx === i?'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px':'',backgroundColor:cardIdx === i?'#FFFFFF':'#E5E5E5'}} onMouseEnter={()=>setCardContentIdx(i)} className="penjualanCard ">
+                        return <div key={i}  onClick={()=>navigate('/detailJasa')} style={{borderRadius:cardIdx === i?'10px':'',boxShadow:cardIdx === i?'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px':'',backgroundColor:cardIdx === i?'#FFFFFF':'#E5E5E5',marginRight:i === 2 && '0px'}} onMouseEnter={()=>setCardContentIdx(i)} className="penjualanCard ">
                             <div className="penjualanCardInner">
                                 <div className="iconContainer">
                                     {v.icon}
@@ -73,18 +78,18 @@ const Jasa = () => {
           </div>
           <div className='lihatJuga'>
             <div className='lihatJugaTitle'>Lihat Juga</div>
-            <div onClick={() => navigate('/program')} className='lihatJugaContent'>
+            <Link onClick={() => window.scrollTo(0)} to='/program' className='lihatJugaContent'>
             Program Pendidikan dan Pelatihan
-            </div>
-            <div onClick={() => navigate('/konsultan')} className='lihatJugaContent'>
+            </Link>
+            <Link onClick={() => window.scrollTo(0)} to='/konsultan' className='lihatJugaContent'>
               Konsultan
-            </div>
-            <div onClick={() => navigate('/labour')} className='lihatJugaContent'>
+            </Link>
+            <Link onClick={() => window.scrollTo(0)} to='/labour' className='lihatJugaContent'>
              Labour Supply
-            </div>
-            <div onClick={() => navigate('/penjualan')} className='lihatJugaContent'>
+            </Link>
+            <Link onClick={() => window.scrollTo(0)} to='/penjualan' className='lihatJugaContent'>
               Penjualan Sparepart Alat Berat
-            </div>
+            </Link>
           </div>
         </div>
       </div>
