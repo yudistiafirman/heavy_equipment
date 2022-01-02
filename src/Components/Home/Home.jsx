@@ -9,7 +9,7 @@ const Home = () => {
     return (
         <div className='homeContainer'>
             <section style={{ position:'relative'}}  id='jumbotron'>
-                <Jumbotron/>
+                {/* <Jumbotron/> */}
             </section>
             <section  id='ourServices'>
                  <OurServices/>
