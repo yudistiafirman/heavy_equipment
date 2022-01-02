@@ -59,7 +59,7 @@ const OurServices = () => {
             <div className="ourServicesCardContainer">
                 {
                     servicesCardContent.map((v,i)=>{
-                        return <div onClick={()=>window.location = v.to} key={i} style={{borderRadius:cardIdx === i?'10px':'',boxShadow:cardIdx === i?'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px':'',backgroundColor:cardIdx === i?'#FFFFFF':'#E5E5E5',marginRight:i === 2 && '0px'}} onMouseEnter={()=>setCardContentIdx(i)} className="servicesCard ">
+                        return <div onClick={()=>window.location = v.to} key={i} style={{borderRadius:cardIdx === i?'10px':'0px',boxShadow:cardIdx === i?'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px':'',backgroundColor:cardIdx === i?'#FFFFFF':'#E5E5E5',marginRight:i === 2 && '0px'}} onMouseEnter={()=>setCardContentIdx(i)} className="servicesCard ">
                             <div className="servicesCardInner">
                                 <div className="iconContainer">
                                     {v.icon}
