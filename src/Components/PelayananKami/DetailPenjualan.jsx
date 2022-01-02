@@ -6,9 +6,17 @@ import J3 from '../Home/assets/J3.jpg'
 import J4 from '../Home/assets/J4.jpg'
 import PhotoGrid from '../Home/PhotoGrid'
 import { useNavigate } from 'react-router-dom';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+import Alert from '@mui/material/Alert';
 const DetailPenjualan = () => {
     const navigate = useNavigate()
     const images =[J1,J2,J3,J4,J1]
+
+    const Alert=()=>{
+        return   <Alert severity="success" color="info">
+        This is a success alert — check it out!
+      </Alert>
+    }
     return (
         <div className='detailPelatihanContainer'>
             <div className="detailInnerContainer">
@@ -26,7 +34,10 @@ const DetailPenjualan = () => {
                 Nama Alat Berat 1
                 </div>
                <div className="titleIconContainer">
+                   <CopyToClipboard onCopy={()=>alert('Success Copy to Clipboard')} text={window.location.href}>
                    <FaShareAlt/>
+                   </CopyToClipboard>
+               
                </div>
             </div>
                 <div style={{marginBottom:'40px'}}>

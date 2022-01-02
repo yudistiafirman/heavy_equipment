@@ -1,18 +1,26 @@
 import React, { useLayoutEffect } from 'react'
 
 import PelatihanPict from './assets/Pelatihan.jpg'
+
 import { useState } from 'react/cjs/react.development'
 import FilledInput from '@mui/material/FilledInput'
 import InputAdornment from '@mui/material/InputAdornment'
 import IconButton from '@mui/material/IconButton'
 import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
+import FormGroup from '@mui/material/FormGroup'
+import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox'
-
+import TextField from '@mui/material/TextField';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import MobileDatePicker from '@mui/lab/MobileDatePicker';
+import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import { FaSearch } from 'react-icons/fa'
 import { AiOutlineClose } from 'react-icons/ai'
 import Slider from 'react-slick'
 import { Dialog } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 function useWindowSize () {
   const [size, setSize] = useState([0, 0])
@@ -32,6 +40,7 @@ const InfoPelatihan = () => {
 const [pageHoverIdx, SetPageHoverIdx] = useState(0)
 const [width, height] = useWindowSize()
 const [filter, SetFilter] = useState(false)
+const [startDate,SetStartDate]=useState(new Date())
 
   const infoPelatihanContent = [
     {
@@ -70,8 +79,14 @@ const [filter, SetFilter] = useState(false)
       desc:
 'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
 
-    }
+    },
+    {
+      image: '',
+      title: 'Judul Pelatihan 6',
+      desc:
+'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
 
+    },
   ]
 
   const settings = {
@@ -154,7 +169,6 @@ className = 'infoPelatihanCard'
                           ? 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px'
                           : '',
                       backgroundColor: cardIdx === i ? '#FFFFFF' : '#E5E5E5',
-                      cursor: 'pointer'
                     }}
                   >
                     <div className='imageContainer'></div>
@@ -176,11 +190,15 @@ className = 'infoPelatihanCard'
                     >
                       <div
                         className='cardBtnTitle'
-                        style={{
-                          color: cardIdx === i ? '#FDC232' : '#000000'
-                        }}
+                    
                       >
+                        <a href='/detailPelatihan'   style={{
+                          color: cardIdx === i ? '#FDC232' : '#000000',
+                          cursor:'pointer'
+                        }} >
                         Lihat Detail
+                        </a>
+                       
                       </div>
                     </div>
                   </div>
@@ -216,7 +234,18 @@ className = 'infoPelatihanCard'
               }
             />
           </FormControl>
-          
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <DesktopDatePicker
+          label="Tanggal Mulai Pelatihan"
+          value={startDate}
+          minDate={new Date('2017-01-01')}
+          onChange={(newValue) => {
+            SetStartDate(newValue);
+          }}
+          renderInput={(params) => <TextField style={{marginTop:'20px'}} fullWidth {...params} />}
+        />
+
+          </LocalizationProvider>
              <button onClick={()=>SetFilter(true)} className='filterPencarianBtnMobile'>FILTER PENCARIAN</button>
           
          

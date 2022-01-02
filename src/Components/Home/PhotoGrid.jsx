@@ -336,12 +336,14 @@ export default function PictureGrid(props) {
                                 backgroundPosition: "center", 
                               }}
                             >
-                              <Typography
+                              <a onClick={()=>window.location = '/galeri'}
+                              
                                 style={{ color: "white",fontSize:'14px',color:'#FDC232' }}
                                 className={classes.title}
                               >
+                                
                                 Lihat Lainnya
-                              </Typography>
+                              </a>
                             </Grid>
                           </Grid>
                         );

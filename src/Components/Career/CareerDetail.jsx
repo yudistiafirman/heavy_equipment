@@ -1,5 +1,7 @@
 import React from 'react'
 import { FaShareAlt }from 'react-icons/fa'
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+
 const CareerDetail = () => {
     return (
         <div className='detailPelatihanContainer'>
@@ -18,7 +20,9 @@ const CareerDetail = () => {
                 Head of Human Resource
                 </div>
                <div className="titleIconContainer">
+               <CopyToClipboard onCopy={()=>alert('Success Copy to Clipboard')} text={window.location.href}>
                    <FaShareAlt/>
+                   </CopyToClipboard>
                </div>
             </div>
             <div className="detailDesc">

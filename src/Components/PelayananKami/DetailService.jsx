@@ -6,6 +6,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import { AiFillCaretDown } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 const DetailService = () => {
 
   const navigate = useNavigate()
@@ -26,7 +27,9 @@ const DetailService = () => {
                 Jasa Servis 1
                 </div>
                <div className="titleIconContainer">
+               <CopyToClipboard onCopy={()=>alert('Success Copy to Clipboard')} text={window.location.href}>
                    <FaShareAlt/>
+                   </CopyToClipboard>
                </div>
             </div>
         

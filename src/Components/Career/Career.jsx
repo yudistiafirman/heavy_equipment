@@ -174,7 +174,6 @@ const [filter, SetFilter] = useState(false)
                           ? 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px'
                           : '',
                       backgroundColor: cardIdx === i ? '#FFFFFF' : '#E5E5E5',
-                      cursor: 'pointer'
                     }}
                   >
                     <div
@@ -195,11 +194,17 @@ const [filter, SetFilter] = useState(false)
                     >
                       <div
                         className='cardBtnTitle'
-                        style={{
-                          color: cardIdx === i ? '#FDC232' : '#000000'
-                        }}
+                     
                       >
+                        <a    style={{
+                          color: cardIdx === i ? '#FDC232' : '#000000',
+                          cursor:'pointer'
+                        }}
+                        href='/detailCareer'
+                        >
                         Lihat Detail
+                        </a>
+                       
                       </div>
                     </div>
                   </div>

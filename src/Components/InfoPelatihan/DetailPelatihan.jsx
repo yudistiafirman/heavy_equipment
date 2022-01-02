@@ -2,6 +2,7 @@ import React from 'react'
 import './Info.css'
 import { FaShareAlt }from 'react-icons/fa'
 import CheckIcon from './assets/iconCheck.png'
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 const DetailPelatihan = () => {
     return (
         <div className='detailPelatihanContainer'>
@@ -20,11 +21,16 @@ const DetailPelatihan = () => {
                 Judul Pelatihan Populer 1
                 </div>
                <div className="titleIconContainer">
+               <CopyToClipboard onCopy={()=>alert('Success Copy to Clipboard')} text={window.location.href}>
                    <FaShareAlt/>
+                   </CopyToClipboard>
                </div>
             </div>
             <div className="titleCategory">
                 <div>Sertifikasi</div>
+            </div>
+            <div   style={{width:'30%'}} className="titleCategory">
+                <div>12 JANUARI 2020 - 20 JANUARI 2020</div>
             </div>
             <div className="detailImage">
 
@@ -66,10 +72,10 @@ const DetailPelatihan = () => {
             <div className="lihatPelatihanPopular">
             <div className="lihatPelatihanInnerContainer">
                 <div className="latarTitle">Pelatihan Lainnya</div>
-                <div className="lihatPelatihanContent">Judul Pelatihan Popular  1</div>
-                <div className="lihatPelatihanContent">Judul Pelatihan Popular  2</div>
-                <div className="lihatPelatihanContent">Judul Pelatihan Popular  3</div>
-                <div className="lihatPelatihanContent">Judul Pelatihan Popular  4</div>
+                <div onClick={()=>window.location = '/infoPelatihan'} className="lihatPelatihanContent">Judul Pelatihan Popular  1</div>
+                <div onClick={()=>window.location = '/infoPelatihan'}  className="lihatPelatihanContent">Judul Pelatihan Popular  2</div>
+                <div onClick={()=>window.location = '/infoPelatihan'}  className="lihatPelatihanContent">Judul Pelatihan Popular  3</div>
+                <div onClick={()=>window.location = '/infoPelatihan'}  className="lihatPelatihanContent">Judul Pelatihan Popular  4</div>
             </div>
                 </div>
         </div>

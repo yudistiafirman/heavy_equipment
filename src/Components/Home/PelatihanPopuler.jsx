@@ -4,6 +4,7 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import EllipseOrange from './assets/EllipseOrange.png'
 import EllipseBlue from './assets/EllipseBlue.png'
+import { Link } from 'react-router-dom'
 const pelatihanPopularContent = [
   {
     image: '',
@@ -105,11 +106,11 @@ const PelatihanPopuler = () => {
                     >
                       <div
                         className='cardBtnTitle'
-                        style={{
-                          color: cardIdx === i ? '#FDC232' : '#000000'
-                        }}
                       >
-                        Lihat Detail
+                      <Link onClick={()=> window.scrollTo(0)} style={{textDecoration:'none',  color: cardIdx === i ? '#FDC232' : '#000000'}} to='/detailPelatihan'>
+                      Lihat Detail
+                      </Link>
+                    
                       </div>
                     </div>
                   </div>

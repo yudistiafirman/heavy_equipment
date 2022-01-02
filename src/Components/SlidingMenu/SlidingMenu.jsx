@@ -7,6 +7,7 @@ import Logo from '../Navbar/assets/hec.png'
 import Fb from '../Navbar/assets/facebook.png'
 import Yt from '../Navbar/assets/youtube.png'
 import Linkedin from '../Navbar/assets/linkedin.png'
+import Instagram from '../Navbar/assets/instagram.png'
 const SlidingMenu = ({onPressDropDownTentang, onPressDropDownPelayanan}) => {
     const [menuIdx,SetMenuIdx]= useState(0)
     const [hoverIdx,SetHoverIdx]= useState(null)
@@ -167,7 +168,8 @@ const onChangeRouteSideMenu=()=>{
             <div className="slidingSocialMedia">
             <img src={Linkedin} style={{width:'16px',height:'16px',marginRight:'14px'}}/>
             <img src={Yt} style={{width:'23px',height:'16px',marginRight:'14px'}}/>
-            <img src={Fb} style={{width:'16px',height:'16px'}}/>
+            <img onClick={()=>window.location = 'https://www.instagram.com/heavyequipmentcentre'}   src={Instagram} style={{width:'16px',height:'16px',marginRight:'14px',cursor:'pointer'}}/>
+            <img  onClick={()=> window.location = 'https://www.facebook.com/profile.php?id=100075861904489'}  src={Fb} style={{width:'16px',height:'16px'}}/>
           </div>
         </div>
     )

@@ -56,7 +56,7 @@ const Jasa = () => {
           <div className='penjualanDanServiceList'>
                 {
                     jasaContent.map((v,i)=>{
-                        return <div key={i}  onClick={()=>navigate('/detailJasa')} style={{borderRadius:cardIdx === i?'10px':'',boxShadow:cardIdx === i?'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px':'',backgroundColor:cardIdx === i?'#FFFFFF':'#E5E5E5',marginRight:i === 2 && '0px'}} onMouseEnter={()=>setCardContentIdx(i)} className="penjualanCard ">
+                        return <div key={i}  onClick={()=>window.location= '/detailJasa'} style={{borderRadius:cardIdx === i?'10px':'',boxShadow:cardIdx === i?'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px':'',backgroundColor:cardIdx === i?'#FFFFFF':'#E5E5E5',marginRight:i === 2 && '0px'}} onMouseEnter={()=>setCardContentIdx(i)} className="penjualanCard ">
                             <div className="penjualanCardInner">
                                 <div className="iconContainer">
                                     {v.icon}
