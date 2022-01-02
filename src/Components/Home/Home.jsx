@@ -15,7 +15,7 @@ const Home = () => {
                  <OurServices/>
             </section>
             <section style={{marginBottom:'257px'}} id='pelatihanPopuler'>
-                    <PelatihanPopuler/>
+                    {/* <PelatihanPopuler/> */}
             </section>
             <section style={{marginBottom:'211px'}} id="homeGaleri">
                     {/* <HomeGaleri/> */}
