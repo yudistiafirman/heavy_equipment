@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef,useState } from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
@@ -7,7 +7,6 @@ import J2 from './assets/J2.jpg'
 import J4 from './assets/J4.jpg'
 import { FaChevronLeft } from 'react-icons/fa'
 import { FaChevronRight } from 'react-icons/fa'
-import { useState } from 'react/cjs/react.development'
 const Jumbotron = () => {
   const [slideIdx, SetSlideIdx] = useState(0)
   const slider = useRef()

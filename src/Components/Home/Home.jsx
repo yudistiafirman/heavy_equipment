@@ -13,16 +13,16 @@ const Home = () => {
               
             </section>
             <section  id='ourServices'>
-                 {/* <OurServices/> */}
+                 <OurServices/>
             </section>
             <section style={{marginBottom:'257px'}} id='pelatihanPopuler'>
-                    {/* <PelatihanPopuler/> */}
+                    <PelatihanPopuler/>
             </section>
             <section style={{marginBottom:'211px'}} id="homeGaleri">
-                    {/* <HomeGaleri/> */}
+                    <HomeGaleri/>
             </section>
             <section>
-                        {/* <Client/> */}
+                        <Client/>
             </section>
               
         </div>
