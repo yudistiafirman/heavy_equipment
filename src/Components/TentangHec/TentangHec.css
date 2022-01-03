@@ -90,10 +90,18 @@
     cursor: pointer;
 }
 
+.strukturPict{
+    width: 90%;
+}
+
 
 @media only screen and (max-width: 969px) {
     .latarContainer{
         padding-top: 88px;
+    }
+
+    .strukturPict{
+        width: 100%;
     }
     .latarContentContainer{
         margin: 48px 16px 96px 16px;

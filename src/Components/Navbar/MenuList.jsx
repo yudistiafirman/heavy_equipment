@@ -42,7 +42,7 @@ const MenuList = ({onPressDropDownTentang, onPressDropDownPelayanan}) => {
      {
          title:'Kontak',
          to:'/kontak'
-     }    
+     } 
 
 ]
 

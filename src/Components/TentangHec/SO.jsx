@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link} from 'react-router-dom'
 import J3 from '../Home/assets/J3.jpg'
-import NilaiPict from './assets/nilai.png'
+import So from './assets/SO.png'
 const SO = () => {
     return (
       <div className='latarContainer'>
@@ -28,7 +28,7 @@ const SO = () => {
         <div className='latarContentContainer'>
           <div className='latarContentDesc'>
           <div className='latarTitle'>Struktur Organisasi Perusahaan</div>
-                <img alt='#' src={NilaiPict} width="90%"/>
+                <img alt='#' className='strukturPict' src={So} style={{borderRadius:'30px'}} />
           </div>
           <div className='lihatJuga'>
             <div className='lihatJugaTitle'>Lihat Juga</div>
