@@ -13,7 +13,7 @@ const DetailService = () => {
     return (
         <div className='detailPelatihanContainer'>
             <div className="detailInnerContainer">
-                <div  className="routingDetail">
+                <div style={{width:'60%'}}   className="routingDetail">
                     <div onClick={()=> navigate('/')} className="routingInActive">Home</div>
                     <div className="routingInActive">/</div>
                     <div onClick={()=> navigate('/jasa')} className="routingInActive">Jasa Service Alat Berat</div>
