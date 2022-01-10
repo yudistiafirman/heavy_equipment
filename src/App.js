@@ -1,4 +1,5 @@
 import Navbar from './Components/Navbar/Navbar'
+import AdminRoute from './Route/AdminRoute';
 import Routing from './Route/Routing';
 
 
@@ -12,8 +13,10 @@ function App() {
 
   return (
     <div >
-     
-      <Routing/>
+     {
+       localStorage.getItem('user') ? <AdminRoute/> :    <Routing/>
+     }
+   
  
     </div>
   );

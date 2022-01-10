@@ -1,8 +1,10 @@
 import React from 'react'
 import './footer.css'
 import HecLogoBnW from './assets/hecLogoBnW.png'
+import { useLocation } from 'react-router-dom'
 const Footer = () => {
-  return (
+  const location =useLocation()
+  return location.pathname !== '/Admin' && (
     <div className='footer'>
       <div className='footerContent'>
         <div className='footerInfo'>

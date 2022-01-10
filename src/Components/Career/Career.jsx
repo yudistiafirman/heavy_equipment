@@ -222,7 +222,7 @@ const [filter, SetFilter] = useState(false)
         >
           <FormControl fullWidth variant='filled'>
             <InputLabel htmlFor='filled-adornment-password'>
-              Cari Pelatihan
+              Cari Karir
             </InputLabel>
             <FilledInput
               type='text'

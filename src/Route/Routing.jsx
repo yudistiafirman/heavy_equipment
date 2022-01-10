@@ -31,15 +31,18 @@ import DetailPenjualan from '../Components/PelayananKami/DetailPenjualan';
 import DetailService from '../Components/PelayananKami/DetailService';
 import MenuProvider from "react-flexible-sliding-menu";
 import SlidingMenu from '../Components/SlidingMenu/SlidingMenu';
+import AdminRoute from './AdminRoute';
 const Routing = () => {
     return (
   
         <Router>
+               
               <MenuProvider MenuComponent={SlidingMenu} animation="push" >
+           
           <div>
           <Navbar/>
           <Routes>
-             <Route path="/"  element={<Home/>} />
+             <Route path="/" exact  element={<Home/>} />
              <Route path="/tentangHec" element={<TentangHec/>} />
              <Route path="/pelayanKami" element={<PelayananKami/>} />
              <Route path="/galeri" element={<Galeri/>} />
@@ -60,10 +63,16 @@ const Routing = () => {
              <Route path="/career" element={<Career/>} />
              <Route path="/detailCareer" element={<CareerDetail/>} />
              <Route path="/kontak" element={<Kontak/>} />
-          </Routes>
+          
+          
+             
+             </Routes>
           <Footer/>
+       
             </div>
+           
             </MenuProvider>
+         
         </Router>
     )
 }
