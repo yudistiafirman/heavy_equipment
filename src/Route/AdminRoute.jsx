@@ -7,6 +7,7 @@ import {
   Link
 } from 'react-router-dom'
 import AdminCareer from '../Components/Admin/AdminCareer'
+import AdminFasilitas from '../Components/AdminFasiltas'
 import AdminGaleri from '../Components/AdminGaleri/AdminGaleri'
 import AdminNavbar from '../Components/AdminNavbar/AdminNavbar'
 import AdminPelatihan from '../Components/AdminPelatihan/AdminPelatihan'
@@ -21,6 +22,7 @@ const AdminRoute = () => {
     <Route  path="/admincareer" element={<AdminCareer/>} />
     <Route  path="/admingaleri" element={<AdminGaleri/>} />
     <Route  path="/adminpelatihan" element={<AdminPelatihan/>} />
+    <Route  path="/adminfasilitas" element={<AdminFasilitas/>} />
     </Routes>
 
       </div>

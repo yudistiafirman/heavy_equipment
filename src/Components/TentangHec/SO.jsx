@@ -25,10 +25,10 @@ const SO = () => {
               </div>
          
             </div>
-        <div className='latarContentContainer'>
-          <div className='latarContentDesc'>
+        <div style={{flexDirection:'column'}} className='latarContentContainer'>
+          <div style={{width:'97vw',marginBottom:'30px'}}>
           <div className='latarTitle'>Struktur Organisasi Perusahaan</div>
-                <img alt='#' className='strukturPict' src={So} style={{borderRadius:'30px'}} />
+                <img alt='#' width="90%" className='strukturPict' src={So} style={{borderRadius:'4px'}} />
           </div>
           <div className='lihatJuga'>
             <div className='lihatJugaTitle'>Lihat Juga</div>

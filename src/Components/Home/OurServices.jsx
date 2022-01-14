@@ -2,36 +2,41 @@ import React,{useState} from 'react'
 import { AiFillReconciliation} from "react-icons/ai";
 import { MdEngineering,MdOutlineSupervisedUserCircle,MdHandyman,MdHomeRepairService} from "react-icons/md";
 import {useNavigate} from 'react-router-dom'
+import konsultan from './assets/konsultan.png'
+import labour_supply from './assets/labour_supply.png'
+import service from './assets/service.png'
+import program from './assets/program.png'
+import spare from './assets/spare.png'
 const OurServices = () => {
     const [cardIdx,setCardContentIdx]=useState(0)
     const navigate = useNavigate()
     const servicesCardContent=[
         {
-            icon:<AiFillReconciliation size="50%" color="#ffffff" />,
+            icon:<img src={program} width="100%" color="#ffffff" />,
             title:'Program Pendidikan Pelatihan',
             description:'Li Europan lingues es membres del sam familie. Lor separat existentie es un myth.',
             to:'/program'
         },
         {
-            icon:<MdEngineering size="50%" color="#ffffff" /> ,
+            icon:<img src={labour_supply} width="100%" color="#ffffff" /> ,
             title:'Labour Supply',
             description:'Li Europan lingues es membres del sam familie. Lor separat existentie es un myth.',
             to:'labour'
         },
         {
-            icon:<MdOutlineSupervisedUserCircle size="50%" color="#ffffff" />  ,
+            icon:<img src={konsultan} width="100%" color="#ffffff" />,
             title:'Konsultan',
             description:'Li Europan lingues es membres del sam familie. Lor separat existentie es un myth.',
             to:'/konsultan'
         },
         {
-            icon:<MdHandyman size="50%" color="#ffffff" /> ,
+            icon:<img src={spare} width="100%" color="#ffffff" />,
             title:'Sparepart Alat Berat',
             description:'Li Europan lingues es membres del sam familie. Lor separat existentie es un myth.',
             to:'/penjualan'
         },
         {
-            icon:<MdHomeRepairService size="50%" color="#ffffff" /> ,
+            icon:<img src={service} width="100%" color="#ffffff" />,
             title:'Service Alat Berat',
             description:'Li Europan lingues es membres del sam familie. Lor separat existentie es un myth.',
             to:'/jasa'
@@ -58,7 +63,7 @@ const OurServices = () => {
             <div className="ourServicesCardContainer">
                 {
                     servicesCardContent.map((v,i)=>{
-                        return <div onClick={()=>window.location = v.to} key={i} style={{borderRadius:cardIdx === i?'10px':'0px',boxShadow:cardIdx === i?'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px':'',backgroundColor:cardIdx === i?'#FFFFFF':'#E5E5E5',marginRight:i === 2 && '0px'}} onMouseEnter={()=>setCardContentIdx(i)} className="servicesCard ">
+                        return <div onClick={()=>window.location = v.to} key={i} style={{borderRadius:'10px',boxShadow:cardIdx === i?'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px':'',backgroundColor:'#FFFFFF',marginRight:i === 2 && '0px'}} onMouseEnter={()=>setCardContentIdx(i)} className="servicesCard ">
                             <div className="servicesCardInner">
                                 <div className="iconContainer">
                                     {v.icon}

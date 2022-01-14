@@ -1,24 +1,52 @@
-import React from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import './Info.css'
 import { FaShareAlt }from 'react-icons/fa'
 import CheckIcon from './assets/iconCheck.png'
 import {CopyToClipboard} from 'react-copy-to-clipboard';
+import {useParams,useLocation, useNavigate} from 'react-router-dom'
+import axios from 'axios';
+import { apiUrl } from '../../Default';
+import moment from 'moment'
+import { cardTitleSlicer } from '../utils/funcHelper';
 const DetailPelatihan = () => {
-    return (
+    const [pelatihanData,setPelatihanData]=useState([])
+    const [pelatihanPopular,setPelatihanPopular]=useState([])
+    const {id,name}=useParams()
+    const navigate=useNavigate()
+    const location =useLocation()
+    useEffect(()=>{
+        getPelatihanData()
+        getPelatihanPopular()
+    },[id,name])
+    const getPelatihanData=()=>{
+        axios.get(`${apiUrl}/pelatihan/detail?id=${id}`).then((response)=>{
+            setPelatihanData(response.data.data)
+        })
+    }
+    const getPelatihanPopular =()=>{
+        axios.get(`${apiUrl}/pelatihan/popular`).then((response)=>{
+          setPelatihanPopular(response.data.data)
+        })
+      }
+
+    const renderPelatihanPopular=useMemo(()=>{
+
+    },[id,name])
+    return pelatihanData.length > 0 && (
         <div className='detailPelatihanContainer'>
             <div className="detailInnerContainer">
                 <div className="routingDetail">
-                    <div className="routingInActive">Home</div>
+                    <div onClick={()=>navigate('/')} className="routingInActive">Home</div>
+                    <div   className="routingInActive">/</div>
+                    <div onClick={()=>navigate('/infoPelatihan')} className="routingInActive">Info Pelatihan</div>
                     <div className="routingInActive">/</div>
-                    <div className="routingInActive">Info Pelatihan</div>
-                    <div className="routingInActive">/</div>
-                    <div style={{color:'#000000'}} className="routingInActive">Judul Pelatihan Populer 1</div>
+                    <div style={{color:'#000000'}} className="routingInActive">{name}</div>
                 </div>
          
             <div className="detailContentContainer">
             <div className="detailTitleContainer">
                 <div className="detailTitle">
-                Judul Pelatihan Populer 1
+                {pelatihanData[0].name}
                 </div>
                <div className="titleIconContainer">
                <CopyToClipboard onCopy={()=>alert('Success Copy to Clipboard')} text={window.location.href}>
@@ -27,16 +55,25 @@ const DetailPelatihan = () => {
                </div>
             </div>
             <div className="titleCategory">
-                <div>Sertifikasi</div>
+                <div>{pelatihanData[0].category_name}</div>
             </div>
             <div   style={{width:'30%'}} className="titleCategory">
-                <div>12 JANUARI 2020 - 20 JANUARI 2020</div>
+                <div>       {`${moment(pelatihanData[0].start_date).format('Do MMMM YYYY')} - ${moment(pelatihanData[0].end_date).format('Do MMMM YYYY')}`}</div>
             </div>
             <div className="detailImage">
-
+            <div
+            style={{
+                              width:'100%',
+                              height:'100%',
+                            backgroundImage:`url(${apiUrl}/${pelatihanData[0].image})`,
+                            backgroundRepeat:'no-repeat',
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                            cursor:'pointer'
+                            }}></div>
             </div>
             <div className="detailDesc">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus
+            {pelatihanData[0].descriptions}
             </div>
             <div className="advantagesPelatihanContainer">
                 <div className="advantagesPelatihanInnerContainer">
@@ -44,23 +81,43 @@ const DetailPelatihan = () => {
                         <div className="nilaiPlustitle">
                                 Nilai Plus Pelatihan HEC
                         </div>
-                        <div className="checkListContainer">
+                        {
+                            pelatihanData[0].nilaiPlus[0].nilai_1 &&    <div className="checkListContainer">
                             <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px'}}/>
-                            <div className="checkDesc">Waktu Belajar fleksible</div>
+                            <div className="checkDesc">{ pelatihanData[0].nilaiPlus[0].nilai_1}</div>
                         </div>
-                        <div className="checkListContainer">
+                        }
+                               {
+                            pelatihanData[0].nilaiPlus[0].nilai_2 &&    <div className="checkListContainer">
                             <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px'}}/>
-                            <div className="checkDesc">Menggunakan Pengajar Professional</div>
+                            <div className="checkDesc">{ pelatihanData[0].nilaiPlus[0].nilai_2}</div>
                         </div>
-                        <div className="checkListContainer">
+                        }
+                               {
+                            pelatihanData[0].nilaiPlus[0].nilai_3 &&    <div className="checkListContainer">
                             <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px'}}/>
-                            <div className="checkDesc">Adaptif dengan penerapan lapangan</div>
+                            <div className="checkDesc">{ pelatihanData[0].nilaiPlus[0].nilai_3}</div>
                         </div>
+                        }
+                               {
+                            pelatihanData[0].nilaiPlus[0].nilai_4 &&    <div className="checkListContainer">
+                            <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px'}}/>
+                            <div className="checkDesc">{ pelatihanData[0].nilaiPlus[0].nilai_4}</div>
+                        </div>
+                        }
+                               {
+                            pelatihanData[0].nilaiPlus[0].nilai_5 &&    <div className="checkListContainer">
+                            <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px'}}/>
+                            <div className="checkDesc">{ pelatihanData[0].nilaiPlus[0].nilai_5}</div>
+                        </div>
+                        }
+                     
+                    
                     </div>
                     <div className="bestOffer">
                         <div className="bestOfferTitle">Dapatkan Penawaran Terbaik</div>
                         <div className="hubungiBtn">
-                            <div className="hubungiBtnTitle">HUBUNGI KAMI</div>
+                            <a href='tel:+68112131122' className="hubungiBtnTitle">HUBUNGI KAMI</a>
                         </div>
                     </div>
                 </div>
@@ -72,10 +129,13 @@ const DetailPelatihan = () => {
             <div className="lihatPelatihanPopular">
             <div className="lihatPelatihanInnerContainer">
                 <div className="latarTitle">Pelatihan Lainnya</div>
-                <div onClick={()=>window.location = '/infoPelatihan'} className="lihatPelatihanContent">Judul Pelatihan Popular  1</div>
-                <div onClick={()=>window.location = '/infoPelatihan'}  className="lihatPelatihanContent">Judul Pelatihan Popular  2</div>
-                <div onClick={()=>window.location = '/infoPelatihan'}  className="lihatPelatihanContent">Judul Pelatihan Popular  3</div>
-                <div onClick={()=>window.location = '/infoPelatihan'}  className="lihatPelatihanContent">Judul Pelatihan Popular  4</div>
+                {
+                    pelatihanPopular.length> 0 && pelatihanPopular.slice(0,5).filter((v,i)=>v.name !== pelatihanPopular[0].name).map((v,i)=>{
+                        return (
+                            <div onClick={()=>navigate('/infoPelatihan/detailPelatihan/'+v.id+'/'+v.name)}  className="lihatPelatihanContent">{cardTitleSlicer(v.name)}</div>
+                        )
+                    }) 
+                }
             </div>
                 </div>
         </div>

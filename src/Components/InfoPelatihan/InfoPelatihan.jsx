@@ -1,4 +1,4 @@
-import React, { useLayoutEffect,useState } from 'react'
+import React, { useEffect, useLayoutEffect,useRef,useState,useCallback } from 'react'
 
 import PelatihanPict from './assets/Pelatihan.jpg'
 
@@ -20,7 +20,11 @@ import { AiOutlineClose } from 'react-icons/ai'
 import Slider from 'react-slick'
 import { Dialog } from '@mui/material'
 import { Link } from 'react-router-dom'
-
+import axios from 'axios'
+import { apiUrl } from '../../Default'
+import { cardDescSlicer, cardTitleSlicer } from '../utils/funcHelper'
+import moment from 'moment'
+import  {useNavigate} from 'react-router-dom'
 function useWindowSize () {
   const [size, setSize] = useState([0, 0])
   useLayoutEffect(() => {
@@ -40,89 +44,103 @@ const [pageHoverIdx, SetPageHoverIdx] = useState(0)
 const [width, height] = useWindowSize()
 const [filter, SetFilter] = useState(false)
 const [startDate,SetStartDate]=useState(new Date())
+const [infoPelatihanContent,setInfoPelatihanContent]=useState([])
+const [searchInput,setSearchInput]=useState('')
+const slide =useRef()
+const [category,setCategory]=useState([])
+const navigate = useNavigate()
+const settings = {
+  dots: true,
+  arrows:false,
+  infinite: false,
+  speed: 500,
+  vertical : width <= 490 ? true: false,
+  verticalSwiping:width <= 490 ? true:false,
+  slidesToShow: width <= 490 ? 6:  width <= 725 ?2 : width <= 967 ? 3 : 3,
+  rows:infoPelatihanContent.length <= 6 ?1 : width <= 967 ? 1  : 2,
+  slidesToScroll:1,
+  dotsClass: "slick-dots slick-thumb",
+  swipeToSlide:true,
+  beforChange:(index)=>SetPageHoverIdx(index),
+  afterChange: (index)=>SetPageHoverIdx(index),
+  customPaging: i => (
 
-  const infoPelatihanContent = [
-    {
-      image: '',
-      title: 'Judul Pelatihan 1',
-      desc:
-        'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
-    },
-    {
-      image: '',
-      title: 'Judul Pelatihan 2',
-      desc:
-        'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
-    },
-    {
-      image: '',
-      title: 'Judul Pelatihan 3',
-      desc:
-        'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
-    },
-    {
-      image: '',
-      title: 'Judul Pelatihan 4',
-      desc:
-        'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
-    },
-    {
-      image: '',
-      title: 'Judul Pelatihan 5',
-      desc:
-        'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
-    },
-    {
-      image: '',
-      title: 'Judul Pelatihan 6',
-      desc:
-'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
-
-    },
-    {
-      image: '',
-      title: 'Judul Pelatihan 6',
-      desc:
-'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
-
-    },
-  ]
-
-  const settings = {
-    dots: true,
-    arrows:false,
-    infinite: false,
-    speed: 500,
-    vertical : width <= 490 ? true: false,
-    verticalSwiping:width <= 490 ? true:false,
-    slidesToShow: width <= 490 ? 6:  width <= 725 ?2 : width <= 967 ? 3 : 3,
-    rows:infoPelatihanContent.length <= 6 ?1 : width <= 967 ? 1  : 2,
-    slidesToScroll:1,
-    dotsClass: "slick-dots slick-thumb",
-    swipeToSlide:true,
-    afterChange: (index)=>SetPageHoverIdx(index),
-    customPaging: i => (
+      <div
+      onClick={()=>SetPageHoverIdx(i)}
+       style={{
+        width: "25px",
+        height:"25px",
+        color: i === pageHoverIdx ?"#FFFFFF":"#BCBCBC",
+        border: "1px #BCBCBC solid",
+        margin:'30px',
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center',
+        borderRadius:'6px',
+        backgroundColor:i === pageHoverIdx ? "#FDC232":""
+      }}
+      >
+      {i+1}
+      </div>
   
-        <div
-        onClickCapture={()=>SetPageHoverIdx(i)}
-         style={{
-          width: "25px",
-          height:"25px",
-          color: i === pageHoverIdx ?"#FFFFFF":"#BCBCBC",
-          border: "1px #BCBCBC solid",
-          margin:'30px',
-          display:'flex',
-          justifyContent:'center',
-          alignItems:'center',
-          borderRadius:'6px',
-          backgroundColor:i === pageHoverIdx ? "#FDC232":""
-        }}
-        >
-        {i+1}
-        </div>
-    
-    ),
-  
+  ),
+
+}
+
+useEffect(()=>{
+  getAllPelatihan('','','')
+  getCategory()
+},[])
+const getAllPelatihan = (queryValue,date,category) => {
+  axios.get(`${apiUrl}/pelatihan/all?&name=${queryValue}&date=${date}&category=${category}`).then(response => {
+    setInfoPelatihanContent(response.data.data)
+
+  })
+}
+
+const onChangePencarian=useCallback((e)=>{
+  setSearchInput(e.target.value)
+  getAllPelatihan(e.target.value,'','')
+
+},[searchInput])
+
+
+const onChangeDate=useCallback((newDate)=>{
+  SetStartDate(newDate)
+},[startDate])
+
+const getCategory =()=>{
+  axios.get(`${apiUrl}/pelatihan/category`).then((response)=>{
+    const categoryName = response.data.data.map((v,i)=> ({value:false,category:v.category_name}))
+    setCategory(categoryName)
+  })
+}
+
+const onClickCategory =useCallback((idx,name)=>{
+  const arrCategory =[]
+  for (var i =0;i<category.length;i++){
+    if ( i ===idx){
+      category[i].value = true
+    }else{
+      category[i].value = false
+    }
+    arrCategory.push(category[i])
+  }
+  setCategory(arrCategory)
+},[category])
+
+const resetPencarian=()=>{
+  setSearchInput('')
+  SetStartDate(new Date())
+  getAllPelatihan('','','')
+  getCategory()
+  SetFilter(false)
+}
+
+const onApplyFilter =()=>{
+  const categoryName = category.filter((v,i)=> v.value === true)
+  getAllPelatihan('',moment(startDate).format('YYYY-MM-DD'),categoryName[0].category)
+  SetFilter(false)
 }
 
   return (
@@ -154,10 +172,12 @@ const [startDate,SetStartDate]=useState(new Date())
           >
             Semua Pelatihan
           </div>
-          <Slider {...settings}>
-            {infoPelatihanContent.map((v, i) => {
+          {
+            infoPelatihanContent.length > 0 ?          <Slider {...settings}>
+            { infoPelatihanContent.map((v, i) => {
               return (
-                <div key={i}>
+                <div   ref={slide} key={i}>
+                 
                   <div
                     onMouseEnter={() => setCardContentIdx(i)}
 className = 'infoPelatihanCard'
@@ -167,19 +187,31 @@ className = 'infoPelatihanCard'
                         cardIdx === i
                           ? 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px'
                           : '',
-                      backgroundColor: cardIdx === i ? '#FFFFFF' : '#E5E5E5',
+                      backgroundColor: '#FFFFFF',
                     }}
                   >
-                    <div className='imageContainer'></div>
+                    <div className='imageContainer'>
+                    <div
+                         style={{
+                          width: '100%',
+                          height: '100%',
+                          backgroundImage: `url(${apiUrl}/${v.image})`,
+                          backgroundRepeat: 'no-repeat',
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center',
+                          cursor: 'pointer'
+                        }}
+                        />
+                    </div>
                     <div
                       className='pelatihanCardTitle'
                       style={{
                         color: cardIdx === i ? '#FDC232' : '#000000'
                       }}
                     >
-                      {v.title}
+                      {cardTitleSlicer(v.name)}
                     </div>
-                    <div className='pelatihanCardDesc'>{v.desc}</div>
+                    <div className='pelatihanCardDesc'>{cardDescSlicer(v.descriptions)}</div>
                     <div
                       className={
                         cardIdx === i
@@ -191,7 +223,7 @@ className = 'infoPelatihanCard'
                         className='cardBtnTitle'
                     
                       >
-                        <a href='/detailPelatihan'   style={{
+                        <a onClick={()=>navigate('detailPelatihan/'+v.id+'/'+v.name)}   style={{
                           color: cardIdx === i ? '#FDC232' : '#000000',
                           cursor:'pointer'
                         }} >
@@ -204,22 +236,25 @@ className = 'infoPelatihanCard'
                 </div>
               )
             })}
-          </Slider>
+          </Slider> : <div style={{width:'100%',height:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+
+            <div className='latarTitle'>Pencarian Tidak Ditemukan</div>
+          </div>
+          }
+
         </div>
         <div
-          style={{
-            width: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            flexDirection: 'column'
-          }}
+        className='inputPencarianContainer'
         >
           <FormControl fullWidth variant='filled'>
-            <InputLabel htmlFor='filled-adornment-password'>
+            <InputLabel  htmlFor='filled-adornment-password'>
               Cari Pelatihan
             </InputLabel>
             <FilledInput
+            onFocus={resetPencarian}
               type='text'
+              value={searchInput}
+              onChange={onChangePencarian}
               style={{height: '56px' }}
               endAdornment={
                 <InputAdornment position='end'>
@@ -233,18 +268,7 @@ className = 'infoPelatihanCard'
               }
             />
           </FormControl>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <DesktopDatePicker
-          label="Tanggal Mulai Pelatihan"
-          value={startDate}
-          minDate={new Date('2017-01-01')}
-          onChange={(newValue) => {
-            SetStartDate(newValue);
-          }}
-          renderInput={(params) => <TextField style={{marginTop:'20px'}} fullWidth {...params} />}
-        />
-
-          </LocalizationProvider>
+    
              <button onClick={()=>SetFilter(true)} className='filterPencarianBtnMobile'>FILTER PENCARIAN</button>
           
          
@@ -261,45 +285,30 @@ className = 'infoPelatihanCard'
                 borderBottom: '1px solid #F5F5F5 '
               }}
             >
-              <div
-                style={{
-                  color: '#000000',
-                  fontSize: '14px',
-                  fontWeight: '400',
-                  fontFamily: "'inter',sans-serif",
-                  marginLeft: '16px',
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
-              >
-                <div style={
-                  { 
-                    marginTop: '24px', 
-                    marginBottom: '14px' ,
-                    color: '#000000',
-                    fontSize: '14px',
-                    fontWeight: '400',
-                    fontFamily: "'inter',sans-serif"
-                  
-                  }
-                  
-                  }>
-                  Tampilkan Berdasarkan
-                </div>
-              </div>
-              <div
-              style={{
-                display:'flex',
-              }}
-              >
-              <span className='tampilkanBerdasarkanBtn'>
-                <div className='tampilkanBerdasarkanContent'>Terbaru</div>
-              </span>
-              <span className='tampilkanBerdasarkanBtn' >
-                <div className='tampilkanBerdasarkanContent' >Paling Sesuai</div>
-              </span>
-              </div>
-              <div
+              
+              <div style={{marginLeft:'16px',marginRight:'16px'}}>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <DesktopDatePicker
+          label="Tanggal Mulai Pelatihan"
+          value={startDate}
+          minDate={new Date('2017-01-01')}
+          onChange={(newValue) => {
+            onChangeDate(newValue)
+          }}
+          renderInput={(params) => <TextField style={{marginTop:'20px'}} fullWidth {...params} />}
+        />
+
+          </LocalizationProvider>
+            </div>
+      
+        
+           
+     
+       
+         
+            </div>
+            <div className="categoryContainer">
+            <div
             style={
               {
                 marginTop: '24px',
@@ -316,57 +325,29 @@ className = 'infoPelatihanCard'
 
             </div>
             <div style={{marginLeft:'5px'}} >
-              <div style={{display:'flex',alignItems:'center'}}>
-              <Checkbox defaultChecked />
-              <div
-              style={{
-                color: '#000000',
-                fontSize: '14px',
-                fontWeight: '400',
-                fontFamily: "'inter',sans-serif"
-              }}
-              >Semua</div>
-              </div>
-              <div style={{display:'flex',alignItems:'center'}}>
-              <Checkbox defaultChecked />
-              <div
-              style={{
-                color: '#000000',
-                fontSize: '14px',
-                fontWeight: '400',
-                fontFamily: "'inter',sans-serif"
-              }}
-              >Pelatihan</div>
-              </div>
-              <div style={{display:'flex',alignItems:'center'}}>
-              <Checkbox defaultChecked />
-              <div
-              style={{
-                color: '#000000',
-                fontSize: '14px',
-                fontWeight: '400',
-                fontFamily: "'inter',sans-serif"
-              }}
-              >Sertifikasi</div>
-              </div>
-              <div style={{display:'flex',alignItems:'center'}}>
-              <Checkbox defaultChecked />
-              <div
-              style={{
-                color: '#000000',
-                fontSize: '14px',
-                fontWeight: '400',
-                fontFamily: "'inter',sans-serif"
-              }}
-              >Human Resource</div>
-              </div>
-              <div style={{marginRight:'5px',marginTop:'80%'}} className="hubungiBtn">
-                            <div className="hubungiBtnTitle">TERAPKAN</div>
-                        </div>
-            </div>
-       
+              {
+                category.map((v,i)=>{
+                  return (
+                    <div style={{display:'flex',alignItems:'center'}}>
+                    <Checkbox onClick={()=>onClickCategory(i,v.category)} checked={v.value===true} />
+                    <div
+                    style={{
+                      color: '#000000',
+                      fontSize: '14px',
+                      fontWeight: '400',
+                      fontFamily: "'inter',sans-serif"
+                    }}
+                    >{v.category}</div>
+                    </div>
+                  )
+                })
+              }
          
             </div>
+            </div>
+            <div onClick={onApplyFilter} className="hubungiBtn">
+                            <div className="hubungiBtnTitle">TERAPKAN</div>
+                        </div>
                   </div>
                   
               </div>
@@ -378,54 +359,21 @@ className = 'infoPelatihanCard'
             className='titlePencarian'>
               <div style={{ marginLeft: '16px' }}>Filter Pencarian</div>
             </div>
-            <div
-              style={{
-                height: '120px',
-                borderBottom: '1px solid #F5F5F5 '
-              }}
-            >
-              <div
-                style={{
-                  color: '#000000',
-                  fontSize: '14px',
-                  fontWeight: '400',
-                  fontFamily: "'inter',sans-serif",
-                  marginLeft: '16px',
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
-              >
-                <div style={
-                  { 
-                    marginTop: '24px', 
-                    marginBottom: '14px' ,
-                    color: '#000000',
-                    fontSize: '14px',
-                    fontWeight: '400',
-                    fontFamily: "'inter',sans-serif"
-                  
-                  }
-                  
-                  }>
-                  Tampilkan Berdasarkan
-                </div>
-              </div>
-              <div
-              style={{
-                display:'flex',
-                justifyContent:'space-around'
-              }}
-              >
-              <span className='tampilkanBerdasarkanBtn'  >
-                <div className='tampilkanBerdasarkanContent'>Terbaru</div>
-              </span>
-              <span className='tampilkanBerdasarkanBtn' >
-                <div  className='tampilkanBerdasarkanContent' >Paling Sesuai</div>
-              </span>
-              </div>
-         
-         
+            <div style={{marginLeft:'16px',marginRight:'16px'}}>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <DesktopDatePicker
+          label="Tanggal Mulai Pelatihan"
+          value={startDate}
+          minDate={new Date('2017-01-01')}
+          onChange={(newValue) => {
+            onChangeDate(newValue)
+          }}
+          renderInput={(params) => <TextField style={{marginTop:'20px'}} fullWidth {...params} />}
+        />
+
+          </LocalizationProvider>
             </div>
+            <div className='categoryContainer'>
             <div
             style={
               {
@@ -443,53 +391,32 @@ className = 'infoPelatihanCard'
 
             </div>
             <div style={{marginLeft:'5px'}} >
-              <div style={{display:'flex',alignItems:'center'}}>
-              <Checkbox defaultChecked />
-              <div
-              style={{
-                color: '#000000',
-                fontSize: '14px',
-                fontWeight: '400',
-                fontFamily: "'inter',sans-serif"
-              }}
-              >Semua</div>
-              </div>
-              <div style={{display:'flex',alignItems:'center'}}>
-              <Checkbox defaultChecked />
-              <div
-              style={{
-                color: '#000000',
-                fontSize: '14px',
-                fontWeight: '400',
-                fontFamily: "'inter',sans-serif"
-              }}
-              >Pelatihan</div>
-              </div>
-              <div style={{display:'flex',alignItems:'center'}}>
-              <Checkbox defaultChecked />
-              <div
-              style={{
-                color: '#000000',
-                fontSize: '14px',
-                fontWeight: '400',
-                fontFamily: "'inter',sans-serif"
-              }}
-              >Sertifikasi</div>
-              </div>
-              <div style={{display:'flex',alignItems:'center'}}>
-              <Checkbox defaultChecked />
-              <div
-              style={{
-                color: '#000000',
-                fontSize: '14px',
-                fontWeight: '400',
-                fontFamily: "'inter',sans-serif"
-              }}
-              >Human Resource</div>
-              </div>
-              
+              {
+                category.map((v,i)=>{
+                  return (
+                    <div style={{display:'flex',alignItems:'center'}}>
+                    <Checkbox onClick={()=>onClickCategory(i,v.category)} checked={v.value===true} />
+                    <div
+                    style={{
+                      color: '#000000',
+                      fontSize: '14px',
+                      fontWeight: '400',
+                      fontFamily: "'inter',sans-serif"
+                    }}
+                    >{v.category}</div>
+                    </div>
+                  )
+                })
+              }
+         
             </div>
+            </div>
+            <div style={{marginLeft:'16px'}} onClick={onApplyFilter} className="hubungiBtn">
+                            <div className="hubungiBtnTitle">TERAPKAN</div>
+                        </div>
+        
           </div>
+      
         </div>
       </div>
     </div>

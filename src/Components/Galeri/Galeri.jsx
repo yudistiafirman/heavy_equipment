@@ -1,10 +1,12 @@
-import React, { useState,useLayoutEffect} from 'react'
+import React, { useState,useLayoutEffect, useEffect} from 'react'
 import GaleriPict from './assets/Galeri.jpg'
 import './Galeri.css'
 import { Grid, Dialog } from "@material-ui/core";
 import J1 from '../Home/assets/J1.jpg'
 import J2 from '../Home/assets/J2.jpg'
 import Slider from 'react-slick'
+import axios from 'axios';
+import {apiUrl} from '../../Default'
 function useWindowSize() {
   const [size, setSize] = useState([0, 0]);
   useLayoutEffect(() => {
@@ -22,7 +24,13 @@ const Galeri = () => {
   const [showImage,SetShowImages]=useState(null)
   const [width,height]=useWindowSize()
   const [pageHoverIdx,SetPageHoverIdx]=useState(0)
+  const [galeriContent,setGaleriContent]=useState([])
 
+  useEffect(()=>{
+    axios.get(`${apiUrl}/galeri/all?title=`).then((response)=>{
+      setGaleriContent(response.data.data)
+    })
+  },[])
 
   const settings = {
     dots: true,
@@ -61,37 +69,7 @@ const Galeri = () => {
   
 }
 
-    const galeriContent=[
-        {
-            title:'Judul Galeri 1',
-            images:J1
-        },
-        {
-            title:'Judul Galeri 2',
-            images:J2
-        },
-        {
-          title:'Judul Galeri 3',
-          images:J1
-        },
-        {
-          title:'Judul Galeri 4',
-          images:J1
-        },
-        {
-          title:'Judul Galeri 5',
-          images:J1
-        },
-        {
-          title:'Judul Galeri 6',
-          images:J1
-        },
-        {
-          title:'Judul Galeri 7',
-          images:J1
-        },
-  
-    ]
+
     return (
       <div className='latarContainer'>
                   <div 
@@ -122,14 +100,14 @@ const Galeri = () => {
                  
                   return (<div
                   style={{border:'1px solid black'}}
-                  onClick={()=>SetShowImages(v.images)}
+                  onClick={()=>SetShowImages(`${apiUrl}/${v.image}`)}
                   onMouseEnter={() => setCardContentIdx(i)}>
                     <div className='galeriCard'>
                     <div 
                     
                     className="galeriCardImgContainer"
                     style={{
-                      backgroundImage:`url(${v.images})`,
+                      backgroundImage:`url(${apiUrl}/${v.image})`,
                       backgroundRepeat:'no-repeat',
                       backgroundSize: "cover",
                       backgroundPosition: "center",

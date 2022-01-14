@@ -2,6 +2,7 @@ import React from 'react'
 import './AdminNavbar.css'
 import HecLogo from '../Navbar/assets/heclogo.png'
 import { AiFillPicture, AiOutlineRead, AiOutlineUser, AiOutlineUsergroupAdd } from 'react-icons/ai'
+import {RiBuilding2Line} from 'react-icons/ri'
 import { Link } from 'react-router-dom'
 const AdminNavbar = () => {
     return (
@@ -39,8 +40,19 @@ const AdminNavbar = () => {
                 <div className="admin-navbar-link-container">
                     <Link style={{display:'flex',alignItems:'center',justifyContent:'space-between',color:'#6B7280',width:'200px'}} to='/adminpelatihan'>
                     <AiOutlineRead  style={{width:'25px',height:'25px',marginLeft:'50px'}}/>
-                    <div style={{marginRight:'50px'}} >
+                    <div style={{marginRight:'52px'}} >
                     Pelatihan
+                    </div>
+                     
+                      
+                    </Link>
+                   
+                </div>
+                <div className="admin-navbar-link-container">
+                    <Link style={{display:'flex',alignItems:'center',justifyContent:'space-between',color:'#6B7280',width:'200px'}} to='/adminfasilitas'>
+                    <RiBuilding2Line  style={{width:'25px',height:'25px',marginLeft:'50px'}}/>
+                    <div style={{marginRight:'58px'}} >
+                        Fasilitas 
                     </div>
                      
                       

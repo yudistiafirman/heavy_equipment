@@ -31,7 +31,7 @@ const PelayananKami = ({onPressDropDownPelayanan}) => {
             {
                 pelayanContent.map((v,i)=>{
                     return <div  onClick={()=>onPressDropDownPelayanan(false)}  className="pelayanList">
-                    <Link onClick={()=>window.scrollTo(0)}  style={{color: location.pathname === v.to ?"#FDC232":""}}  to={v.to}>{v.title.toUpperCase()}</Link>
+                    <Link style={{color: location.pathname === v.to ?"#FDC232":""}}  to={v.to}>{v.title.toUpperCase()}</Link>
                 </div>
                 })
             }

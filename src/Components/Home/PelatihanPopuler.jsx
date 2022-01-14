@@ -1,42 +1,14 @@
-import React, { useState,useLayoutEffect } from 'react'
+import React, { useState,useLayoutEffect, useEffect } from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import EllipseOrange from './assets/EllipseOrange.png'
 import EllipseBlue from './assets/EllipseBlue.png'
 import { Link } from 'react-router-dom'
-const pelatihanPopularContent = [
-  {
-    image: '',
-    title: 'Judul Pelatihan 1',
-    desc:
-      'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
-  },
-  {
-    image: '',
-    title: 'Judul Pelatihan 2',
-    desc:
-      'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
-  },
-  {
-    image: '',
-    title: 'Judul Pelatihan 3',
-    desc:
-      'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
-  },
-  {
-    image: '',
-    title: 'Judul Pelatihan 4',
-    desc:
-      'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
-  },
-  {
-    image: '',
-    title: 'Judul Pelatihan 5',
-    desc:
-      'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
-  }
-]
+import axios from 'axios'
+import { apiUrl } from '../../Default'
+import { cardDescSlicer, cardTitleSlicer, stringSlicer } from '../utils/funcHelper'
+
 
 function useWindowSize() {
   const [size, setSize] = useState([0, 0]);
@@ -53,6 +25,19 @@ function useWindowSize() {
 const PelatihanPopuler = () => {
   const [cardIdx, setCardContentIdx] = useState(0)
   const [width,height] =useWindowSize()
+  const [popularData,setPopularData]=useState([])
+
+
+  useEffect(()=>{
+    getPelatihanPopular()
+  },[])
+
+
+  const getPelatihanPopular =()=>{
+    axios.get(`${apiUrl}/pelatihan/popular`).then((response)=>{
+      setPopularData(response.data.data)
+    })
+  }
   const settings = {
     slidesToShow: width <= 969 ? 1 : width <= 1200 ? 2:3,
     slidesToScroll: 1,
@@ -73,7 +58,7 @@ const PelatihanPopuler = () => {
         </div>
         <div className='pelatihanCardContainer'>
           <Slider {...settings}>
-            {pelatihanPopularContent.map((v, i) => {
+            {popularData.map((v, i) => {
               return (
                 <div key={i}>
                   <div
@@ -84,25 +69,34 @@ const PelatihanPopuler = () => {
                         cardIdx === i
                           ? 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px'
                           : '',
-                      backgroundColor: cardIdx === i ? '#FFFFFF' : '#E5E5E5'
+                      backgroundColor: '#FFFFFF'
                     }}
                   >
-                    <div className='imageContainer'></div>
+                    <div className='imageContainer'>
+                    <div
+                         style={{
+                          width: '100%',
+                          height: '100%',
+                          backgroundImage: `url(${apiUrl}/${v.image})`,
+                          backgroundRepeat: 'no-repeat',
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center',
+                          cursor: 'pointer'
+                        }}
+                        />
+                    </div>
                     <div
                       className='pelatihanCardTitle'
                       style={{
                         color: cardIdx === i ? '#FDC232' : '#000000'
                       }}
                     >
-                      {v.title}
+                      {cardTitleSlicer(v.name)}
                     </div>
-                    <div className='pelatihanCardDesc'>{v.desc}</div>
+                    <div className='pelatihanCardDesc'>{cardDescSlicer(v.descriptions)}</div>
                     <div
-                      className={
-                        cardIdx === i
-                          ? 'pelatihanCardBtn active'
-                          : 'pelatihanCardBtn '
-                      }
+                      className="pelatihanCardBtn"
+                      
                     >
                       <div
                         className='cardBtnTitle'

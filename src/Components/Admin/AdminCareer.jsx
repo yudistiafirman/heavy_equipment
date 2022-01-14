@@ -127,14 +127,17 @@ const AdminCareer = () => {
   }
 
   const onAddKualifikasi = () => {
-    if (kualifikasiForm.length < 8) {
-      SetKualifikasiForm([
-        ...kualifikasiForm,
-        { label: `Kualifikasi`, kualifikasiValue: '' }
-      ])
-    } else {
-      alert('Penambahan kualifkasi telah mencapai batas maksimal')
+    if(kualifikasiForm[0].kualifikasiValue){
+      if (kualifikasiForm.length < 8) {
+        SetKualifikasiForm([
+          ...kualifikasiForm,
+          { label: `Kualifikasi`, kualifikasiValue: '' }
+        ])
+      } else {
+        alert('Penambahan kualifkasi telah mencapai batas maksimal')
+      }
     }
+ 
   }
 
 
@@ -276,7 +279,7 @@ const onFilterCategory=useCallback((value)=>{
           Swal.fire({
             icon: 'success',
             title: 'Penghapusan lowongan kerja sukses',
-            text: 'Penghapusan lowongan kerja terbaru berhasil'
+            text: 'Penghapusan lowongan kerja berhasil'
           })
           setSelected([])
           getAllvacancies('','','')

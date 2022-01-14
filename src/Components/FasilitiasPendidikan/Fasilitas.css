@@ -1,0 +1,21 @@
+.fasilitasListImageContainer{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.fasilitasImage{
+    width:228px;
+    height:171px;
+    border-radius:10px;
+
+}
+
+@media only screen and (max-width: 824px){
+    .fasilitasListImageContainer{
+        flex-direction: column;
+    }
+    .fasilitasImage{
+        margin-bottom: 20px;
+    }
+}

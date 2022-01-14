@@ -1,4 +1,4 @@
-import React,{ useState ,useLayoutEffect}  from 'react'
+import React,{ useState ,useLayoutEffect, useEffect,useCallback}  from 'react'
 import CareerPict from './assets/career.jpg'
 import FilledInput from '@mui/material/FilledInput'
 import InputAdornment from '@mui/material/InputAdornment'
@@ -10,6 +10,9 @@ import { FaSearch } from 'react-icons/fa'
 import Slider from 'react-slick'
 import { AiOutlineClose } from 'react-icons/ai'
 import { Dialog } from '@mui/material'
+import axios from 'axios'
+import { apiUrl } from '../../Default'
+import  {useNavigate} from 'react-router-dom'
 function useWindowSize () {
   const [size, setSize] = useState([0, 0])
   useLayoutEffect(() => {
@@ -27,74 +30,57 @@ const Career = () => {
     const [pageHoverIdx, SetPageHoverIdx] = useState(0)
 const [width, height] = useWindowSize()
 const [filter, SetFilter] = useState(false)
-  const infoPelatihanContent = [
-    {
-      title: 'Head of Human Resources',
-      desc:
-        'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
-    },
-    {
-      title: 'Training Manager',
-      desc:
-        'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
-    },
-    {
-      title: 'Office Boy',
-      desc:
-        'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
-    },
-    {
-      title: 'IT Support',
-      desc:
-        'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
-    },
-    {
-      title: 'Satpam',
-      desc:
-        'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
-    },
-    {
-      title: 'Tibum',
-      desc:
-        'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
-    },
-    {
-      title: 'Full Stack Engineer',
-      desc:
-        'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
-    },
-    {
-      title: 'Electrican',
-      desc:
-        'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
-    },
-    {
-      title: 'Training Consultant',
-      desc:
-        'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
-    },
-    {
-      title: 'Mechanic',
-      desc:
-        'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
-    },
-    {
-      title: 'Accounting',
-      desc:
-        'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
-    },
-    {
-      title: 'Sales and Marketing',
-      desc:
-        'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
-    },
-    {
-      title: 'Parking Man',
-      desc:
-        'Li Europan lingues es membres del sam familie. Lor separat existentie es un'
-    }
-  ]
+const [infoCareer,setInfoCareer]=useState([])
+const [category,setCategory]=useState([])
+const [inputSearch,setInputSearch]=useState('')
+const navigate=useNavigate()
 
+useEffect(()=>{
+  getAllvacancies('','','')
+  getCategory()
+},[])
+const getAllvacancies=(searchValue,date,category)=>{
+  axios.get(`${apiUrl}/vacancies/all?&name=${searchValue}&date=${date}&category=${category}`).then((response)=>{
+    setInfoCareer(response.data.data)
+  })
+}
+
+const getCategory =()=>{
+  axios.get(`${apiUrl}/vacancies/category`).then((response)=>{
+    const categoryName = response.data.data.map((v,i)=> ({value:false,category:v.category_name}))
+    setCategory(categoryName)
+  })
+}
+const onClickCategory =useCallback((idx,name)=>{
+  const arrCategory =[]
+  for (var i =0;i<category.length;i++){
+    if ( i ===idx){
+      category[i].value = true
+    }else{
+      category[i].value = false
+    }
+    arrCategory.push(category[i])
+  }
+  setCategory(arrCategory)
+},[category])
+
+const onApplyFilter=()=>{
+  const categoryName = category.filter((v,i)=> v.value === true)
+  getAllvacancies('','',categoryName[0].category)
+  SetFilter(false)
+}
+
+const onSearchVacancy=(e)=>{
+  setInputSearch(e.target.value)
+  getAllvacancies(e.target.value,'','')
+}
+
+const resetPencarian =()=>{
+  setInputSearch('')
+  getAllvacancies('','','')
+  getCategory()
+  
+}
   const settings = {
     dots: true,
     arrows:false,
@@ -103,7 +89,7 @@ const [filter, SetFilter] = useState(false)
     vertical : width <= 490 ? true: false,
     verticalSwiping:width <= 490 ? true:false,
     slidesToShow: width <= 490 ? 6:  width <= 725 ?2 : width <= 967 ? 3 : 3,
-    rows:infoPelatihanContent.length <= 6 ?1 : width <= 967 ? 1  : 2,
+    rows:infoCareer.length <= 6 ?1 : width <= 967 ? 1  : 2,
     slidesToScroll:1,
     dotsClass: "slick-dots slick-thumb",
     swipeToSlide:true,
@@ -160,65 +146,66 @@ const [filter, SetFilter] = useState(false)
           >
             Semua Karir
           </div>
-          <Slider {...settings}>
-            {infoPelatihanContent.map((v, i) => {
-              return (
-                <div>
-                  <div
-                    onMouseEnter={() => setCardContentIdx(i)}
-                    className='careerCard'
-                    style={{
-                      boxShadow:
-                        cardIdx === i
-                          ? 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px'
-                          : '',
-                      backgroundColor: cardIdx === i ? '#FFFFFF' : '#E5E5E5',
-                    }}
-                  >
+          {
+              infoCareer.length >0 ?     <Slider {...settings}>
+              {infoCareer.length >0 && infoCareer.map((v, i) => {
+                return (
+                  <div key={i}>
                     <div
-                      className='pelatihanCardTitle'
+                      onMouseEnter={() => setCardContentIdx(i)}
+                      className='careerCard'
                       style={{
-                        color: cardIdx === i ? '#FDC232' : '#000000'
+                        boxShadow:
+                          cardIdx === i
+                            ? 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px'
+                            : '',
+                        backgroundColor: '#FFFFFF',
                       }}
                     >
-                      {v.title}
-                    </div>
-                    <div className='pelatihanCardDesc'>{v.desc}</div>
-                    <div
-                      className={
-                        cardIdx === i
-                          ? 'pelatihanCardBtn active'
-                          : 'pelatihanCardBtn '
-                      }
-                    >
                       <div
-                        className='cardBtnTitle'
-                     
-                      >
-                        <a    style={{
-                          color: cardIdx === i ? '#FDC232' : '#000000',
-                          cursor:'pointer'
+                        className='pelatihanCardTitle'
+                        style={{
+                          color: cardIdx === i ? '#FDC232' : '#000000'
                         }}
-                        href='/detailCareer'
-                        >
-                        Lihat Detail
-                        </a>
+                      >
+                        {v.job_name}
+                      </div>
+                      <div className='pelatihanCardDesc'>{v.job_description}</div>
+                      <div
+                        className={
+                          cardIdx === i
+                            ? 'pelatihanCardBtn active'
+                            : 'pelatihanCardBtn '
+                        }
+                      >
+                        <div
+                          className='cardBtnTitle'
                        
+                        >
+                          <a    style={{
+                            color: cardIdx === i ? '#FDC232' : '#000000',
+                            cursor:'pointer'
+                          }}
+                          onClick={()=>navigate('detailCareer/'+v.id+'/'+v.job_name)}
+                          >
+                          Lihat Detail
+                          </a>
+                         
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  </div>
-              )
-            })}
-          </Slider>
+                    </div>
+                )
+              })}
+            </Slider> : <div style={{width:'100%',height:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+
+<div className='latarTitle'>Pencarian Tidak Ditemukan</div>
+</div>
+          }
+      
         </div>
         <div
-          style={{
-            width: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            flexDirection: 'column'
-          }}
+      className='inputPencarianContainer'
         >
           <FormControl fullWidth variant='filled'>
             <InputLabel htmlFor='filled-adornment-password'>
@@ -226,6 +213,9 @@ const [filter, SetFilter] = useState(false)
             </InputLabel>
             <FilledInput
               type='text'
+              onFocus={resetPencarian}
+              value={inputSearch}
+              onChange={onSearchVacancy}
               style={{height: '56px' }}
               endAdornment={
                 <InputAdornment position='end'>
@@ -250,51 +240,8 @@ const [filter, SetFilter] = useState(false)
                     <AiOutlineClose onClick={()=>SetFilter(false)} style={{marginRight:'16px',cursor:'pointer'}} />
                   </div>
                   <div className="optionsFilterModal">
-                  <div
-              style={{
-                height: '120px',
-                borderBottom: '1px solid #F5F5F5 '
-              }}
-            >
-              <div
-                style={{
-                  color: '#000000',
-                  fontSize: '14px',
-                  fontWeight: '400',
-                  fontFamily: "'inter',sans-serif",
-                  marginLeft: '16px',
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
-              >
-                <div style={
-                  { 
-                    marginTop: '24px', 
-                    marginBottom: '14px' ,
-                    color: '#000000',
-                    fontSize: '14px',
-                    fontWeight: '400',
-                    fontFamily: "'inter',sans-serif"
-                  
-                  }
-                  
-                  }>
-                  Tampilkan Berdasarkan
-                </div>
-              </div>
-              <div
-              style={{
-                display:'flex',
-              }}
-              >
-              <span className='tampilkanBerdasarkanBtn'>
-                <div className='tampilkanBerdasarkanContent'>Terbaru</div>
-              </span>
-              <span className='tampilkanBerdasarkanBtn' >
-                <div className='tampilkanBerdasarkanContent' >Paling Sesuai</div>
-              </span>
-              </div>
-              <div
+                  <div className="categoryContainer">
+            <div
             style={
               {
                 marginTop: '24px',
@@ -311,57 +258,30 @@ const [filter, SetFilter] = useState(false)
 
             </div>
             <div style={{marginLeft:'5px'}} >
-              <div style={{display:'flex',alignItems:'center'}}>
-              <Checkbox defaultChecked />
-              <div
-              style={{
-                color: '#000000',
-                fontSize: '14px',
-                fontWeight: '400',
-                fontFamily: "'inter',sans-serif"
-              }}
-              >Semua</div>
-              </div>
-              <div style={{display:'flex',alignItems:'center'}}>
-              <Checkbox defaultChecked />
-              <div
-              style={{
-                color: '#000000',
-                fontSize: '14px',
-                fontWeight: '400',
-                fontFamily: "'inter',sans-serif"
-              }}
-              >Pelatihan</div>
-              </div>
-              <div style={{display:'flex',alignItems:'center'}}>
-              <Checkbox defaultChecked />
-              <div
-              style={{
-                color: '#000000',
-                fontSize: '14px',
-                fontWeight: '400',
-                fontFamily: "'inter',sans-serif"
-              }}
-              >Sertifikasi</div>
-              </div>
-              <div style={{display:'flex',alignItems:'center'}}>
-              <Checkbox defaultChecked />
-              <div
-              style={{
-                color: '#000000',
-                fontSize: '14px',
-                fontWeight: '400',
-                fontFamily: "'inter',sans-serif"
-              }}
-              >Human Resource</div>
-              </div>
-              <div style={{marginRight:'5px',marginTop:'80%'}} className="hubungiBtn">
-                            <div className="hubungiBtnTitle">TERAPKAN</div>
-                        </div>
-            </div>
-       
+              {
+                category.map((v,i)=>{
+                  return (
+                    <div style={{display:'flex',alignItems:'center'}}>
+                    <Checkbox onClick={()=>onClickCategory(i,v.category)} checked={v.value===true} />
+                    <div
+                    style={{
+                      color: '#000000',
+                      fontSize: '14px',
+                      fontWeight: '400',
+                      fontFamily: "'inter',sans-serif"
+                    }}
+                    >{v.category}</div>
+                    </div>
+                  )
+                })
+              }
          
             </div>
+            </div>
+            <div onClick={onApplyFilter} className="hubungiBtn">
+                            <div className="hubungiBtnTitle">TERAPKAN</div>
+                        </div>
+        
                   </div>
                   
               </div>
@@ -373,54 +293,7 @@ const [filter, SetFilter] = useState(false)
             className='titlePencarian'>
               <div style={{ marginLeft: '16px' }}>Filter Pencarian</div>
             </div>
-            <div
-              style={{
-                height: '120px',
-                borderBottom: '1px solid #F5F5F5 '
-              }}
-            >
-              <div
-                style={{
-                  color: '#000000',
-                  fontSize: '14px',
-                  fontWeight: '400',
-                  fontFamily: "'inter',sans-serif",
-                  marginLeft: '16px',
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
-              >
-                <div style={
-                  { 
-                    marginTop: '24px', 
-                    marginBottom: '14px' ,
-                    color: '#000000',
-                    fontSize: '14px',
-                    fontWeight: '400',
-                    fontFamily: "'inter',sans-serif"
-                  
-                  }
-                  
-                  }>
-                  Tampilkan Berdasarkan
-                </div>
-              </div>
-              <div
-              style={{
-                display:'flex',
-                justifyContent:'space-around'
-              }}
-              >
-              <span className='tampilkanBerdasarkanBtn'  >
-                <div className='tampilkanBerdasarkanContent'>Terbaru</div>
-              </span>
-              <span className='tampilkanBerdasarkanBtn' >
-                <div  className='tampilkanBerdasarkanContent' >Paling Sesuai</div>
-              </span>
-              </div>
-         
-         
-            </div>
+            <div className='categoryContainer'>
             <div
             style={
               {
@@ -438,52 +311,30 @@ const [filter, SetFilter] = useState(false)
 
             </div>
             <div style={{marginLeft:'5px'}} >
-              <div style={{display:'flex',alignItems:'center'}}>
-              <Checkbox defaultChecked />
-              <div
-              style={{
-                color: '#000000',
-                fontSize: '14px',
-                fontWeight: '400',
-                fontFamily: "'inter',sans-serif"
-              }}
-              >Semua</div>
-              </div>
-              <div style={{display:'flex',alignItems:'center'}}>
-              <Checkbox defaultChecked />
-              <div
-              style={{
-                color: '#000000',
-                fontSize: '14px',
-                fontWeight: '400',
-                fontFamily: "'inter',sans-serif"
-              }}
-              >Pelatihan</div>
-              </div>
-              <div style={{display:'flex',alignItems:'center'}}>
-              <Checkbox defaultChecked />
-              <div
-              style={{
-                color: '#000000',
-                fontSize: '14px',
-                fontWeight: '400',
-                fontFamily: "'inter',sans-serif"
-              }}
-              >Sertifikasi</div>
-              </div>
-              <div style={{display:'flex',alignItems:'center'}}>
-              <Checkbox defaultChecked />
-              <div
-              style={{
-                color: '#000000',
-                fontSize: '14px',
-                fontWeight: '400',
-                fontFamily: "'inter',sans-serif"
-              }}
-              >Human Resource</div>
-              </div>
-              
+              {
+                category.map((v,i)=>{
+                  return (
+                    <div style={{display:'flex',alignItems:'center'}}>
+                    <Checkbox onClick={()=>onClickCategory(i,v.category)} checked={v.value===true} />
+                    <div
+                    style={{
+                      color: '#000000',
+                      fontSize: '14px',
+                      fontWeight: '400',
+                      fontFamily: "'inter',sans-serif"
+                    }}
+                    >{v.category}</div>
+                    </div>
+                  )
+                })
+              }
+         
             </div>
+            </div>
+            <div style={{marginLeft:'16px',marginTop:'50px'}} onClick={onApplyFilter}  className="hubungiBtn">
+                            <div className="hubungiBtnTitle">TERAPKAN</div>
+                        </div>
+        
           </div>
         </div>
       </div>

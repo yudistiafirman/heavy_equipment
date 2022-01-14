@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid,Dialog, } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
+import { apiUrl } from "../../Default";
+import { ImageListItem } from "@mui/material";
 
 export default function PictureGrid(props) {
   const useStyles = makeStyles((theme) => ({
@@ -24,7 +26,7 @@ export default function PictureGrid(props) {
         return (
           <div
             style={{
-              backgroundImage: `url(${images[0]}`,
+              backgroundImage: `url(${apiUrl}/${images[0]})`,
               backgroundSize: "cover",
               width: "100%",
               height: 300,
@@ -71,7 +73,7 @@ export default function PictureGrid(props) {
           return (
             <div
               style={{
-                backgroundImage: `url(${images[0]}`,
+                backgroundImage: `url(${apiUrl}/${images[0]})`,
                 backgroundSize: "cover",
                 width: "100%",
                 height: 300,
@@ -80,7 +82,7 @@ export default function PictureGrid(props) {
                 backgroundPosition: "center",
               }}
               onDoubleClick={() => {
-                setShowImage(images[0]);
+                setShowImage(`${apiUrl}/${images[0]}`);
               }}
             ></div>
           );
@@ -106,7 +108,7 @@ export default function PictureGrid(props) {
                       direction="row"
                       justifyContent="center"
                       style={{
-                        backgroundImage: `url(${image}`,
+                        backgroundImage: `url(${apiUrl}/${image}`,
                         width: "auto",
                         height: 200,
                         borderRadius: 5,
@@ -116,7 +118,7 @@ export default function PictureGrid(props) {
                         backgroundPosition: "center",
                       }}
                       onDoubleClick={() => {
-                        setShowImage(image);
+                        setShowImage(`${apiUrl}/${image}`);
                       }}
                     ></Grid>
                   </Grid>
@@ -135,7 +137,7 @@ export default function PictureGrid(props) {
                       direction="row"
                       justifyContent="center"
                       style={{
-                        backgroundImage: `url(${image}`,
+                        backgroundImage: `url(${apiUrl}/${image}`,
                         width: "auto",
                         height: 400,
                         borderRadius: 5,
@@ -145,7 +147,7 @@ export default function PictureGrid(props) {
                         backgroundPosition: "center",
                       }}
                       onDoubleClick={() => {
-                        setShowImage(image);
+                        setShowImage(`${apiUrl}/${image}`);
                       }}
                     ></Grid>
                   </Grid>
@@ -163,7 +165,7 @@ export default function PictureGrid(props) {
                 direction="row"
                 justifyContent="center"
                 style={{
-                  backgroundImage: `url(${images[0]}`,
+                  backgroundImage: `url(${apiUrl}/${images[0]}`,
                   // width: 250,
                   height: 400,
                   borderRadius: 5,
@@ -172,7 +174,7 @@ export default function PictureGrid(props) {
                   backgroundPosition: "center",
                 }}
                 onDoubleClick={() => {
-                  setShowImage(images[0]);
+                  setShowImage(`${apiUrl}/${images[0]}`);
                 }}
               ></Grid>
             </Grid>{" "}
@@ -200,7 +202,7 @@ export default function PictureGrid(props) {
                         direction="row"
                         justifyContent="center"
                         style={{
-                          backgroundImage: `url(${image}`,
+                          backgroundImage: `url(${apiUrl}/${image}`,
                           width: "auto",
                           height: 195,
                           borderRadius: 5,
@@ -210,7 +212,7 @@ export default function PictureGrid(props) {
                           backgroundPosition: "center",
                         }}
                         onDoubleClick={() => {
-                          setShowImage(image);
+                          setShowImage(`${apiUrl}/${image}`);
                         }}
                       ></Grid>
                     );
@@ -229,7 +231,7 @@ export default function PictureGrid(props) {
                 direction="row"
                 justifyContent="center"
                 style={{
-                  backgroundImage: `url(${images[0]}`,
+                  backgroundImage: `url(${apiUrl}/${images[0]}`,
                   // width: 250,
                   height: 400,
                   borderRadius: 5,
@@ -238,7 +240,7 @@ export default function PictureGrid(props) {
                   backgroundPosition: "center",
                 }}
                 onDoubleClick={() => {
-                  setShowImage(images[0]);
+                  setShowImage(`${apiUrl}/${images[0]}`);
                 }}
               ></Grid>
             </Grid>{" "}
@@ -265,7 +267,7 @@ export default function PictureGrid(props) {
                       direction="row"
                       justifyContent="center"
                       style={{
-                        backgroundImage: `url(${image}`,
+                        backgroundImage: `url(${apiUrl}/${image}`,
                         width: "auto",
                         height: 130,
                         borderRadius: 5,
@@ -275,7 +277,7 @@ export default function PictureGrid(props) {
                         backgroundPosition: "center",
                       }}
                       onDoubleClick={() => {
-                        setShowImage(image);
+                        setShowImage(`${apiUrl}/${image}`);
                       }}
                     ></Grid>
                   );
@@ -293,7 +295,7 @@ export default function PictureGrid(props) {
                 direction="column"
                 justifyContent="center"
                 style={{
-                  backgroundImage: `url(${images[0]}`,
+                  backgroundImage: `url(${apiUrl}/${images[0]}`,
                   // width: 250,
                   height: 400,
                   borderRadius: 5,
@@ -302,7 +304,7 @@ export default function PictureGrid(props) {
                   backgroundPosition: "center",
                 }}
                 onDoubleClick={() => {
-                  setShowImage(images[0]);
+                  setShowImage(`${apiUrl}/${images[0]}`);
                 }}
               ></Grid>
             </Grid>{" "}
@@ -320,7 +322,7 @@ export default function PictureGrid(props) {
                               justifyContent="center"
                               alignItems="center"
                               style={{
-                                backgroundImage: `url(${image}`,
+                                backgroundImage: `url(${apiUrl}/${image}`,
                                 width: "auto",
                                 opacity:'0.4',
                                 height: 195,
@@ -380,7 +382,7 @@ export default function PictureGrid(props) {
                                 direction="row"
                                 justifyContent="center"
                                 style={{
-                                  backgroundImage: `url(${image}`,
+                                  backgroundImage: `url(${apiUrl}/${image}`,
                                   width: "auto",
                                   height: 105,
                                   borderRadius: 5,
@@ -390,7 +392,7 @@ export default function PictureGrid(props) {
                                   backgroundPosition: "center",
                                 }}
                                 onDoubleClick={() => {
-                                  setShowImage(image);
+                                  setShowImage(`${apiUrl}/${image}`);
                                 }}
                               ></Grid>
                             </Grid>
@@ -403,7 +405,7 @@ export default function PictureGrid(props) {
                               direction="row"
                               justifyContent="center"
                               style={{
-                                backgroundImage: `url(${image}`,
+                                backgroundImage: `url(${apiUrl}/${image}`,
                                 width: "auto",
                                 height: 155,
                                 borderRadius: 5,
@@ -413,7 +415,7 @@ export default function PictureGrid(props) {
                                 backgroundPosition: "center",
                               }}
                               onDoubleClick={() => {
-                                setShowImage(image);
+                                setShowImage(`${apiUrl}/${image}`);
                               }}
                             ></Grid>
                           </Grid>
@@ -426,7 +428,7 @@ export default function PictureGrid(props) {
                               direction="row"
                               justifyContent="center"
                               style={{
-                                backgroundImage: `url(${image}`,
+                                backgroundImage: `url(${apiUrl}/${image}`,
                                 width: "auto",
                                 height: 195,
                                 borderRadius: 5,
@@ -436,7 +438,7 @@ export default function PictureGrid(props) {
                                 backgroundPosition: "center",
                               }}
                               onDoubleClick={() => {
-                                setShowImage(image);
+                                setShowImage(`${apiUrl}/${image}`);
                               }}
                             ></Grid>
                           </Grid>

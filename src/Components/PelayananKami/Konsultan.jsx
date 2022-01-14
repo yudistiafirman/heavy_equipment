@@ -26,9 +26,16 @@ const Konsultan = () => {
         <div className='latarContentContainer'>
           <div className='latarContentDesc'>
           <div className='latarTitle'>Layanan Konsultan</div>
-          <div style={{marginBottom:'20px'}} className='latarContent'>
-          Sebagai perusahaan yang bergerak dibidang konstruksi, kami menyediakan layanan konsultan untuk kebutuhan anda. Untuk lebih jelasnya anda dapat langsung menghubungi kami melalui telepon <a href='tel:+628112131122' style={{color:'blue',borderBottom:'1px solid blue'}}>+628112131122</a> atau melalui email di <a href='mailto:hequipmentcentre@gmail.com' style={{color:'blue',borderBottom:'1px solid blue'}}>hecequipmentcentre@gmail.com</a>
+          <div style={{marginBottom:'20px',textAlign:'justify',width:'95.5%'}} className='latarContent'>
+          Sebagai perusahaan yang bergerak dibidang alat berat, kami menyediakan layanan konsultan untuk kebutuhan anda sesuai dengan informasi dibawah ini.
           </div>
+          <ol style={{paddingLeft:'14px'}}  className='latarContent'>
+            <li> AUDIT EXTERNAL MAINTENANCE MANAGEMENT </li>
+            <li> CREATE SYSTEM MAINTENANCE MANAGEMENT </li>
+            <li> TROUBLESHOOTING UNIT ALAT BERAT </li>
+            <li> DEVELOPMENT SYSTEM MECHANIC </li>
+            <li> DEVELOPMENT SYSTEM OPERATOR </li>
+          </ol>
       
           </div>
           <div className='lihatJuga'>

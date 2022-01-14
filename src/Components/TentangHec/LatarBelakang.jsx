@@ -42,7 +42,7 @@ const LatarBelakang = () => {
       <div className='latarContentContainer'>
         <div className='latarContentDesc'>
           <div className='latarTitle'>Latar Belakang Perusahaan</div>
-          <div style={{marginBottom:'20px'}} className='latarContent'>
+          <div style={{marginBottom:'20px',textAlign:'justify',width:'95.5%'}} className='latarContent'>
             Saat ini dunia industri pertambangan, agro, konstruksi maupun
             forestry khususnya di indonesia semakin berkembang, dengan
             perkembangan tersebut alat berat di indonesia semakin banyak. Oleh
@@ -57,20 +57,15 @@ const LatarBelakang = () => {
             adalah Perusahaan bergerak di bidang jasa layanan support Alat
             Berat. Adapun layanan yang kami berikan adalah :
           </div>
-          <div className='latarContent'>
-            1. Pelatihan Kompetensi Alat Berat (Mekanik, Operator dan Staff
+          <ol style={{paddingLeft:'14px'}} className='latarContent'>
+            <li>  Pelatihan Kompetensi Alat Berat (Mekanik, Operator dan Staff
             Maintenance)
-          </div>
-          <div className='latarContent'>
-            2. Penyedia Jasa Labour Supply Alat Berat (Mekanik dan Operator)
-          </div>
-          <div className='latarContent'>
-            3. Konsultan Maintenance Alat Berat
-          </div>
-          <div className='latarContent'>
-            4. Penyediaan Spare Part Alat Berat
-          </div>
-          <div className='latarContent'>5. Pelayanan Service Alat Berat</div>
+          </li>
+            <li> Penyedia Jasa Labour Supply Alat Berat (Mekanik dan Operator)  </li>
+            <li> Konsultan Maintenance Alat Berat</li>
+            <li>Penyediaan Spare Part Alat Berat</li>
+            <li>Pelayanan Service Alat Berat</li>
+          </ol>
         </div>
         <div className="lihatJuga">
             <div className="lihatJugaTitle">Lihat Juga</div>

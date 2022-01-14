@@ -51,30 +51,13 @@ const Penjualan = () => {
           <div className='latarContentDesc'>
           <div className='latarTitle'>Penjualan Sparepart</div>
           <div style={{marginBottom:'20px'}} className='latarContent'>
-          Menjadi perusahaan jasa layanan support alat berat yang professional dan synergi dengan customer di seluruh Indonesia.
+          Sebagai perusahaan jasa layanan support alat berat yang professional dan synergi dengan customer di seluruh Indonesia. kami menyediakan penjualan alat berat sebagai berikut : 
           </div>
-          <div className='penjualanDanServiceList'>
-                {
-                    penjualanContent.map((v,i)=>{
-                        return <div key={i} onClick={()=>window.location ='/detailPenjualan'} style={{borderRadius:cardIdx === i?'10px':'',boxShadow:cardIdx === i?'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px':'',backgroundColor:cardIdx === i?'#FFFFFF':'#E5E5E5',marginRight:i === 2 && '0px'}} onMouseEnter={()=>setCardContentIdx(i)}  className="penjualanCard ">
-                            <div className="penjualanCardInner">
-                                <div className="iconContainer">
-                                    {v.icon}
-                                </div>
-                                <p style={{color:cardIdx === i?'#FDC232':'#071244'}} className="servicesCardTitle">{v.title}</p>
-                                <p className="servicesCardDesc">{v.description}</p>
-                                <div style={{display:'flex',justifyContent:'flex-end'}}>
-                                <div className="lihatDetailPelayananCard">
-                                  <div className='lihatDetailDesc'>Lihat Detail</div>
-                                </div>
-                                </div>
-                               
-                            </div>
-                        </div>
-                    })
-                }
-                    
-            </div>
+          <ol style={{paddingLeft:'14px'}}  className='latarContent'>
+            <li> SPARE PART ALAT BERAT  </li>
+            <li> PRODUCT IMPROMEVENT   </li>
+            <li> KOMPONEN EXCHANGE</li>
+          </ol>
           </div>
           <div className='lihatJuga'>
             <div className='lihatJugaTitle'>Lihat Juga</div>

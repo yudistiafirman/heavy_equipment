@@ -57,6 +57,7 @@ const AdminPelatihan = () => {
   const [openForm, SetOpenForm] = useState(false)
   const [orderBy, setOrderBy] = useState('Nama Pekerjaan')
   const [selected, setSelected] = useState([])
+  const [selectedPopular,setSelectedPopular]=useState([])
   const [page, setPage] = useState(0)
   const [dense, setDense] = useState(false)
   const [rowsPerPage, setRowsPerPage] = useState(5)
@@ -113,13 +114,13 @@ const AdminPelatihan = () => {
   }, [])
 
   const getAllvacancies = (queryValue,date,category) => {
-    axios.get(`${apiUrl}/vacancies/all?&name=${queryValue}&date=${date}&category=${category}`).then(response => {
+    axios.get(`${apiUrl}/pelatihan/all?&name=${queryValue}&date=${date}&category=${category}`).then(response => {
       SetRows(response.data.data)
     })
   }
 
   const getVacanciesCategories = () => {
-    axios.get(apiUrl + '/vacancies/category').then(response => {
+    axios.get(apiUrl + '/pelatihan/category').then(response => {
       SetCategories(response.data.data)
     })
   }
@@ -131,14 +132,19 @@ const AdminPelatihan = () => {
   }
 
   const onAddKualifikasi = () => {
-    if (kualifikasiForm.length < 8) {
-      SetKualifikasiForm([
-        ...kualifikasiForm,
-        { label: `Nilai Plus`, kualifikasiValue: '' }
-      ])
-    } else {
-      alert('Penambahan nilai plus telah mencapai batas maksimal')
+    if(kualifikasiForm[0].kualifikasiValue){
+      if (kualifikasiForm.length < 5) {
+        SetKualifikasiForm([
+          ...kualifikasiForm,
+          { label: `Nilai Plus`, kualifikasiValue: '' }
+        ])
+      } else {
+        alert('Penambahan nilai plus telah mencapai batas maksimal')
+      }
+    }else{
+      alert('Nilai plus pertama tidak boleh kosong')
     }
+ 
   }
 
   useEffect(() => {
@@ -198,28 +204,34 @@ const onFilterCategory=useCallback((value)=>{
       alert('judul pelatihan harus diisi')
     } else if (!description) {
       alert('deskripsi pelatihan harus diisi')
-    } else if (!optionValue && !categoryName) {
-      alert('categori pekarjaan harus diisi')
+    } else if(!selectedFile){
+      alert('image pelatihan harus diisi')
+    }else if (moment(startDate).format('YYYY-MM-DD') > moment(endDate).format('YYYY-MM-DD')){
+      alert ('tanggal akhir pelatihan harus lebih besar dari tanggal awal pelatihan')
+    }else if (moment(startDate).format('YYYY-MM-DD') === moment(endDate).format('YYYY-MM-DD')){
+      alert ('tanggal akhir pelatihan harus lebih besar dari tanggal awal pelatihan ')
+    }else if (!optionValue && !categoryName) {
+      alert('categori pelatihan harus diisi harus diisi')
     } else if (!kualifikasiForm[0].kualifikasiValue) {
-      alert('paling sedikit 1 kualifikasi harus diisi')
+      alert('paling sedikit 1 nilai plus pelatihan harus diisi')
     } else {
       const newArrKualifikasi = [...kualifikasiForm]
+      const data = new FormData()
       const job_qualifications = newArrKualifikasi
         .filter((value, idx) => value.kualifikasiValue !== '')
         .map((v, i) => {
           return { qualifications: v.kualifikasiValue }
         })
-
-      const body = {
-        name: pelatihanName,
-        job_description: description,
-        start_date: moment(startDate).format('YYYY-MM-DD'),
-        end_date: moment(endDate).format('YYYY-MM-DD'),
-        category_name: optionValue ? optionValue.category_name : categoryName,
-        job_qualifications: job_qualifications
-      }
+    
+        data.append('name',pelatihanName)
+        data.append('descriptions',description)
+        data.append('image_1',selectedFile)
+        data.append('start_date',moment(startDate).format('YYYY-MM-DD'))
+        data.append('end_date',moment(endDate).format('YYYY-MM-DD'))
+        data.append('category_name',optionValue ? optionValue.category_name : categoryName)
+        data.append('nilai',JSON.stringify(job_qualifications))
       axios
-        .post(apiUrl + '/vacancies/post', body)
+        .post(apiUrl + '/pelatihan/post', data)
         .then(response => {
           if (response.data.error) {
             SetOpenForm(false)
@@ -229,18 +241,21 @@ const onFilterCategory=useCallback((value)=>{
               text: 'Something went wrong!'
             })
             SetpelatihanName('')
+            setSelectedFile()
             Setdescription('')
             SetCategoryName('')
             SetOptionValue(null)
             SetInputOption(null)
             SetStartDate(new Date())
-            SetKualifikasiForm([{ kualifikasiValue: '', label: 'Kualifikasi' }])
+            SetEndDate(new Date())
+            SetKualifikasiForm([{ kualifikasiValue: '', label: 'Nilai Plus' }])
+            setPreview()
           } else {
             SetOpenForm(false)
             Swal.fire({
               icon: 'success',
-              title: 'Penambahan lowongan kerja sukses',
-              text: 'Penambahan lowongan kerja terbaru berhasil'
+              title: 'Penambahan pelatihan terbaru sukses',
+              text: 'Penambahan pelatihan terbaru terbaru berhasil'
             })
             SetpelatihanName('')
             Setdescription('')
@@ -248,8 +263,12 @@ const onFilterCategory=useCallback((value)=>{
             SetOptionValue(null)
             SetInputOption(null)
             SetStartDate(new Date())
-            SetKualifikasiForm([{ kualifikasiValue: '', label: 'Kualifikasi' }])
+            SetEndDate(new Date())
+            SetKualifikasiForm([{ kualifikasiValue: '', label: 'Nilai Plus' }])
+            // tambahin get all pelatihan
             getAllvacancies('','','')
+            setSelectedFile()
+            setPreview()
           }
         })
         .catch(err => {
@@ -286,9 +305,25 @@ const onFilterCategory=useCallback((value)=>{
     setSelected(newSelected)
   }
 
+  const handlePopularClick = (event,name,value) =>{
+
+    let valueToSend
+    if(value===0){
+      valueToSend = 1
+    }else {
+      valueToSend =0
+    }
+    axios.patch(`${apiUrl}/pelatihan/update?id=${name}&value=${valueToSend}`).then((response)=>{
+      console.log(response)
+      getAllvacancies('','','')
+    }).catch((err)=>{
+      console.log(err)
+    })
+  }
+
   const onDeleteList = () => {
     axios
-      .delete(apiUrl + '/vacancies/delete?vacancy_id=' + selected)
+      .delete(apiUrl + '/pelatihan/delete?id=' + selected)
       .then(response => {
         if (response.data.error) {
           Swal.fire({
@@ -299,8 +334,8 @@ const onFilterCategory=useCallback((value)=>{
         } else {
           Swal.fire({
             icon: 'success',
-            title: 'Penghapusan lowongan kerja sukses',
-            text: 'Penghapusan lowongan kerja terbaru berhasil'
+            title: 'Penghapusan pelatihan sukses',
+            text: 'Penghapusan pelatihan berhasil'
           })
           setSelected([])
           getAllvacancies('','','')
@@ -324,6 +359,7 @@ const onFilterCategory=useCallback((value)=>{
   }
 
   const isSelected = name => selected.indexOf(name) !== -1
+  const isPopularSelected =name => selectedPopular.indexOf(name) !== -1
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -364,43 +400,37 @@ const onFilterCategory=useCallback((value)=>{
       id: 'name',
       numeric: false,
       disablePadding: true,
-      label: 'pelatihan'
+      label: 'Pelatihan'
     },
     {
-      id: 'description',
-      numeric: false,
-      disablePadding: false,
-      label: 'deskripsi'
-    },
-    {
-        id: 'image',
+        id: '',
         numeric: false,
         disablePadding: false,
-        label: 'image'
+        label: 'Image'
       },
     {
       id: 'start_date',
       numeric: false,
       disablePadding: false,
-      label: 'start'
+      label: 'Start Date'
     },
     {
       id: 'end_date',
       numeric: false,
       disablePadding: false,
-      label: 'end'
+      label: 'End Date'
     },
     {
-        id: 'end_date',
+        id: '',
         numeric: false,
         disablePadding: false,
-        label: 'popular'
+        label: 'Set Popular'
       },
       {
         id: 'category_name',
         numeric: false,
         disablePadding: false,
-        label: 'category'
+        label: 'Category'
       }
   ]
   function EnhancedTableHead (props) {
@@ -449,7 +479,7 @@ const onFilterCategory=useCallback((value)=>{
     )
   }
   const EnhancedTableToolbar = props => {
-    const { numSelected } = props
+    const { numSelected} = props
 
     return (
       <Toolbar
@@ -474,7 +504,7 @@ const onFilterCategory=useCallback((value)=>{
           >
             {numSelected} selected
           </Typography>
-        ) : (
+        ) :  (
           <Typography
             sx={{ flex: '1 1 100%' }}
             variant='h6'
@@ -482,7 +512,7 @@ const onFilterCategory=useCallback((value)=>{
             component='div'
             style={{fontSize:'20px',fontWeight:'800',color:'#071244',fontFamily:`'inter',sans-serif`}}
           >
-            Career
+            Pelatihan
           </Typography>
         )}
 
@@ -499,7 +529,7 @@ const onFilterCategory=useCallback((value)=>{
     )
   }
   return (
-    <div className='admin-container'>
+    <div  className='admin-container'>
              <div className='add-new-career-btn'>
                {
                  openDetail &&   <AdminCareerDetail  openDetail={openDetail} careerId={careerId} closeDetail={()=>SetOpenDetail(false)}/>
@@ -556,7 +586,7 @@ const onFilterCategory=useCallback((value)=>{
               />
         </div>
         <div style={{marginRight:'20px',width:'200px'}}>
-        <input  placeholder='Cari Lowongan'  value={searchVacancy} onChange={onSearchVacancy} style={{marginRight:'20px',height:'30px',width:'200px',backgroundColor:'#F4F4F4',borderRadius:'4px',border:'1px solid #C4C4C4',outline:'none',fontSize:'15px'}} fullWidth label='Cari Lowongan' />
+        <input  placeholder='Cari Pelatihan'  value={searchVacancy} onChange={onSearchVacancy} style={{marginRight:'20px',height:'30px',width:'200px',backgroundColor:'#F4F4F4',borderRadius:'4px',border:'1px solid #C4C4C4',outline:'none',fontSize:'15px'}} fullWidth label='Cari Lowongan' />
         </div>
         <Button style={{marginRight:'10px'}} onClick={() => SetOpenForm(true)} variant='outlined'>
           add new
@@ -588,6 +618,7 @@ const onFilterCategory=useCallback((value)=>{
               />
             </div>
             <div style={{width:'300px',marginLeft:'10px'}}>
+              <DialogContentText>*Image Pelatihan</DialogContentText>
             <div style={{width:'100%',height:'300px',borderRadius:'8px',border:'1px solid #ECECEC',display:'flex',justifyContent:'center',alignItems:'center',overflow:'hidden',marginBottom:'10px'}}>
                 {
                   selectedFile ?       <div 
@@ -597,7 +628,7 @@ const onFilterCategory=useCallback((value)=>{
                     height:'100%',
                   backgroundImage:`url(${preview})`,
                   backgroundRepeat:'no-repeat',
-                  backgroundSize: "cover",
+                  backgroundSize: "contain",
                   backgroundPosition: "center",
                   cursor:'pointer'
                 }}/> : <AiFillPicture style={{color:'#C4C4C4'}} size="large"/>
@@ -763,16 +794,14 @@ const onFilterCategory=useCallback((value)=>{
           <Button onClick={onAddCareer}>Tambahkan</Button>
         </DialogActions>
       </Dialog>
- 
-
       <Box sx={{ width: '100%', height: '100%' }}>
         <Paper sx={{ width: '100%', mb: 2 }}>
           <EnhancedTableToolbar numSelected={selected.length} />
           <TableContainer>
             <Table
-              sx={{ minWidth: 750 }}
+              sx={{ minWidth: 1000 }}
               aria-labelledby='tableTitle'
-              size={dense ? 'small' : 'medium'}
+              size={dense ? 'small' : 'large'}
             >
               <EnhancedTableHead
                 numSelected={selected.length}
@@ -790,6 +819,7 @@ const onFilterCategory=useCallback((value)=>{
                   .map((row, index) => {
                     const isItemSelected = isSelected(row.id)
                     const labelId = `enhanced-table-checkbox-${index}`
+                    const isPopularTagSelected = isPopularSelected(row.id)
 
                     return (
                       <TableRow hover tabIndex={-1} key={index}>
@@ -812,35 +842,42 @@ const onFilterCategory=useCallback((value)=>{
                           onClick={()=>onOpenDetail(row.id)}
                     
                         >
-                          {row.job_name}
+                          {row.name}
                         </TableCell>
                         <TableCell
                            style={{fontSize:'15px',fontWeight:'500',color:'#071244'}}
                         align='left'>
-                          {stringSlicer(row.job_description)}
-                        </TableCell>
-                        <TableCell
-                           style={{fontSize:'15px',fontWeight:'500',color:'#071244'}}
-                        align='left'>
-                          image
+                               <div onClick={()=>SetShowImages(`${apiUrl}/${row.image}`)} style={{width:'100px',height:'100px',borderRadius:'8px',overflow:'hidden',border:'1px solid #C4C4C4'}}>
+                            <div 
+                            style={{
+                              width:'100%',
+                              height:'100%',
+                            backgroundImage:`url(${apiUrl}/${row.image})`,
+                            backgroundRepeat:'no-repeat',
+                            backgroundSize: "contain",
+                            backgroundPosition: "center",
+                            cursor:'pointer'
+                            }}
+                            />
+                            </div>
                         </TableCell>
                         <TableCell align='left'
                          style={{fontSize:'15px',fontWeight:'500',color:'#071244'}}
                         >
-                          {moment(row.last_submission).format('DD-MM-YYYY')}
+                          {moment(row.start_date).format('DD-MM-YYYY')}
                         </TableCell>
                         <TableCell align='left'
                           style={{fontSize:'15px',fontWeight:'500',color:'#071244'}}
                         >
-                          {stringSlicer(row.category_name)}
+                         {moment(row.end_date).format('DD-MM-YYYY')}
                         </TableCell>
                         <TableCell align='left'
                           style={{fontSize:'15px',fontWeight:'500',color:'#071244'}}
                         >
                                     <Checkbox
-                            onClick={event => handleClick(event, row.id)}
+                            onClick={event => handlePopularClick(event, row.id,row.is_popular)}
                             color='primary'
-                            checked={isItemSelected}
+                            checked={row.is_popular !== 0}
                             inputProps={{
                               'aria-labelledby': labelId
                             }}
@@ -877,6 +914,7 @@ const onFilterCategory=useCallback((value)=>{
           />
         </Paper>
       </Box>
+  
     </div>
   )
 }

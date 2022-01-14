@@ -273,7 +273,7 @@ const AdminGaleri = () => {
         label: 'Judul Galeri'
       },
       {
-        id: 'image',
+        id: '',
         numeric: false,
         disablePadding: false,
         label: 'Image'
@@ -442,7 +442,7 @@ const AdminGaleri = () => {
                     height:'100%',
                   backgroundImage:`url(${preview})`,
                   backgroundRepeat:'no-repeat',
-                  backgroundSize: "cover",
+                  backgroundSize: "contain",
                   backgroundPosition: "center",
                   cursor:'pointer'
                 }}/> : <AiFillPicture style={{color:'#C4C4C4'}} size="large"/>

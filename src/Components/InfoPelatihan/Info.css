@@ -29,8 +29,8 @@
 
 .routingDetail{
     display: flex;
-    justify-content: space-between;
-    width:368px;
+    justify-content: flex-start;
+    width:100%;
     margin-bottom:40px
 }
 
@@ -41,6 +41,7 @@
     line-height: 19.6px;
     color: #6B7280;
     cursor: pointer;
+    margin-right: 5px;
 }
 
 .detailTitle{
@@ -77,8 +78,7 @@
 }
 
 .titleCategory{
-    width:95px;
-    height: 36px;
+    width:120px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -92,13 +92,14 @@
     line-height: 15.6px;
     letter-spacing: 0.01px;
     margin-bottom: 32px;
+    padding:10px
 }
 
 .detailImage{
     height: 436px;
     width: 100%;
     border-radius: 10px;
-    background-color: #C4C4C4;
+    overflow: hidden;
     margin-bottom: 40px;
 
 }
@@ -115,7 +116,7 @@
 
 .advantagesPelatihanContainer{
     border-radius: 8px;
-    border: 1px solid #f2f2f2;
+    border: 1px solid #ECECEC;
 
 }
 .advantagesPelatihanInnerContainer{
@@ -232,10 +233,12 @@
 .filterPencarianContainer{
     
         width: 280px;
-        height: 420px;
+        height: 440px;
         border: 1px solid #F5F5F5;
         margin-top: 26px;
+        overflow: scroll;
         border-radius: 10px;
+        background-color: #FFFFFF;
     
 }
 
@@ -252,7 +255,7 @@
 }
 
 .filterModal{
-    width: 100%;
+    width: 300px;
     height: 640px;
 }
 
@@ -297,7 +300,18 @@
     position: relative;
     margin-bottom: 40px;
   }
+.inputPencarianContainer{
+    width: 280px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 
+.categoryContainer{
+    height: 240px;
+    overflow: scroll;
+    
+}
 
 
 @media only screen and (max-width: 969px) {
@@ -314,6 +328,10 @@
 
     .nilaiPlusContainer{
         margin-bottom: 70px;
+    }
+
+    .inputPencarianContainer{
+        width: 100%;
     }
 }
 @media only screen and (max-width: 490px){

@@ -1,32 +1,53 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaShareAlt }from 'react-icons/fa'
 import {CopyToClipboard} from 'react-copy-to-clipboard';
+import { useParams,useNavigate } from 'react-router-dom';
+import axios from 'axios'
+import {apiUrl} from '../../Default'
+import moment from 'moment'
 
 const CareerDetail = () => {
-    return (
+
+    const {id,name}=useParams()
+    const navigate=useNavigate()
+    const [pekerjaanDetail,setPekerjaanDetail]=useState([])
+
+    useEffect(()=>{
+        getVacanciesDetail()
+    },[id,name])
+    const getVacanciesDetail =()=>{
+        axios.get(`${apiUrl}/vacancies/detail?id=${id}`).then((response)=>{
+            setPekerjaanDetail(response.data.data)
+        })
+    }
+    return pekerjaanDetail.length > 0 &&  (
         <div className='detailPelatihanContainer'>
                         <div className="detailInnerContainer">
                 <div className="routingDetail">
-                    <div className="routingInActive">Home</div>
+                    <div  onClick={()=>navigate('/')}  className="routingInActive">Home</div>
                     <div className="routingInActive">/</div>
-                    <div className="routingInActive">Karir</div>
+                    <div onClick={()=>navigate('/career')} className="routingInActive">Karir</div>
                     <div className="routingInActive">/</div>
-                    <div style={{color:'#000000'}} className="routingInActive">Head of Human Resource</div>
+                    <div style={{color:'#000000'}} className="routingInActive">{name}</div>
                 </div>
          
             <div className="detailContentContainer">
             <div className="detailTitleContainer">
                 <div className="detailTitle">
-                Head of Human Resource
+                {pekerjaanDetail[0].job_name}
                 </div>
                <div className="titleIconContainer">
                <CopyToClipboard onCopy={()=>alert('Success Copy to Clipboard')} text={window.location.href}>
                    <FaShareAlt/>
                    </CopyToClipboard>
                </div>
+         
+            </div>
+            <div   style={{width:'30%'}} className="titleCategory">
+                <div>       {`akhir pengiriman cv tanggal ${moment(pekerjaanDetail[0].last_submission).format('Do MMMM YYYY')}`}</div>
             </div>
             <div className="detailDesc">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus
+            {pekerjaanDetail[0].job_description}
             </div>
             <div className="advantagesPelatihanContainer">
                 <div className="advantagesPelatihanInnerContainer">
@@ -34,35 +55,60 @@ const CareerDetail = () => {
                         <div className="nilaiPlustitle">
                                 Kualifikasi
                         </div>
-                        <div style={{alignItems:'center'}} className="checkListContainer">
+                        {
+                            pekerjaanDetail[0].qualifications[0].qualifications_1 &&     <div style={{alignItems:'center'}} className="checkListContainer">
                             <div style={{width:'4px',height:'4px',marginRight:'10px',backgroundColor:'#000000',borderRadius:'100%'}}/>
-                            <div className="checkDesc">Minimal lulusan S1 Ilmu Psikologi</div>
+                            <div className="checkDesc">{pekerjaanDetail[0].qualifications[0].qualifications_1 }</div>
                         </div>
-                        <div style={{alignItems:'center'}}  className="checkListContainer">
-                        <div style={{width:'4px',height:'4px',marginRight:'10px',backgroundColor:'#000000',borderRadius:'100%'}}/>
-                            <div className="checkDesc">Mampu menguasai minimal 3 bahasa</div>
+                        }
+                            {
+                            pekerjaanDetail[0].qualifications[0].qualifications_2 &&     <div style={{alignItems:'center'}} className="checkListContainer">
+                            <div style={{width:'4px',height:'4px',marginRight:'10px',backgroundColor:'#000000',borderRadius:'100%'}}/>
+                            <div className="checkDesc">{pekerjaanDetail[0].qualifications[0].qualifications_2 }</div>
                         </div>
-                        <div style={{alignItems:'center'}}  className="checkListContainer">
-                        <div style={{width:'4px',height:'4px',marginRight:'10px',backgroundColor:'#000000',borderRadius:'100%'}}/>
-                            <div className="checkDesc">Update dengan metodologi terbaru dalam human resources</div>
+                        }
+                        {
+                            pekerjaanDetail[0].qualifications[0].qualifications_3 &&     <div style={{alignItems:'center'}} className="checkListContainer">
+                            <div style={{width:'4px',height:'4px',marginRight:'10px',backgroundColor:'#000000',borderRadius:'100%'}}/>
+                            <div className="checkDesc">{pekerjaanDetail[0].qualifications[0].qualifications_3 }</div>
                         </div>
-                        <div style={{alignItems:'center'}}  className="checkListContainer">
-                        <div style={{width:'4px',height:'4px',marginRight:'10px',backgroundColor:'#000000',borderRadius:'100%'}}/>
-                            <div className="checkDesc">Minimal 5 tahun pengalaman kerja</div>
+                        }
+                            {
+                            pekerjaanDetail[0].qualifications[0].qualifications_4 &&     <div style={{alignItems:'center'}} className="checkListContainer">
+                            <div style={{width:'4px',height:'4px',marginRight:'10px',backgroundColor:'#000000',borderRadius:'100%'}}/>
+                            <div className="checkDesc">{pekerjaanDetail[0].qualifications[0].qualifications_4 }</div>
                         </div>
-                        <div style={{alignItems:'center'}}  className="checkListContainer">
-                        <div style={{width:'4px',height:'4px',marginRight:'10px',backgroundColor:'#000000',borderRadius:'100%'}}/>
-                            <div className="checkDesc">Mampu menentukan keputusan dalam waktu singkat</div>
+                        }
+                           {
+                            pekerjaanDetail[0].qualifications[0].qualifications_5 &&     <div style={{alignItems:'center'}} className="checkListContainer">
+                            <div style={{width:'4px',height:'4px',marginRight:'10px',backgroundColor:'#000000',borderRadius:'100%'}}/>
+                            <div className="checkDesc">{pekerjaanDetail[0].qualifications[0].qualifications_5 }</div>
                         </div>
-                        <div style={{alignItems:'center'}}  className="checkListContainer">
-                        <div style={{width:'4px',height:'4px',marginRight:'10px',backgroundColor:'#000000',borderRadius:'100%'}}/>
-                            <div className="checkDesc">Objektif dalam melihat masalah</div>
+                        }
+                           {
+                            pekerjaanDetail[0].qualifications[0].qualifications_6 &&     <div style={{alignItems:'center'}} className="checkListContainer">
+                            <div style={{width:'4px',height:'4px',marginRight:'10px',backgroundColor:'#000000',borderRadius:'100%'}}/>
+                            <div className="checkDesc">{pekerjaanDetail[0].qualifications[0].qualifications_6 }</div>
                         </div>
+                        }
+                          {
+                            pekerjaanDetail[0].qualifications[0].qualifications_7 &&     <div style={{alignItems:'center'}} className="checkListContainer">
+                            <div style={{width:'4px',height:'4px',marginRight:'10px',backgroundColor:'#000000',borderRadius:'100%'}}/>
+                            <div className="checkDesc">{pekerjaanDetail[0].qualifications[0].qualifications_7 }</div>
+                        </div>
+                        }
+                           {
+                            pekerjaanDetail[0].qualifications[0].qualifications_8 &&     <div style={{alignItems:'center'}} className="checkListContainer">
+                            <div style={{width:'4px',height:'4px',marginRight:'10px',backgroundColor:'#000000',borderRadius:'100%'}}/>
+                            <div className="checkDesc">{pekerjaanDetail[0].qualifications[0].qualifications_8 }</div>
+                        </div>
+                        }
+                    
                         <div className="checkDesc">Jangan lupa untuk melampirkan CV terbaru anda dan rekrutmen ini tanpa dipungut biaya sepeserpun</div>
                     </div>
                     <div className="bestOffer">
                         <div  className="hubungiBtn">
-                            <div  className="hubungiBtnTitle">Lamar Sekarang</div>
+                            <a href='mailto:hequipmentcentre@gmail.com' className="hubungiBtnTitle">Lamar Sekarang</a>
                         </div>
                     </div>
                 </div>
