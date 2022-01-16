@@ -64,8 +64,8 @@ const AddNewDialog = ({
                onClose()
                 Swal.fire({
                     icon: 'success',
-                    title: 'Penambahan pelatihan terbaru sukses',
-                    text: 'Penambahan pelatihan terbaru terbaru berhasil'
+                    title: 'Penambahan fasilitas terbaru sukses',
+                    text: 'Penambahan fasilitas terbaru terbaru berhasil'
                   })
                   setFasilitasName('')
                   setDescriptions('')

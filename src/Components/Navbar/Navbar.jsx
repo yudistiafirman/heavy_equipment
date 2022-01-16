@@ -115,7 +115,7 @@ const onLogin=()=>{
     }).then((res)=>{
       if(res.data.success){
         localStorage.setItem('user',res.data.user)
-        window.location ='adminHome'
+        window.location ='/'
       }else{
         SetFailedLogin(true)
         SetFailedLoginMsg(res.data.message)

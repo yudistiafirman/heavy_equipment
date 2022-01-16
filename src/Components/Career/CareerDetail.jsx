@@ -5,7 +5,8 @@ import { useParams,useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import {apiUrl} from '../../Default'
 import moment from 'moment'
-
+import 'moment/locale/id'
+import CheckIcon from '../InfoPelatihan/assets/iconCheck.png'
 const CareerDetail = () => {
 
     const {id,name}=useParams()
@@ -46,7 +47,7 @@ const CareerDetail = () => {
             <div   style={{width:'30%'}} className="titleCategory">
                 <div>       {`akhir pengiriman cv tanggal ${moment(pekerjaanDetail[0].last_submission).format('Do MMMM YYYY')}`}</div>
             </div>
-            <div className="detailDesc">
+            <div style={{textAlign:'justify'}} className="detailDesc">
             {pekerjaanDetail[0].job_description}
             </div>
             <div className="advantagesPelatihanContainer">
@@ -57,50 +58,50 @@ const CareerDetail = () => {
                         </div>
                         {
                             pekerjaanDetail[0].qualifications[0].qualifications_1 &&     <div style={{alignItems:'center'}} className="checkListContainer">
-                            <div style={{width:'4px',height:'4px',marginRight:'10px',backgroundColor:'#000000',borderRadius:'100%'}}/>
-                            <div className="checkDesc">{pekerjaanDetail[0].qualifications[0].qualifications_1 }</div>
+                             <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
+                            <div style={{textAlign:'justify'}}  className="checkDesc">{pekerjaanDetail[0].qualifications[0].qualifications_1 }</div>
                         </div>
                         }
                             {
                             pekerjaanDetail[0].qualifications[0].qualifications_2 &&     <div style={{alignItems:'center'}} className="checkListContainer">
-                            <div style={{width:'4px',height:'4px',marginRight:'10px',backgroundColor:'#000000',borderRadius:'100%'}}/>
-                            <div className="checkDesc">{pekerjaanDetail[0].qualifications[0].qualifications_2 }</div>
+                                  <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
+                            <div style={{textAlign:'justify'}}  className="checkDesc">{pekerjaanDetail[0].qualifications[0].qualifications_2 }</div>
                         </div>
                         }
                         {
                             pekerjaanDetail[0].qualifications[0].qualifications_3 &&     <div style={{alignItems:'center'}} className="checkListContainer">
-                            <div style={{width:'4px',height:'4px',marginRight:'10px',backgroundColor:'#000000',borderRadius:'100%'}}/>
-                            <div className="checkDesc">{pekerjaanDetail[0].qualifications[0].qualifications_3 }</div>
+                                   <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
+                            <div style={{textAlign:'justify'}}  className="checkDesc">{pekerjaanDetail[0].qualifications[0].qualifications_3 }</div>
                         </div>
                         }
                             {
                             pekerjaanDetail[0].qualifications[0].qualifications_4 &&     <div style={{alignItems:'center'}} className="checkListContainer">
-                            <div style={{width:'4px',height:'4px',marginRight:'10px',backgroundColor:'#000000',borderRadius:'100%'}}/>
-                            <div className="checkDesc">{pekerjaanDetail[0].qualifications[0].qualifications_4 }</div>
+                                   <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
+                            <div style={{textAlign:'justify'}}  className="checkDesc">{pekerjaanDetail[0].qualifications[0].qualifications_4 }</div>
                         </div>
                         }
                            {
                             pekerjaanDetail[0].qualifications[0].qualifications_5 &&     <div style={{alignItems:'center'}} className="checkListContainer">
-                            <div style={{width:'4px',height:'4px',marginRight:'10px',backgroundColor:'#000000',borderRadius:'100%'}}/>
-                            <div className="checkDesc">{pekerjaanDetail[0].qualifications[0].qualifications_5 }</div>
+                                   <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
+                            <div style={{textAlign:'justify'}}  className="checkDesc">{pekerjaanDetail[0].qualifications[0].qualifications_5 }</div>
                         </div>
                         }
                            {
                             pekerjaanDetail[0].qualifications[0].qualifications_6 &&     <div style={{alignItems:'center'}} className="checkListContainer">
-                            <div style={{width:'4px',height:'4px',marginRight:'10px',backgroundColor:'#000000',borderRadius:'100%'}}/>
-                            <div className="checkDesc">{pekerjaanDetail[0].qualifications[0].qualifications_6 }</div>
+                                   <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
+                            <div style={{textAlign:'justify'}}  className="checkDesc">{pekerjaanDetail[0].qualifications[0].qualifications_6 }</div>
                         </div>
                         }
                           {
                             pekerjaanDetail[0].qualifications[0].qualifications_7 &&     <div style={{alignItems:'center'}} className="checkListContainer">
-                            <div style={{width:'4px',height:'4px',marginRight:'10px',backgroundColor:'#000000',borderRadius:'100%'}}/>
-                            <div className="checkDesc">{pekerjaanDetail[0].qualifications[0].qualifications_7 }</div>
+                                  <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
+                            <div style={{textAlign:'justify'}}  className="checkDesc">{pekerjaanDetail[0].qualifications[0].qualifications_7 }</div>
                         </div>
                         }
                            {
                             pekerjaanDetail[0].qualifications[0].qualifications_8 &&     <div style={{alignItems:'center'}} className="checkListContainer">
-                            <div style={{width:'4px',height:'4px',marginRight:'10px',backgroundColor:'#000000',borderRadius:'100%'}}/>
-                            <div className="checkDesc">{pekerjaanDetail[0].qualifications[0].qualifications_8 }</div>
+                                  <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
+                            <div style={{textAlign:'justify'}}  className="checkDesc">{pekerjaanDetail[0].qualifications[0].qualifications_8 }</div>
                         </div>
                         }
                     

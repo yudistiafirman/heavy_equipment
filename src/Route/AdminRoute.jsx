@@ -7,11 +7,15 @@ import {
   Link
 } from 'react-router-dom'
 import AdminCareer from '../Components/Admin/AdminCareer'
-import AdminFasilitas from '../Components/AdminFasiltas'
 import AdminGaleri from '../Components/AdminGaleri/AdminGaleri'
 import AdminNavbar from '../Components/AdminNavbar/AdminNavbar'
 import AdminPelatihan from '../Components/AdminPelatihan/AdminPelatihan'
-import Career from '../Components/Career/Career'
+import AdminFasilitas from '../Components/AdminFasiltas'
+import Adminjasa from '../Components/AdminJasa'
+
+const AdminHome =()=>{
+  return <div>hai</div>
+}
 const AdminRoute = () => {
   return (
     <Router>
@@ -19,10 +23,11 @@ const AdminRoute = () => {
       <div>
     <AdminNavbar/>
     <Routes>
-    <Route  path="/admincareer" element={<AdminCareer/>} />
+    <Route exact path='/' element={<AdminCareer/>}/>
+    <Route  path="/adminfasilitas" element={<AdminFasilitas/>} />
     <Route  path="/admingaleri" element={<AdminGaleri/>} />
     <Route  path="/adminpelatihan" element={<AdminPelatihan/>} />
-    <Route  path="/adminfasilitas" element={<AdminFasilitas/>} />
+    <Route  path="/adminjasa" element={<Adminjasa/>} />
     </Routes>
 
       </div>

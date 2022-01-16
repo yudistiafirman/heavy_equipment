@@ -1,16 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaShareAlt }from 'react-icons/fa'
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import { AiFillCaretDown } from "react-icons/ai";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
+import axios from 'axios';
+import { apiUrl } from '../../Default';
+import { cardTitleSlicer } from '../utils/funcHelper';
 const DetailService = () => {
+  const {id,name}=useParams()
+  const [dataDetail,setDataDetail]=useState([])
+  const [jasaContent,setJasaContent]=useState([])
+  useEffect(()=>{
+    getDetailData()
+    getAllJasa()
+  },[id,name])
 
+
+  const getDetailData=()=>{
+    axios.get(`${apiUrl}/jasa/detail?id=${id}`).then((response)=>{
+      setDataDetail(response.data.data)
+    })
+  }
+  const getAllJasa=()=>{
+    axios.get(`${apiUrl}/jasa/all?`).then(response => {
+      setJasaContent(response.data.data)
+    })
+  }
   const navigate = useNavigate()
-    return (
+    return dataDetail.length > 0 && (
         <div className='detailPelatihanContainer'>
             <div className="detailInnerContainer">
                 <div style={{width:'60%'}}   className="routingDetail">
@@ -18,13 +39,13 @@ const DetailService = () => {
                     <div className="routingInActive">/</div>
                     <div onClick={()=> navigate('/jasa')} className="routingInActive">Jasa Service Alat Berat</div>
                     <div className="routingInActive">/</div>
-                    <div style={{color:'#000000'}} className="routingInActive">Jasa Servis 1</div>
+                    <div style={{color:'#000000'}} className="routingInActive">{name}</div>
                 </div>
          
             <div className="detailContentContainer">
             <div className="detailTitleContainer">
                 <div className="detailTitle">
-                Jasa Servis 1
+                {dataDetail[0].title}
                 </div>
                <div className="titleIconContainer">
                <CopyToClipboard onCopy={()=>alert('Success Copy to Clipboard')} text={window.location.href}>
@@ -35,71 +56,48 @@ const DetailService = () => {
         
              
             <div className="detailDesc">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus
+            {dataDetail[0].descriptions}
             </div>
-            <div style={{width:'100%'}} className="accordion">
-          <Accordion>
-        <AccordionSummary
-          expandIcon={<AiFillCaretDown/>}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography style={{fontSize:'18px',fontWeight:'800', color:'#6B7280',fontFamily:'"inter",sans-serif',lineHeight:'24.3px'}}>Scope Servis 1</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography style={{fontSize:'15px',fontWeight:'400', color:'#6B7280',fontFamily:'"inter",sans-serif',lineHeight:'22px'}}  className='latarContent'>
-         Isi Scope Servis Disini Anda dapat menggunakan sebanyak apapun informasi yang ingin dimasukkan disini. Pada bagian ini anda hanya dapat menggunakan teks biasa atau tautan URL yang akan dilempar ke halaman spesifik untuk menjaga efek bersih dari halaman. Disarankan di bagian ini anda menggunakan informasi ringkasan dan menambahkan tautan URL prgoram pendidikan dan pelatihan yang dimaksud.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      
-          </div>
-          <div style={{width:'100%'}} className="accordion">
-          <Accordion>
-        <AccordionSummary
-          expandIcon={<AiFillCaretDown/>}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography style={{fontSize:'18px',fontWeight:'800', color:'#6B7280',fontFamily:'"inter",sans-serif',lineHeight:'24.3px'}}>Scope Servis 2</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography style={{fontSize:'15px',fontWeight:'400', color:'#6B7280',fontFamily:'"inter",sans-serif',lineHeight:'22px'}}  className='latarContent'>
-         Isi Scope Servis Disini Anda dapat menggunakan sebanyak apapun informasi yang ingin dimasukkan disini. Pada bagian ini anda hanya dapat menggunakan teks biasa atau tautan URL yang akan dilempar ke halaman spesifik untuk menjaga efek bersih dari halaman. Disarankan di bagian ini anda menggunakan informasi ringkasan dan menambahkan tautan URL prgoram pendidikan dan pelatihan yang dimaksud.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      
-          </div>
-          <div style={{width:'100%'}} className="accordion">
-          <Accordion>
-        <AccordionSummary
-          expandIcon={<AiFillCaretDown/>}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography style={{fontSize:'18px',fontWeight:'800', color:'#6B7280',fontFamily:'"inter",sans-serif',lineHeight:'24.3px'}}>Scope Servis 3</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography style={{fontSize:'15px',fontWeight:'400', color:'#6B7280',fontFamily:'"inter",sans-serif',lineHeight:'22px'}}  className='latarContent'>
-         Isi Scope Servis Disini Anda dapat menggunakan sebanyak apapun informasi yang ingin dimasukkan disini. Pada bagian ini anda hanya dapat menggunakan teks biasa atau tautan URL yang akan dilempar ke halaman spesifik untuk menjaga efek bersih dari halaman. Disarankan di bagian ini anda menggunakan informasi ringkasan dan menambahkan tautan URL prgoram pendidikan dan pelatihan yang dimaksud.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      
-          </div>
-          <div className="detailDesc">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. </div>
+            {
+              dataDetail[0].scope.map((v,i)=>{
+                return          <div style={{width:'100%'}} className="accordion">
+                <Accordion>
+              <AccordionSummary
+                expandIcon={<AiFillCaretDown/>}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography style={{fontSize:'18px',fontWeight:'800', color:'#6B7280',fontFamily:'"inter",sans-serif',lineHeight:'24.3px'}}>{v.scope_title}</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography style={{fontSize:'15px',fontWeight:'400', color:'#6B7280',fontFamily:'"inter",sans-serif',lineHeight:'22px'}}  className='latarContent'>
+               {v.scope_descriptions}
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+        
+
+  
+      </div>
+              })
+            }
+   
+
+
+
             <div style={{width:'100%'}} className="hubungiBtn">
-                            <div className="hubungiBtnTitle">HUBUNGI KAMI</div>
+                            <a href='tel:+68112131122' className="hubungiBtnTitle">HUBUNGI KAMI</a>
                         </div>
             </div>
            
             </div>
             <div style={{marginTop:'40px'}} className="lihatJuga">
             <div  onClick={()=> navigate('/jasa')} className="lihatJugaTitle">Lihat Juga</div>
-            <div  onClick={()=> navigate('/jasa')} className="lihatJugaContent">Jasa Servis 1</div>
-            <div  onClick={()=> navigate('/jasa')}  className="lihatJugaContent">Jasa Servis 2</div>
-            <div  onClick={()=> navigate('/jasa')} className="lihatJugaContent">Jasa Servis 3</div>
+              {
+                jasaContent.length >0 && jasaContent.slice(0,5).map((v,i)=>{
+                  return v.id != id &&    ( <div   onClick={()=>navigate('/jasa/detailJasa/'+v.id+'/'+v.title)}  className="lihatJugaContent">{cardTitleSlicer(v.title)}</div>)
+                })
+              }
         </div>
         </div>
     )

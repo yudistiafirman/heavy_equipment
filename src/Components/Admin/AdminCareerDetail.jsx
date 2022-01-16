@@ -11,6 +11,7 @@ import { apiUrl } from '../../Default'
 import Swal from 'sweetalert2'
 import moment from 'moment'
 import CareerDetail from '../Career/CareerDetail'
+import CheckIcon from '../InfoPelatihan/assets/iconCheck.png'
 const AdminCareerDetail = ({ openDetail, closeDetail, careerId }) => {
   const [careerDetail, SetCareerDetail] = useState([])
   useEffect(() => {
@@ -56,15 +57,7 @@ const AdminCareerDetail = ({ openDetail, closeDetail, careerId }) => {
                      style={{ alignItems: 'center' }}
                      className='checkListContainer'
                    >
-                     <div
-                       style={{
-                         width: '4px',
-                         height: '4px',
-                         marginRight: '10px',
-                         backgroundColor: '#000000',
-                         borderRadius: '100%'
-                       }}
-                     />
+                     <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
                      <div className='checkDesc'>
                        {careerDetail[0].qualifications[0].qualifications_1}
                      </div>
@@ -76,15 +69,7 @@ const AdminCareerDetail = ({ openDetail, closeDetail, careerId }) => {
                      style={{ alignItems: 'center' }}
                      className='checkListContainer'
                    >
-                     <div
-                       style={{
-                         width: '4px',
-                         height: '4px',
-                         marginRight: '10px',
-                         backgroundColor: '#000000',
-                         borderRadius: '100%'
-                       }}
-                     />
+                      <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
                      <div className='checkDesc'>
                        {careerDetail[0].qualifications[0].qualifications_2}
                      </div>
@@ -96,15 +81,7 @@ const AdminCareerDetail = ({ openDetail, closeDetail, careerId }) => {
                      style={{ alignItems: 'center' }}
                      className='checkListContainer'
                    >
-                     <div
-                       style={{
-                         width: '4px',
-                         height: '4px',
-                         marginRight: '10px',
-                         backgroundColor: '#000000',
-                         borderRadius: '100%'
-                       }}
-                     />
+                       <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
                      <div className='checkDesc'>
                        {careerDetail[0].qualifications[0].qualifications_3}
                      </div>
@@ -116,15 +93,7 @@ const AdminCareerDetail = ({ openDetail, closeDetail, careerId }) => {
                      style={{ alignItems: 'center' }}
                      className='checkListContainer'
                    >
-                     <div
-                       style={{
-                         width: '4px',
-                         height: '4px',
-                         marginRight: '10px',
-                         backgroundColor: '#000000',
-                         borderRadius: '100%'
-                       }}
-                     />
+                    <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
                      <div className='checkDesc'>
                        {careerDetail[0].qualifications[0].qualifications_4}
                      </div>
@@ -136,15 +105,7 @@ const AdminCareerDetail = ({ openDetail, closeDetail, careerId }) => {
                      style={{ alignItems: 'center' }}
                      className='checkListContainer'
                    >
-                     <div
-                       style={{
-                         width: '4px',
-                         height: '4px',
-                         marginRight: '10px',
-                         backgroundColor: '#000000',
-                         borderRadius: '100%'
-                       }}
-                     />
+                       <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
                      <div className='checkDesc'>
                        {careerDetail[0].qualifications[0].qualifications_5}
                      </div>
@@ -156,15 +117,7 @@ const AdminCareerDetail = ({ openDetail, closeDetail, careerId }) => {
                      style={{ alignItems: 'center' }}
                      className='checkListContainer'
                    >
-                     <div
-                       style={{
-                         width: '4px',
-                         height: '4px',
-                         marginRight: '10px',
-                         backgroundColor: '#000000',
-                         borderRadius: '100%'
-                       }}
-                     />
+                  <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
                      <div className='checkDesc'>
                        {careerDetail[0].qualifications[0].qualifications_6}
                      </div>
@@ -176,15 +129,7 @@ const AdminCareerDetail = ({ openDetail, closeDetail, careerId }) => {
                      style={{ alignItems: 'center' }}
                      className='checkListContainer'
                    >
-                     <div
-                       style={{
-                         width: '4px',
-                         height: '4px',
-                         marginRight: '10px',
-                         backgroundColor: '#000000',
-                         borderRadius: '100%'
-                       }}
-                     />
+                     <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
                      <div className='checkDesc'>
                        {careerDetail[0].qualifications[0].qualifications_7}
                      </div>
@@ -196,15 +141,7 @@ const AdminCareerDetail = ({ openDetail, closeDetail, careerId }) => {
                      style={{ alignItems: 'center' }}
                      className='checkListContainer'
                    >
-                     <div
-                       style={{
-                         width: '4px',
-                         height: '4px',
-                         marginRight: '10px',
-                         backgroundColor: '#000000',
-                         borderRadius: '100%'
-                       }}
-                     />
+                    <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
                      <div className='checkDesc'>
                        {careerDetail[0].qualifications[0].qualifications_8}
                      </div>

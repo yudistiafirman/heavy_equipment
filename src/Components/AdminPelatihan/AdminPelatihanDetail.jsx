@@ -10,6 +10,7 @@ import {
   import { apiUrl } from '../../Default'
   import Swal from 'sweetalert2'
   import moment from 'moment'
+  import CheckIcon from '../InfoPelatihan/assets/iconCheck.png'
   const AdminPelatihanDetail = ({ openDetail, closeDetail, careerId }) => {
     const [careerDetail, SetCareerDetail] = useState([])
     useEffect(() => {
@@ -55,15 +56,7 @@ import {
                        style={{ alignItems: 'center' }}
                        className='checkListContainer'
                      >
-                       <div
-                         style={{
-                           width: '4px',
-                           height: '4px',
-                           marginRight: '10px',
-                           backgroundColor: '#000000',
-                           borderRadius: '100%'
-                         }}
-                       />
+                       <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
                        <div className='checkDesc'>
                          {careerDetail[0].nilaiPlus[0].nilai_1}
                        </div>
@@ -75,15 +68,7 @@ import {
                        style={{ alignItems: 'center' }}
                        className='checkListContainer'
                      >
-                       <div
-                         style={{
-                           width: '4px',
-                           height: '4px',
-                           marginRight: '10px',
-                           backgroundColor: '#000000',
-                           borderRadius: '100%'
-                         }}
-                       />
+                        <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
                        <div className='checkDesc'>
                          {careerDetail[0].nilaiPlus[0].nilai_2}
                        </div>
@@ -95,15 +80,7 @@ import {
                        style={{ alignItems: 'center' }}
                        className='checkListContainer'
                      >
-                       <div
-                         style={{
-                           width: '4px',
-                           height: '4px',
-                           marginRight: '10px',
-                           backgroundColor: '#000000',
-                           borderRadius: '100%'
-                         }}
-                       />
+                        <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
                        <div className='checkDesc'>
                          {careerDetail[0].nilaiPlus[0].nilai_3}
                        </div>
@@ -115,15 +92,7 @@ import {
                        style={{ alignItems: 'center' }}
                        className='checkListContainer'
                      >
-                       <div
-                         style={{
-                           width: '4px',
-                           height: '4px',
-                           marginRight: '10px',
-                           backgroundColor: '#000000',
-                           borderRadius: '100%'
-                         }}
-                       />
+                        <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
                        <div className='checkDesc'>
                          {careerDetail[0].nilaiPlus[0].nilai_4}
                        </div>
@@ -135,21 +104,75 @@ import {
                        style={{ alignItems: 'center' }}
                        className='checkListContainer'
                      >
-                       <div
-                         style={{
-                           width: '4px',
-                           height: '4px',
-                           marginRight: '10px',
-                           backgroundColor: '#000000',
-                           borderRadius: '100%'
-                         }}
-                       />
+                       <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
                        <div className='checkDesc'>
                          {careerDetail[0].nilaiPlus[0].nilai_5}
                        </div>
                      </div>
                    )}
-                        
+                            {careerDetail[0].nilaiPlus[0].nilai_6 !==
+                     null && (
+                     <div
+                       style={{ alignItems: 'center' }}
+                       className='checkListContainer'
+                     >
+                       <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
+                       <div className='checkDesc'>
+                         {careerDetail[0].nilaiPlus[0].nilai_6}
+                       </div>
+                     </div>
+                   )}
+                         {careerDetail[0].nilaiPlus[0].nilai_7 !==
+                     null && (
+                     <div
+                       style={{ alignItems: 'center' }}
+                       className='checkListContainer'
+                     >
+                      <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
+                       <div className='checkDesc'>
+                         {careerDetail[0].nilaiPlus[0].nilai_7}
+                       </div>
+                     </div>
+                   )}  
+                             {careerDetail[0].nilaiPlus[0].nilai_8 !==
+                     null && (
+                     <div
+                       style={{ alignItems: 'center' }}
+                       className='checkListContainer'
+                     >
+                        <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
+                       <div className='checkDesc'>
+                         {careerDetail[0].nilaiPlus[0].nilai_8}
+                         
+                       </div>
+                     </div>
+                   )} 
+                         {careerDetail[0].nilaiPlus[0].nilai_9 !==
+                     null && (
+                     <div
+                       style={{ alignItems: 'center' }}
+                       className='checkListContainer'
+                     >
+                      <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
+                       <div className='checkDesc'>
+                         {careerDetail[0].nilaiPlus[0].nilai_9}
+                         
+                       </div>
+                     </div>
+                   )}  
+                       {careerDetail[0].nilaiPlus[0].nilai_10 !==
+                     null && (
+                     <div
+                       style={{ alignItems: 'center' }}
+                       className='checkListContainer'
+                     >
+                        <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
+                       <div className='checkDesc'>
+                         {careerDetail[0].nilaiPlus[0].nilai_10}
+                         
+                       </div>
+                     </div>
+                   )} 
                  </div>
                </div>
              </div>

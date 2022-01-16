@@ -1,7 +1,8 @@
 import React from 'react'
 import J2 from '../Home/assets/J2.jpg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 const VisiDanMisi = () => {
+  let navigate = useNavigate()
   return (
     <div className='latarContainer'>
           <div 
@@ -57,15 +58,15 @@ const VisiDanMisi = () => {
         </div>
         <div className='lihatJuga'>
           <div className='lihatJugaTitle'>Lihat Juga</div>
-          <Link onClick={() => window.scrollTo(0)} to='/latar' className='lihatJugaContent'>
+          <a onClick={() => navigate('/latar')} className='lihatJugaContent'>
             Latar Belakang
-          </Link>
-          <Link onClick={() => window.scrollTo(0)} to='/nilai' className='lihatJugaContent'>
+          </a>
+          <a onClick={() => navigate('/nilai')}  className='lihatJugaContent'>
             Nilai Inti
-          </Link>
-          <Link onClick={() => window.scrollTo(0)} to='/so' className='lihatJugaContent'>
+          </a>
+          <a onClick={() => navigate('/so')}  className='lihatJugaContent'>
             Struktur Organisasi
-          </Link>
+          </a>
         </div>
       </div>
     </div>

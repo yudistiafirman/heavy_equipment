@@ -250,7 +250,20 @@ const AdminGaleri = () => {
         ? (a, b) => descendingComparator(a, b, orderBy)
         : (a, b) => -descendingComparator(a, b, orderBy)
     }
-  
+    const handlePopularClick = (event,name,value) =>{
+
+      let valueToSend
+      if(value===0){
+        valueToSend = 1
+      }else {
+        valueToSend =0
+      }
+      axios.patch(`${apiUrl}/galeri/update?id=${name}&value=${valueToSend}`).then((response)=>{
+        getGaleriData('')
+      }).catch((err)=>{
+        console.log(err)
+      })
+    }
   
   
     function stableSort (array, comparator) {
@@ -283,6 +296,12 @@ const AdminGaleri = () => {
         numeric: false,
         disablePadding: false,
         label: 'Tanggal Dibuat'
+      },
+      {
+        id: '',
+        numeric: false,
+        disablePadding: false,
+        label: 'Set As Home Galeri'
       }
     ]
     function EnhancedTableHead (props) {
@@ -518,7 +537,7 @@ const AdminGaleri = () => {
                               height:'100%',
                             backgroundImage:`url(${apiUrl}/${row.image})`,
                             backgroundRepeat:'no-repeat',
-                            backgroundSize: "contain",
+                            backgroundSize: "cover",
                             backgroundPosition: "center",
                             cursor:'pointer'
                             }}
@@ -530,6 +549,18 @@ const AdminGaleri = () => {
                            style={{fontSize:'15px',fontWeight:'500',color:'#071244'}}
                           >
                             {moment(row.created_at).format('DD-MM-YYYY')}
+                          </TableCell>
+                          <TableCell align='left'
+                           style={{fontSize:'15px',fontWeight:'500',color:'#071244'}}
+                          >
+                            <Checkbox
+                                onClick={event => handlePopularClick(event, row.id,row.is_home)}
+                                color='primary'
+                                checked={row.is_home !== 0}
+                                inputProps={{
+                                  'aria-labelledby': labelId
+                                }}
+                            />
                           </TableCell>
                         </TableRow>
                       )

@@ -57,7 +57,7 @@ const Routing = () => {
              <Route path="/penjualan" element={<Penjualan/>} />
              <Route path="/detailPenjualan" element={<DetailPenjualan/>} />
              <Route path="/jasa" element={<Jasa/>} />
-             <Route path="/detailJasa" element={<DetailService/>} />
+             <Route path="/jasa/detailJasa/:id/:name" element={<DetailService/>} />
              <Route path="/infoPelatihan" element={<InfoPelatihan/>} />
              <Route path="/infoPelatihan/detailPelatihan/:id/:name" element={<DetailPelatihan/>} />
              <Route path="/career" element={<Career/>} />

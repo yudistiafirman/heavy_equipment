@@ -127,7 +127,8 @@ const AdminCareer = () => {
   }
 
   const onAddKualifikasi = () => {
-    if(kualifikasiForm[0].kualifikasiValue){
+    let prevIdx = kualifikasiForm.length-1
+    if(kualifikasiForm[prevIdx].kualifikasiValue){
       if (kualifikasiForm.length < 8) {
         SetKualifikasiForm([
           ...kualifikasiForm,
@@ -136,6 +137,8 @@ const AdminCareer = () => {
       } else {
         alert('Penambahan kualifkasi telah mencapai batas maksimal')
       }
+    }else{
+      alert(`Nilai kualifikasi ke ${kualifikasiForm.length} tidak boleh kosong`)
     }
  
   }
@@ -238,7 +241,7 @@ const onFilterCategory=useCallback((value)=>{
   }
 
   const onChangeKualifikasiForm = (e, i) => {
-    if (e.target.value.length < 255) {
+    if (e.target.value.length <= 255) {
       let newArr = [...kualifikasiForm]
       newArr[i].kualifikasiValue = e.target.value
       SetKualifikasiForm(newArr)
@@ -594,6 +597,7 @@ const onFilterCategory=useCallback((value)=>{
                   sx={{ width: 300 }}
                   helperText={`${categoryName.length}/45`}
                   onChange={onChangeCategoryName}
+                  value={categoryName}
                   fullWidth
                   label='Kategori Pekerjaan'
                 />

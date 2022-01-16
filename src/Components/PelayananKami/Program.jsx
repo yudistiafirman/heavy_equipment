@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Education from './assets/education.jpg'
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -7,6 +7,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import { AiFillCaretDown } from "react-icons/ai";
 const Program = () => {
+  let navigate= useNavigate()
     return (
       <div className='latarContainer'>
                 <div 
@@ -268,18 +269,18 @@ const Program = () => {
           </div>
           <div className='lihatJuga'>
             <div className='lihatJugaTitle'>Lihat Juga</div>
-            <Link onClick={() => window.scrollTo(0)} to='/labour' className='lihatJugaContent'>
+            <a onClick={() => navigate('/labour')}  className='lihatJugaContent'>
               Labour Supply
-            </Link>
-            <Link onClick={() => window.scrollTo(0)} to='/konsultan' className='lihatJugaContent'>
+            </a>
+            <a onClick={() => navigate('/konsultan')}  className='lihatJugaContent'>
               Konsultan
-            </Link>
-            <Link onClick={() => window.scrollTo(0)} to='/penjualan' className='lihatJugaContent'>
+            </a>
+            <a onClick={() => navigate('/penjualan')}  className='lihatJugaContent'>
               Penjualan Sparepart Alat Berat
-            </Link>
-            <Link onClick={() => window.scrollTo(0)} to='/jasa' className='lihatJugaContent'>
+            </a>
+            <a onClick={() => navigate('/jasa')}  className='lihatJugaContent'>
               Jasa Servis Alat Berat
-            </Link>
+            </a>
           </div>
         </div>
       </div>

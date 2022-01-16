@@ -119,9 +119,14 @@ const AdminFasilitas = () => {
                 title: 'Penghapusan data fasilitas berhasil',
                 text: 'Penghapusan  data fasilitas telah berhasil'
               })
+              setSelected([])
               onGetFasilitasData('')
           }
       })
+  }
+
+  const onChangeFacility =(e)=>{
+    onGetFasilitasData(e.target.value)
   }
   return (
     <div className='admin-container'>
@@ -165,6 +170,7 @@ const AdminFasilitas = () => {
               fontSize: '15px'
             }}
             fullWidth
+            onChange={onChangeFacility}
             label='Cari Lowongan'
           />
         </div>
@@ -248,7 +254,7 @@ const AdminFasilitas = () => {
                                 height: '100%',
                                 backgroundImage: `url(${apiUrl}/${row.image_1})`,
                                 backgroundRepeat: 'no-repeat',
-                                backgroundSize: 'contain',
+                                backgroundSize: 'cover',
                                 backgroundPosition: 'center',
                                 cursor: 'pointer'
                               }}
@@ -271,7 +277,7 @@ const AdminFasilitas = () => {
                                   height: '100%',
                                   backgroundImage: row.image_2 !== null && `url(${apiUrl}/${row.image_2})`,
                                   backgroundRepeat: 'no-repeat',
-                                  backgroundSize: 'contain',
+                                  backgroundSize: 'cover',
                                   backgroundPosition: 'center',
                                   cursor: 'pointer'
                                 }}
@@ -296,7 +302,7 @@ const AdminFasilitas = () => {
                                   height: '100%',
                                   backgroundImage: row.image_3 !== null && `url(${apiUrl}/${row.image_3})`,
                                   backgroundRepeat: 'no-repeat',
-                                  backgroundSize: 'contain',
+                                  backgroundSize: 'cover',
                                   backgroundPosition: 'center',
                                   cursor: 'pointer'
                                 }}

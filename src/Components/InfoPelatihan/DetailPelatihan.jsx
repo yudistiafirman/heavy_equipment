@@ -8,6 +8,7 @@ import axios from 'axios';
 import { apiUrl } from '../../Default';
 import moment from 'moment'
 import { cardTitleSlicer } from '../utils/funcHelper';
+import 'moment/locale/id'
 const DetailPelatihan = () => {
     const [pelatihanData,setPelatihanData]=useState([])
     const [pelatihanPopular,setPelatihanPopular]=useState([])
@@ -54,7 +55,7 @@ const DetailPelatihan = () => {
                    </CopyToClipboard>
                </div>
             </div>
-            <div className="titleCategory">
+            <div style={{minWidth:'30%'}} className="titleCategory">
                 <div>{pelatihanData[0].category_name}</div>
             </div>
             <div   style={{width:'30%'}} className="titleCategory">
@@ -68,11 +69,12 @@ const DetailPelatihan = () => {
                             backgroundImage:`url(${apiUrl}/${pelatihanData[0].image})`,
                             backgroundRepeat:'no-repeat',
                             backgroundSize: "cover",
-                            backgroundPosition: "center",
+                            backgroundPosition: "left",
+                            borderRadius:'10px',
                             cursor:'pointer'
                             }}></div>
             </div>
-            <div className="detailDesc">
+            <div style={{textAlign:'justify'}} className="detailDesc">
             {pelatihanData[0].descriptions}
             </div>
             <div className="advantagesPelatihanContainer">
@@ -83,36 +85,65 @@ const DetailPelatihan = () => {
                         </div>
                         {
                             pelatihanData[0].nilaiPlus[0].nilai_1 &&    <div className="checkListContainer">
-                            <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px'}}/>
-                            <div className="checkDesc">{ pelatihanData[0].nilaiPlus[0].nilai_1}</div>
+                            <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
+                            <div style={{textAlign:'justify'}} className="checkDesc">{ pelatihanData[0].nilaiPlus[0].nilai_1}</div>
                         </div>
                         }
                                {
                             pelatihanData[0].nilaiPlus[0].nilai_2 &&    <div className="checkListContainer">
-                            <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px'}}/>
-                            <div className="checkDesc">{ pelatihanData[0].nilaiPlus[0].nilai_2}</div>
+                            <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
+                            <div style={{textAlign:'justify'}}  className="checkDesc">{ pelatihanData[0].nilaiPlus[0].nilai_2}</div>
                         </div>
                         }
                                {
                             pelatihanData[0].nilaiPlus[0].nilai_3 &&    <div className="checkListContainer">
-                            <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px'}}/>
-                            <div className="checkDesc">{ pelatihanData[0].nilaiPlus[0].nilai_3}</div>
+                            <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
+                            <div style={{textAlign:'justify'}}  className="checkDesc">{ pelatihanData[0].nilaiPlus[0].nilai_3}</div>
                         </div>
                         }
                                {
                             pelatihanData[0].nilaiPlus[0].nilai_4 &&    <div className="checkListContainer">
-                            <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px'}}/>
-                            <div className="checkDesc">{ pelatihanData[0].nilaiPlus[0].nilai_4}</div>
+                            <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
+                            <div style={{textAlign:'justify'}}  className="checkDesc">{ pelatihanData[0].nilaiPlus[0].nilai_4}</div>
                         </div>
                         }
                                {
                             pelatihanData[0].nilaiPlus[0].nilai_5 &&    <div className="checkListContainer">
-                            <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px'}}/>
-                            <div className="checkDesc">{ pelatihanData[0].nilaiPlus[0].nilai_5}</div>
+                            <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
+                            <div style={{textAlign:'justify'}}  className="checkDesc">{ pelatihanData[0].nilaiPlus[0].nilai_5}</div>
                         </div>
                         }
                      
-                    
+                     {
+                            pelatihanData[0].nilaiPlus[0].nilai_6 &&    <div className="checkListContainer">
+                            <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
+                            <div style={{textAlign:'justify'}}  className="checkDesc">{ pelatihanData[0].nilaiPlus[0].nilai_6}</div>
+                        </div>
+                        }
+                             {
+                            pelatihanData[0].nilaiPlus[0].nilai_7 &&    <div className="checkListContainer">
+                            <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
+                            <div style={{textAlign:'justify'}}  className="checkDesc">{ pelatihanData[0].nilaiPlus[0].nilai_7}</div>
+                        </div>
+                        }
+                             {
+                            pelatihanData[0].nilaiPlus[0].nilai_8 &&    <div className="checkListContainer">
+                            <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
+                            <div style={{textAlign:'justify'}}  className="checkDesc">{ pelatihanData[0].nilaiPlus[0].nilai_8}</div>
+                        </div>
+                        }
+                            {
+                            pelatihanData[0].nilaiPlus[0].nilai_9 &&    <div className="checkListContainer">
+                            <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
+                            <div className="checkDesc">{ pelatihanData[0].nilaiPlus[0].nilai_9}</div>
+                        </div>
+                        }
+                              {
+                            pelatihanData[0].nilaiPlus[0].nilai_10 &&    <div className="checkListContainer">
+                            <img src={CheckIcon} style={{width:'16px',height:'16px',marginLeft:'7px',marginRight:'5px'}}/>
+                            <div style={{textAlign:'justify'}}  className="checkDesc">{ pelatihanData[0].nilaiPlus[0].nilai_10}</div>
+                        </div>
+                        }
                     </div>
                     <div className="bestOffer">
                         <div className="bestOfferTitle">Dapatkan Penawaran Terbaik</div>
@@ -130,8 +161,8 @@ const DetailPelatihan = () => {
             <div className="lihatPelatihanInnerContainer">
                 <div className="latarTitle">Pelatihan Lainnya</div>
                 {
-                    pelatihanPopular.length> 0 && pelatihanPopular.slice(0,5).filter((v,i)=>v.name !== pelatihanPopular[0].name).map((v,i)=>{
-                        return (
+                    pelatihanPopular.length> 0 && pelatihanPopular.map((v,i)=>{
+                        return v.id != id && (
                             <div onClick={()=>navigate('/infoPelatihan/detailPelatihan/'+v.id+'/'+v.name)}  className="lihatPelatihanContent">{cardTitleSlicer(v.name)}</div>
                         )
                     }) 

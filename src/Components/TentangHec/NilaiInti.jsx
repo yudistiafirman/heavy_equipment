@@ -1,8 +1,9 @@
 import React from 'react'
 import J3 from '../Home/assets/J3.jpg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import NilaiPict from './assets/nilai.png'
 const NilaiInti = () => {
+    let navigate =useNavigate()
     return (
       <div className='latarContainer'>
                 <div 
@@ -31,15 +32,15 @@ const NilaiInti = () => {
           </div>
           <div className='lihatJuga'>
             <div className='lihatJugaTitle'>Lihat Juga</div>
-            <Link onClick={() => window.scrollTo(0)} to='/latar' className='lihatJugaContent'>
+            <a onClick={() => navigate('/latar')}  className='lihatJugaContent'>
               Latar Belakang
-            </Link>
-            <Link onClick={() => window.scrollTo(0)} to='/visi' className='lihatJugaContent'>
+            </a>
+            <a onClick={() => navigate('/visi')}  className='lihatJugaContent'>
               Visi  Misi
-            </Link>
-            <Link onClick={() => window.scrollTo(0)} to='/so' className='lihatJugaContent'>
+            </a>
+            <a onClick={() => navigate('/so')}  className='lihatJugaContent'>
               Struktur Organisasi
-            </Link>
+            </a>
           </div>
         </div>
       </div>

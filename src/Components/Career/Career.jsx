@@ -13,6 +13,7 @@ import { Dialog } from '@mui/material'
 import axios from 'axios'
 import { apiUrl } from '../../Default'
 import  {useNavigate} from 'react-router-dom'
+import { cardDescSlicer, cardTitleSlicer } from '../utils/funcHelper'
 function useWindowSize () {
   const [size, setSize] = useState([0, 0])
   useLayoutEffect(() => {
@@ -168,9 +169,9 @@ const resetPencarian =()=>{
                           color: cardIdx === i ? '#FDC232' : '#000000'
                         }}
                       >
-                        {v.job_name}
+                        {cardTitleSlicer(v.job_name)}
                       </div>
-                      <div className='pelatihanCardDesc'>{v.job_description}</div>
+                      <div className='pelatihanCardDesc'>{cardDescSlicer(v.job_description)}</div>
                       <div
                         className={
                           cardIdx === i

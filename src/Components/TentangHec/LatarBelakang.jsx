@@ -1,9 +1,9 @@
 import React from 'react'
 import J1 from '../Home/assets/J1.jpg'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const LatarBelakang = () => {
 
-
+  let navigate = useNavigate()
     const latarNavigate=[
       {
         title:'Visi Misi',
@@ -71,7 +71,7 @@ const LatarBelakang = () => {
             <div className="lihatJugaTitle">Lihat Juga</div>
             {
               latarNavigate.map((value,index)=>{
-                return <Link onClick={()=>window.scrollTo(0)} to={value.to} className="lihatJugaContent">{value.title}</Link>
+                return <a onClick={()=>navigate(value.to)} className="lihatJugaContent">{value.title}</a>
               })
             }
         </div>

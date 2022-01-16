@@ -133,7 +133,7 @@ const AdminPelatihan = () => {
 
   const onAddKualifikasi = () => {
     if(kualifikasiForm[0].kualifikasiValue){
-      if (kualifikasiForm.length < 5) {
+      if (kualifikasiForm.length < 10) {
         SetKualifikasiForm([
           ...kualifikasiForm,
           { label: `Nilai Plus`, kualifikasiValue: '' }
@@ -278,7 +278,7 @@ const onFilterCategory=useCallback((value)=>{
   }
 
   const onChangeKualifikasiForm = (e, i) => {
-    if (e.target.value.length < 255) {
+    if (e.target.value.length <= 255) {
       let newArr = [...kualifikasiForm]
       newArr[i].kualifikasiValue = e.target.value
       SetKualifikasiForm(newArr)
@@ -695,6 +695,7 @@ const onFilterCategory=useCallback((value)=>{
                 <TextField
                   sx={{ width: 300 }}
                   helperText={`${categoryName.length}/45`}
+                  value={categoryName}
                   onChange={onChangeCategoryName}
                   fullWidth
                   label='Kategori Pelatihan'
@@ -741,7 +742,7 @@ const onFilterCategory=useCallback((value)=>{
             </LocalizationProvider>
           </div>
           <div style={{ marginLeft: '5px', marginTop: '20px' }}>
-            <DialogContentText>*Nilai Plus Pekerjaan</DialogContentText>
+            <DialogContentText>*Nilai Plus Pelatihan</DialogContentText>
             {kualifikasiForm.length > 0 &&
               kualifikasiForm.map((v, i) => {
                 return (
@@ -854,7 +855,7 @@ const onFilterCategory=useCallback((value)=>{
                               height:'100%',
                             backgroundImage:`url(${apiUrl}/${row.image})`,
                             backgroundRepeat:'no-repeat',
-                            backgroundSize: "contain",
+                            backgroundSize: "cover",
                             backgroundPosition: "center",
                             cursor:'pointer'
                             }}

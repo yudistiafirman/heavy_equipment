@@ -4,7 +4,7 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import EllipseOrange from './assets/EllipseOrange.png'
 import EllipseBlue from './assets/EllipseBlue.png'
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { apiUrl } from '../../Default'
 import { cardDescSlicer, cardTitleSlicer, stringSlicer } from '../utils/funcHelper'
@@ -26,6 +26,7 @@ const PelatihanPopuler = () => {
   const [cardIdx, setCardContentIdx] = useState(0)
   const [width,height] =useWindowSize()
   const [popularData,setPopularData]=useState([])
+  let navigate=useNavigate()
 
 
   useEffect(()=>{
@@ -101,9 +102,9 @@ const PelatihanPopuler = () => {
                       <div
                         className='cardBtnTitle'
                       >
-                      <Link onClick={()=> window.scrollTo(0)} style={{textDecoration:'none',  color: cardIdx === i ? '#FDC232' : '#000000'}} to='/detailPelatihan'>
+                      <a onClick={()=> navigate('/infoPelatihan/detailPelatihan/'+v.id+'/'+v.name)} style={{textDecoration:'none',  color: cardIdx === i ? '#FDC232' : '#000000',cursor:'pointer'}} >
                       Lihat Detail
-                      </Link>
+                      </a>
                     
                       </div>
                     </div>

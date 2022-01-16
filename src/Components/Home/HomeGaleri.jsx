@@ -13,9 +13,9 @@ useEffect(()=>{
   getGaleriHome()
 },[])
   const getGaleriHome = ()=>{
-    axios.get(`${apiUrl}/galeri/all?title=`).then((response)=>{
+    axios.get(`${apiUrl}/galeri/home?`).then((response)=>{
         const imageData= response.data.data.map((v,i)=>(v.image))
-        setImages(imageData.slice(0,5))
+        setImages(imageData.slice(0,6))
     })
   }
     return (
