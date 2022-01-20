@@ -21,9 +21,6 @@ const Home = () => {
             <section style={{marginBottom:'211px'}} id="homeGaleri">
                     <HomeGaleri/>
             </section>
-            <section>
-                        <Client/>
-            </section>
               
         </div>
     )

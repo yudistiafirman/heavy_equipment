@@ -33,12 +33,14 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Grid,
   TextField
 } from '@mui/material'
 import LocalizationProvider from '@mui/lab/LocalizationProvider'
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker'
 import {
+  AiFillPicture,
   AiOutlineMinusSquare,
   AiOutlinePlus,
   AiOutlinePlusSquare
@@ -79,7 +81,9 @@ const AdminCareer = () => {
   const [filterCategory,SetFilterCategory]=useState(null)
   const [careerId,SetCareerId]=useState('')
   const [openDetail,SetOpenDetail]=useState(false)
-
+  const [selectedFile, setSelectedFile] = useState()
+  const [preview, setPreview] = useState()
+  const [showImage,SetShowImages]=useState(null)
 
   const onOpenDetail =(id)=>{
     SetOpenDetail(true)
@@ -107,7 +111,27 @@ const AdminCareer = () => {
     getAllvacancies('','','')
     getVacanciesCategories()
   }, [])
+  useEffect(() => {
+    if (!selectedFile) {
+        setPreview(undefined)
+        return
+    }
 
+    const objectUrl = URL.createObjectURL(selectedFile)
+    setPreview(objectUrl)
+
+    // free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl)
+}, [selectedFile])
+const onSelectFile = e => {
+  if (!e.target.files || e.target.files.length === 0) {
+      setSelectedFile(undefined)
+      return
+  }
+
+  // I've kept this example simple by using the first image instead of multiple
+  setSelectedFile(e.target.files[0])
+}
   const getAllvacancies = (queryValue,date,category) => {
     axios.get(`${apiUrl}/vacancies/all?&name=${queryValue}&date=${date}&category=${category}`).then(response => {
       SetRows(response.data.data)
@@ -179,7 +203,9 @@ const onFilterCategory=useCallback((value)=>{
 
     if (!jobName) {
       alert('nama pekerjaan harus diisi')
-    } else if (!jobDescription) {
+    } else if(!selectedFile){
+      alert('image pelatihan harus diisi')
+    }else if (!jobDescription) {
       alert('deskripsi pekerjaan harus diisi')
     } else if (!optionValue && !categoryName) {
       alert('categori pekarjaan harus diisi')
@@ -193,15 +219,17 @@ const onFilterCategory=useCallback((value)=>{
           return { qualifications: v.kualifikasiValue }
         })
 
-      const body = {
-        job_name: jobName,
-        job_description: jobDescription,
-        last_submission: moment(startDate).format('YYYY-MM-DD'),
-        category_name: optionValue ? optionValue.category_name : categoryName,
-        job_qualifications: job_qualifications
-      }
+      const data = new FormData()
+
+      data.append('job_name',jobName)
+      data.append('job_description',jobDescription)
+      data.append('last_submission',moment(startDate).format('YYYY-MM-DD'))
+      data.append('category_name', optionValue ? optionValue.category_name : categoryName)
+      data.append('image_1',selectedFile)
+      data.append('job_qualifications',JSON.stringify(job_qualifications))
+
       axios
-        .post(apiUrl + '/vacancies/post', body)
+        .post(apiUrl + '/vacancies/post', data)
         .then(response => {
           if (response.data.error) {
             SetOpenForm(false)
@@ -348,6 +376,13 @@ const onFilterCategory=useCallback((value)=>{
       disablePadding: true,
       label: 'Pekerjaan'
     },
+
+    {
+      id:'',
+      numeric: false,
+      disablePadding: false,
+      label: 'Image'
+    },
     {
       id: 'job_description',
       numeric: false,
@@ -470,6 +505,19 @@ const onFilterCategory=useCallback((value)=>{
                }
      
       </div>
+      <Dialog
+          // title={"POST"}
+          scroll={"body"}
+          open={showImage ? true : false}
+          onClose={() => {
+            SetShowImages(null);
+          }}
+          hideActions={true}
+        >
+          <Grid container direction="row" justify="center">
+            <img alt='#' style={{ maxWidth: "100%" }} src={showImage}></img>
+          </Grid>
+        </Dialog>
       <div style={{display:'flex',marginBottom:'20px',justifyContent:'space-between',backgroundColor:'#ffffff',alignItems:'center',paddingTop:'20px',paddingBottom:'20px',borderRadius:'8px'}}>
       
         <div style={{marginLeft:'10px'}} >
@@ -551,6 +599,26 @@ const onFilterCategory=useCallback((value)=>{
                 maxRows={5}
                 variant='outlined'
               />
+            </div>
+            <div style={{width:'300px',marginLeft:'10px'}}>
+              <DialogContentText>*Image Career</DialogContentText>
+            <div style={{width:'100%',height:'300px',borderRadius:'8px',border:'1px solid #ECECEC',display:'flex',justifyContent:'center',alignItems:'center',overflow:'hidden',marginBottom:'10px'}}>
+                {
+                  selectedFile ?       <div 
+                  onClick={()=>SetShowImages(preview)}
+                style={{
+                    width:'100%',
+                    height:'100%',
+                  backgroundImage:`url(${preview})`,
+                  backgroundRepeat:'no-repeat',
+                  backgroundSize: "contain",
+                  backgroundPosition: "center",
+                  cursor:'pointer'
+                }}/> : <AiFillPicture style={{color:'#C4C4C4'}} size="large"/>
+                }
+      
+              </div>
+              <input type='file' onChange={onSelectFile} accept='image/*' />
             </div>
             <div>
               <Autocomplete
@@ -727,6 +795,23 @@ const onFilterCategory=useCallback((value)=>{
                     
                         >
                           {row.job_name}
+                        </TableCell>
+                        <TableCell
+                           style={{fontSize:'15px',fontWeight:'500',color:'#071244'}}
+                        align='left'>
+                               <div onClick={()=>SetShowImages(`${apiUrl}/${row.image}`)} style={{width:'100px',height:'100px',borderRadius:'8px',overflow:'hidden',border:'1px solid #C4C4C4'}}>
+                            <div 
+                            style={{
+                              width:'100%',
+                              height:'100%',
+                            backgroundImage:`url(${apiUrl}/${row.image})`,
+                            backgroundRepeat:'no-repeat',
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                            cursor:'pointer'
+                            }}
+                            />
+                            </div>
                         </TableCell>
                         <TableCell
                            style={{fontSize:'15px',fontWeight:'500',color:'#071244'}}

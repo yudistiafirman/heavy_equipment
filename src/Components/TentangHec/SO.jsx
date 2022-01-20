@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link,useNavigate} from 'react-router-dom'
-import J3 from '../Home/assets/J3.jpg'
+import J3 from './assets/organization.jpg'
 import So from './assets/SO.png'
 const SO = () => {
   let navigate = useNavigate()
@@ -19,8 +19,8 @@ const SO = () => {
               <div className="jumbotronContent">
               <div className='subMenuCampaign'>
               <div className='textWithBtn'>
-                <div className='heroMediumText'>Struktur</div>
-                <div className='heroOrangeText'>Organisasi</div>
+                <div className='heroMediumText'>STRUKTUR</div>
+                <div className='heroOrangeText'>ORGANISASI</div>
               </div>
             </div>
               </div>

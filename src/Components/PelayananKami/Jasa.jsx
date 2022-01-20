@@ -33,8 +33,8 @@ const Jasa = () => {
               <div className="jumbotronContent">
               <div className='subMenuCampaign'>
               <div className='textWithBtn'>
-                <div className='heroMediumText'>Jasa Servis</div>
-                <div className='heroOrangeText'>Alat Berat</div>
+                <div className='heroMediumText'>JASA SERVIS</div>
+                <div className='heroOrangeText'>ALAT BERAT</div>
               </div>
             </div>
               </div>

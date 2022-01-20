@@ -4,6 +4,22 @@
     border:1px solid black
 }
 
+.fullbooked{
+    margin: 8px 8px 0px 16px;
+    font-size: 12px;
+    font-weight: 800;
+    color:  #EB5757;
+    font-family: 'inter',sans-serif;
+}
+
+.open{
+    margin: 8px 8px 0px 16px;
+    font-size: 12px;
+    font-weight: 800;
+    color:   #071243;
+    font-family: 'inter',sans-serif;
+}
+
 .infoPelatihanCard{
     width: 220px;
     height: 335px;

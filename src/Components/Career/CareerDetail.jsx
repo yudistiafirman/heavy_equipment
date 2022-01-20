@@ -47,6 +47,19 @@ const CareerDetail = () => {
             <div   style={{width:'30%'}} className="titleCategory">
                 <div>       {`akhir pengiriman cv tanggal ${moment(pekerjaanDetail[0].last_submission).format('Do MMMM YYYY')}`}</div>
             </div>
+            <div className="detailImage">
+            <div
+            style={{
+                              width:'100%',
+                              height:'100%',
+                            backgroundImage:`url(${apiUrl}/${pekerjaanDetail[0].image})`,
+                            backgroundRepeat:'no-repeat',
+                            backgroundSize: "cover",
+                            backgroundPosition: "left",
+                            borderRadius:'10px',
+                            cursor:'pointer'
+                            }}></div>
+            </div>
             <div style={{textAlign:'justify'}} className="detailDesc">
             {pekerjaanDetail[0].job_description}
             </div>

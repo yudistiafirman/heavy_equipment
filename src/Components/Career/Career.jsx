@@ -132,8 +132,8 @@ const resetPencarian =()=>{
               <div className="jumbotronContent">
               <div className='subMenuCampaign'>
               <div className='textWithBtn'>
-                <div className='heroMediumText'>Info</div>
-                <div className='heroOrangeText'>Karir</div>
+                <div className='heroMediumText'>INFO</div>
+                <div className='heroOrangeText'>KARIR</div>
               </div>
             </div>
               </div>
@@ -154,7 +154,7 @@ const resetPencarian =()=>{
                   <div key={i}>
                     <div
                       onMouseEnter={() => setCardContentIdx(i)}
-                      className='careerCard'
+                      className='infoPelatihanCard'
                       style={{
                         boxShadow:
                           cardIdx === i
@@ -163,6 +163,20 @@ const resetPencarian =()=>{
                         backgroundColor: '#FFFFFF',
                       }}
                     >
+                               <div className='imageContainer'>
+                
+                <div
+                     style={{
+                      width: '100%',
+                      height: '100%',
+                      backgroundImage: `url(${apiUrl}/${v.image})`,
+                      backgroundRepeat: 'no-repeat',
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      cursor: 'pointer'
+                    }}
+                    />
+                </div>
                       <div
                         className='pelatihanCardTitle'
                         style={{
@@ -173,13 +187,16 @@ const resetPencarian =()=>{
                       </div>
                       <div className='pelatihanCardDesc'>{cardDescSlicer(v.job_description)}</div>
                       <div
+                      style={{padding:'40px 0'}}
                         className={
                           cardIdx === i
                             ? 'pelatihanCardBtn active'
                             : 'pelatihanCardBtn '
                         }
+                    
                       >
                         <div
+                      
                           className='cardBtnTitle'
                        
                         >

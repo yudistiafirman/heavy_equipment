@@ -18,8 +18,8 @@ const NilaiInti = () => {
               <div className="jumbotronContent">
               <div className='subMenuCampaign'>
               <div className='textWithBtn'>
-                <div className='heroMediumText'>Nilai</div>
-                <div className='heroOrangeText'>Inti</div>
+                <div className='heroMediumText'>NILAI</div>
+                <div className='heroOrangeText'>INTI</div>
               </div>
             </div>
               </div>

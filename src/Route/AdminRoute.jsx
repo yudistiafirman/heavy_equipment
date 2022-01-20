@@ -12,6 +12,7 @@ import AdminNavbar from '../Components/AdminNavbar/AdminNavbar'
 import AdminPelatihan from '../Components/AdminPelatihan/AdminPelatihan'
 import AdminFasilitas from '../Components/AdminFasiltas'
 import Adminjasa from '../Components/AdminJasa'
+import AdminPenjualan from '../Components/AdminPenjualan'
 
 const AdminHome =()=>{
   return <div>hai</div>
@@ -28,6 +29,7 @@ const AdminRoute = () => {
     <Route  path="/admingaleri" element={<AdminGaleri/>} />
     <Route  path="/adminpelatihan" element={<AdminPelatihan/>} />
     <Route  path="/adminjasa" element={<Adminjasa/>} />
+    <Route  path="/adminpenjualan" element={<AdminPenjualan/>} />
     </Routes>
 
       </div>

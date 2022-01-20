@@ -5,6 +5,8 @@ import{ init } from '@emailjs/browser';
 import { Alert, FormControl, Snackbar } from '@mui/material';
 import emailjs from '@emailjs/browser'
 import Swal from 'sweetalert2'
+import axios from 'axios';
+import { apiUrl } from '../../Default';
 init("user_F9FUG8QkPkFceIrGy3zC6");
 const Kontak = () => {
   const [name,setName]=useState('')
@@ -44,37 +46,66 @@ const Kontak = () => {
       setErrorPhone(false)
       setErrorMessage(false)
       const emailMessage={
-        to_name:'HEC TEAMS',
-        from_name:name,
+        name:name,
         company,
         email,
         phone,
         message
       }
-      emailjs.send('service_v5pb0u7', 'template_ij0curd', emailMessage)
-        .then((result) => {
-            Swal.fire({
-              icon:'success',
-              title:'Terima Kasih kami telah menerima pesan anda'
-            })
-        }, (error) => {
+
+      axios.post(`${apiUrl}/email/sendemail`,emailMessage).then((response)=>{
+        if(response.data.error){
           Swal.fire({
-            icon:'error',
-            title:'Something went wrong'
+                   icon:'error',
+                   title:'Something went wrong'
+                })
+        }else{
+          Swal.fire({
+            icon:'success',
+            title:'Terima Kasih kami telah menerima pesan anda'
           })
-        });
+        }
+      })
     }
 
   };
 
+  const onChangeName= (e)=>{
+    if(e.target.value.length <= 45){
+      setName(e.target.value)
+    }
+  }
+
   const onChangeEmail =(e)=>{
-    const emailRegex = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/
-    if(emailRegex.test(e.target.value)){
-        setErrorEmaiValue(false)
+    if(e.target.value.length <= 45){
+
+      const emailRegex = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/
+      if(emailRegex.test(e.target.value)){
+          setErrorEmaiValue(false)
+          setEmail(e.target.value)
+      }else{
+        setErrorEmaiValue(true)
         setEmail(e.target.value)
-    }else{
-      setErrorEmail(true)
-      setEmail(e.target.value)
+      }    
+    }
+  
+  }
+
+  const onChangeCompany=e=>{
+    if(e.target.value.length <= 45){
+      setCompany(e.target.value)
+    }
+  }
+
+  const onChangePhone =e=>{
+    if(e.target.value.length <= 15){
+      setPhone(e.target.value)
+    }
+  }
+
+  const onChangeMessage=e=>{
+    if(e.target.value.length <= 255){
+      setMessage(e.target.value)
     }
   }
   return (
@@ -91,8 +122,8 @@ const Kontak = () => {
               <div className="jumbotronContent">
               <div className='subMenuCampaign'>
               <div className='textWithBtn'>
-                <div className='heroMediumText'>Kontak</div>
-                <div className='heroOrangeText'>Kami</div>
+                <div className='heroMediumText'>KONTAK</div>
+                <div className='heroOrangeText'>KAMI</div>
               </div>
             </div>
               </div>
@@ -115,7 +146,8 @@ const Kontak = () => {
               color='success'
               type="text"
               value={name}
-              onChange={(e)=>setName(e.target.value)}
+              helperText={`${name.length}/45`}
+              onChange={onChangeName}
             />
             {
               errorName && <div className="latarContent" style={{color:'red',fontSize:'12px',fontStyle:'italic'}}>nama tidak boleh kosong</div>
@@ -130,7 +162,8 @@ const Kontak = () => {
               variant='filled'
               color='success'
               type="text"
-              onChange={(e)=>setCompany(e.target.value)}
+              helperText={`${company.length}/45`}
+              onChange={onChangeCompany}
               value={company}
             />
                 {
@@ -144,6 +177,7 @@ const Kontak = () => {
               variant='filled'
               color='success'
               type="email"
+              helperText={`${email.length}/45`}
               value={email}
               onChange={onChangeEmail}
             />
@@ -161,8 +195,9 @@ const Kontak = () => {
               variant='filled'
               color='success'
               type="number"
+              helperText={`${phone.length}/15`}
               value={phone}
-              onChange={(e)=>setPhone(e.target.value)}
+              onChange={onChangePhone}
             />
                 {
               errorPhone && <div className="latarContent" style={{color:'red',fontSize:'12px',fontStyle:'italic'}}>No tidak valid sebagai no telepon</div>
@@ -176,8 +211,10 @@ const Kontak = () => {
               variant='filled'
               color='success'
               type="text"
+              multiline
+              helperText={`${message.length}/255`}
               value={message}
-              onChange={(e)=>setMessage(e.target.value)}
+              onChange={onChangeMessage}
             />
             {
               errorMessage && <div className="latarContent" style={{color:'red',fontSize:'12px',fontStyle:'italic'}}>Pesan tidak boleh kosong</div>

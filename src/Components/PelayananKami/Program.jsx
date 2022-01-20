@@ -22,8 +22,8 @@ const Program = () => {
               <div className="jumbotronContent">
               <div className='subMenuCampaign'>
               <div className='textWithBtn'>
-                <div className='heroMediumText'>Program Pendidikan</div>
-                <div className='heroOrangeText'>dan Pelatihan</div>
+                <div className='heroMediumText'>PROGRAM PENDIDIKAN</div>
+                <div className='heroOrangeText'>DAN PELATIHAN</div>
               </div>
             </div>
               </div>

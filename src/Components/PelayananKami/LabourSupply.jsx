@@ -21,8 +21,8 @@ const LabourSupply = () => {
               <div className="jumbotronContent">
               <div className='subMenuCampaign'>
               <div className='textWithBtn'>
-                <div className='heroMediumText'>Labour</div>
-                <div className='heroOrangeText'>Supply</div>
+                <div className='heroMediumText'>LABOUR</div>
+                <div className='heroOrangeText'>SUPPLY</div>
               </div>
             </div>
               </div>

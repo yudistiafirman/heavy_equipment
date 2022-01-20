@@ -32,8 +32,8 @@ const LatarBelakang = () => {
               <div className="jumbotronContent">
               <div className='subMenuCampaign'>
               <div className='textWithBtn'>
-                <div className='heroMediumText'>Latar</div>
-                <div className='heroOrangeText'>Belakang</div>
+                <div className='heroMediumText'>LATAR</div>
+                <div className='heroOrangeText'>BELAKANG</div>
               </div>
             </div>
               </div>

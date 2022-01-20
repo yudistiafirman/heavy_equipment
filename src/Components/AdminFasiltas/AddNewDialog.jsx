@@ -88,7 +88,8 @@ const onChangeFile = (e,i) => {
 }
 
 const onAddPicture=()=>{
-    if(selectedFile[0].image){
+  let prevIndex = selectedFile.length - 1
+    if(selectedFile[prevIndex].image){
         if (selectedFile.length < 3) {
             setSelectedFile([...selectedFile,{image:''}])
             setPreview([...preview,{image:''}])
@@ -96,7 +97,7 @@ const onAddPicture=()=>{
             alert('Penambahan image telah mencapai batas maksimal')
           }
     }else{
-        alert('image pertama tidak boleh kosong')
+        alert(`image ke ${selectedFile.length} tidak boleh kosong`)
     }
  
 }

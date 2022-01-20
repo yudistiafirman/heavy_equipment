@@ -1,31 +1,22 @@
-import React, { useState } from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
+import { apiUrl } from '../../Default';
 import PenjualanPict from './assets/penjualan.jpg'
+import { cardDescSlicer, cardTitleSlicer } from '../utils/funcHelper';
 const Penjualan = () => {
     let navigate = useNavigate()
     const [cardIdx,setCardContentIdx]=useState(0)
-    const penjualanContent=[
-      {
-        icon:'',
-        title:'Nama Alat Berat 1',
-        description:'Li Europan lingues es membres del sam familie. Lor separat existentie es un myth.'
-    },
-    {
-      icon:'',
-      title:'Nama Alat Berat 2',
-      description:'Li Europan lingues es membres del sam familie. Lor separat existentie es un myth.'
-  },
-  {
-    icon:'',
-    title:'Nama Alat Berat 3',
-    description:'Li Europan lingues es membres del sam familie. Lor separat existentie es un myth.'
-},
-{
-  icon:'',
-  title:'Nama Alat Berat 4',
-  description:'Li Europan lingues es membres del sam familie. Lor separat existentie es un myth.'
-},
-    ]
+    const [penjualanContent,setPenjualanContent]=useState([])
+
+  useEffect(()=>{
+    getAllPenjualan()
+  },[])
+   const getAllPenjualan=()=>{
+     axios.get(`${apiUrl}/alat/all`).then((response)=>{
+       setPenjualanContent(response.data.data)
+     })
+   }
     return (
       <div className='latarContainer'>
                 <div 
@@ -40,8 +31,8 @@ const Penjualan = () => {
               <div className="jumbotronContent">
               <div className='subMenuCampaign'>
               <div className='textWithBtn'>
-                <div className='heroMediumText'>Penjualan Sparepart</div>
-                <div className='heroOrangeText'>Alat Berat</div>
+                <div className='heroMediumText'>PENJUALAN SPAREPART</div>
+                <div className='heroOrangeText'>ALAT BERAT</div>
               </div>
             </div>
               </div>
@@ -51,13 +42,30 @@ const Penjualan = () => {
           <div className='latarContentDesc'>
           <div className='latarTitle'>Penjualan Sparepart</div>
           <div style={{marginBottom:'20px'}} className='latarContent'>
-          Sebagai perusahaan jasa layanan support alat berat yang professional dan synergi dengan customer di seluruh Indonesia. kami menyediakan penjualan alat berat sebagai berikut : 
+          Menjadi perusahaan jasa layanan support alat berat yang professional dan synergi dengan customer di seluruh Indonesia.
           </div>
-          <ol style={{paddingLeft:'14px'}}  className='latarContent'>
-            <li> SPARE PART ALAT BERAT  </li>
-            <li> PRODUCT IMPROMEVENT   </li>
-            <li> KOMPONEN EXCHANGE</li>
-          </ol>
+          <div className='penjualanDanServiceList'>
+                {
+                 penjualanContent.length >0 &&   penjualanContent.map((v,i)=>{
+                        return <div key={i} style={{borderRadius:'10px',boxShadow:cardIdx === i?'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px':'',backgroundColor:'#FFFFFF',marginRight:'10px',marginBottom:'10px'}} onMouseEnter={()=>setCardContentIdx(i)}  className="penjualanCard ">
+                            <div className="penjualanCardInner">
+                                <div style={{width:'48px',height:'48px',backgroundColor:'#071243',borderRadius:'10px'}} className="iconContainer">
+                                    {v.icon}
+                                </div>
+                                <p style={{color:cardIdx === i?'#FDC232':'#071244'}} className="servicesCardTitle">{cardTitleSlicer(v.title_alatberat)}</p>
+                                <p className="servicesCardDesc">{cardDescSlicer(v.descriptions_alatberat)}</p>
+                                <div style={{display:'flex',justifyContent:'flex-end'}}>
+                                <div className="lihatDetailPelayananCard">
+                                  <div onClick={()=>navigate('detailPenjualan/'+v.id+'/'+v.title_alatberat)} className='lihatDetailDesc'>Lihat Detail</div>
+                                </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    })
+                }
+                    
+            </div>
           </div>
           <div className='lihatJuga'>
             <div className='lihatJugaTitle'>Lihat Juga</div>

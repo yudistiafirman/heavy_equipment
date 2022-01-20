@@ -62,6 +62,34 @@
     width: 200px;
 }
 
+.user-menu-container{
+    width:200px;
+    height:100%;
+    border:1px solid #ECECEC;
+    position: absolute;
+    background-color: #ECECEC;
+    top:70%;
+    right: 3.5%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.user-menu-content{
+
+    font-weight: 600;
+    font-size: 14px;
+    color: #6B7280;
+    flex: 0.5;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.user-menu-content :hover{
+    color: #FDC232;
+}
+
 .admin-menu ul li a:hover{
     color:#FDC232
 }

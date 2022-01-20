@@ -115,6 +115,7 @@ const onLogin=()=>{
     }).then((res)=>{
       if(res.data.success){
         localStorage.setItem('user',res.data.user)
+        localStorage.setItem('role',res.data.role)
         window.location ='/'
       }else{
         SetFailedLogin(true)

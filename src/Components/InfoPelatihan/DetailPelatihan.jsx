@@ -45,6 +45,9 @@ const DetailPelatihan = () => {
                 </div>
          
             <div className="detailContentContainer">
+                {
+                    pelatihanData[0].is_full == 1 ? <div style={{marginLeft:'0'}} className='fullbooked'>FULL BOOKED</div>:<div style={{marginLeft:'0'}} className='open'>OPEN</div>
+                }
             <div className="detailTitleContainer">
                 <div className="detailTitle">
                 {pelatihanData[0].name}
@@ -55,7 +58,7 @@ const DetailPelatihan = () => {
                    </CopyToClipboard>
                </div>
             </div>
-            <div style={{minWidth:'30%'}} className="titleCategory">
+            <div style={{minWidth:'20%'}} className="titleCategory">
                 <div>{pelatihanData[0].category_name}</div>
             </div>
             <div   style={{width:'30%'}} className="titleCategory">
@@ -157,18 +160,23 @@ const DetailPelatihan = () => {
             </div>
            
             </div>
-            <div className="lihatPelatihanPopular">
-            <div className="lihatPelatihanInnerContainer">
-                <div className="latarTitle">Pelatihan Lainnya</div>
-                {
-                    pelatihanPopular.length> 0 && pelatihanPopular.map((v,i)=>{
-                        return v.id != id && (
-                            <div onClick={()=>navigate('/infoPelatihan/detailPelatihan/'+v.id+'/'+v.name)}  className="lihatPelatihanContent">{cardTitleSlicer(v.name)}</div>
-                        )
-                    }) 
+            {
+                    pelatihanPopular.length > 0 &&        <div className="lihatPelatihanPopular">
+           
+                    <div className="lihatPelatihanInnerContainer">
+                        
+                        <div className="latarTitle">Pelatihan Lainnya</div>
+                        {
+                            pelatihanPopular.length> 0 && pelatihanPopular.map((v,i)=>{
+                                return v.id != id && (
+                                    <div onClick={()=>navigate('/infoPelatihan/detailPelatihan/'+v.id+'/'+v.name)}  className="lihatPelatihanContent">{cardTitleSlicer(v.name)}</div>
+                                )
+                            }) 
+                        }
+                    </div>
+                        </div>
                 }
-            </div>
-                </div>
+     
         </div>
     )
 }

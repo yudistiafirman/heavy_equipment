@@ -132,7 +132,8 @@ const AdminPelatihan = () => {
   }
 
   const onAddKualifikasi = () => {
-    if(kualifikasiForm[0].kualifikasiValue){
+    let prevIndex= kualifikasiForm.length -1
+    if(kualifikasiForm[prevIndex].kualifikasiValue){
       if (kualifikasiForm.length < 10) {
         SetKualifikasiForm([
           ...kualifikasiForm,
@@ -142,7 +143,7 @@ const AdminPelatihan = () => {
         alert('Penambahan nilai plus telah mencapai batas maksimal')
       }
     }else{
-      alert('Nilai plus pertama tidak boleh kosong')
+      alert(`Nilai plus ke ${kualifikasiForm.length} tidak boleh kosong`)
     }
  
   }
@@ -320,6 +321,21 @@ const onFilterCategory=useCallback((value)=>{
       console.log(err)
     })
   }
+  const handleSetIsFull = (event,name,value) =>{
+
+    let valueToSend
+    if(value===0){
+      valueToSend = 1
+    }else {
+      valueToSend =0
+    }
+    axios.patch(`${apiUrl}/pelatihan/full?id=${name}&value=${valueToSend}`).then((response)=>{
+      console.log(response)
+      getAllvacancies('','','')
+    }).catch((err)=>{
+      console.log(err)
+    })
+  }
 
   const onDeleteList = () => {
     axios
@@ -412,19 +428,25 @@ const onFilterCategory=useCallback((value)=>{
       id: 'start_date',
       numeric: false,
       disablePadding: false,
-      label: 'Start Date'
+      label: 'Start' 
     },
     {
       id: 'end_date',
       numeric: false,
       disablePadding: false,
-      label: 'End Date'
+      label: 'End '
     },
     {
         id: '',
         numeric: false,
         disablePadding: false,
-        label: 'Set Popular'
+        label: 'Popular'
+      },
+      {
+        id: '',
+        numeric: false,
+        disablePadding: false,
+        label: 'Full'
       },
       {
         id: 'category_name',
@@ -879,6 +901,18 @@ const onFilterCategory=useCallback((value)=>{
                             onClick={event => handlePopularClick(event, row.id,row.is_popular)}
                             color='primary'
                             checked={row.is_popular !== 0}
+                            inputProps={{
+                              'aria-labelledby': labelId
+                            }}
+                          />
+                        </TableCell>
+                        <TableCell align='left'
+                          style={{fontSize:'15px',fontWeight:'500',color:'#071244'}}
+                        >
+                                    <Checkbox
+                            onClick={event => handleSetIsFull(event, row.id,row.is_full)}
+                            color='primary'
+                            checked={row.is_full !== 0}
                             inputProps={{
                               'aria-labelledby': labelId
                             }}

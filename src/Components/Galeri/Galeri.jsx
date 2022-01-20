@@ -84,8 +84,8 @@ const Galeri = () => {
               <div className="jumbotronContent">
               <div className='subMenuCampaign'>
               <div className='textWithBtn'>
-                <div className='heroMediumText'>Galeri</div>
-                <div className='heroOrangeText'>Hec</div>
+                <div className='heroMediumText'>GALERI</div>
+                <div className='heroOrangeText'>HEC</div>
               </div>
             </div>
               </div>

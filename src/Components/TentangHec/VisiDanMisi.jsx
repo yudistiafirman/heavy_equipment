@@ -17,8 +17,8 @@ const VisiDanMisi = () => {
               <div className="jumbotronContent">
               <div className='subMenuCampaign'>
               <div className='textWithBtn'>
-                <div className='heroMediumText'>Visi</div>
-                <div className='heroOrangeText'>Misi</div>
+                <div className='heroMediumText'>VISI</div>
+                <div className='heroOrangeText'>MISI</div>
               </div>
             </div>
               </div>

@@ -39,15 +39,15 @@ const FasilitasPendidikan = () => {
               backgroundImage:`url(${Fasilitas})`,
               backgroundRepeat:'no-repeat',
               backgroundSize: "cover",
-              backgroundPosition: "center",
+              backgroundPosition: "center"
             }}
             
             className='jumbotron'>
               <div className="jumbotronContent">
               <div className='subMenuCampaign'>
               <div className='textWithBtn'>
-                <div className='heroMediumText'>Fasilitas dan</div>
-                <div className='heroOrangeText'>Pelatihan</div>
+                <div className='heroMediumText'>FASILITAS DAN</div>
+                <div className='heroOrangeText'>PELATIHAN</div>
               </div>
             </div>
               </div>

@@ -17,7 +17,7 @@ const Konsultan = () => {
               <div className='subMenuCampaign'>
               <div className='textWithBtn'>
                 
-                <div className='heroOrangeText'>Konsultan</div>
+                <div className='heroOrangeText'>KONSULTAN</div>
               </div>
             </div>
               </div>

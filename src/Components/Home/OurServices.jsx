@@ -13,32 +13,27 @@ const OurServices = () => {
     const servicesCardContent=[
         {
             icon:<img src={program} width="100%" color="#ffffff" />,
-            title:'Program Pendidikan Pelatihan',
-            description:'Li Europan lingues es membres del sam familie. Lor separat existentie es un myth.',
+            title:'PROGRAM PENDIDIKAN DAN PELATIHAN',
             to:'/program'
         },
         {
             icon:<img src={labour_supply} width="100%" color="#ffffff" /> ,
-            title:'Labour Supply',
-            description:'Li Europan lingues es membres del sam familie. Lor separat existentie es un myth.',
+            title:'LABOUR SUPPLY',
             to:'labour'
         },
         {
             icon:<img src={konsultan} width="100%" color="#ffffff" />,
-            title:'Konsultan',
-            description:'Li Europan lingues es membres del sam familie. Lor separat existentie es un myth.',
+            title:'KONSULTAN',
             to:'/konsultan'
         },
         {
             icon:<img src={spare} width="100%" color="#ffffff" />,
-            title:'Sparepart Alat Berat',
-            description:'Li Europan lingues es membres del sam familie. Lor separat existentie es un myth.',
+            title:'SPAREPART ALAT BERAT',
             to:'/penjualan'
         },
         {
             icon:<img src={service} width="100%" color="#ffffff" />,
-            title:'Service Alat Berat',
-            description:'Li Europan lingues es membres del sam familie. Lor separat existentie es un myth.',
+            title:'SERVICE ALAT BERAT',
             to:'/jasa'
         }
             
@@ -63,7 +58,7 @@ const OurServices = () => {
             <div className="ourServicesCardContainer">
                 {
                     servicesCardContent.map((v,i)=>{
-                        return <div onClick={()=>window.location = v.to} key={i} style={{borderRadius:'10px',boxShadow:cardIdx === i?'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px':'',backgroundColor:'#FFFFFF',marginRight:i === 2 && '0px'}} onMouseEnter={()=>setCardContentIdx(i)} className="servicesCard ">
+                        return <div onClick={()=>navigate(v.to)} key={i} style={{borderRadius:'10px',boxShadow:cardIdx === i?'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px':'',backgroundColor:'#FFFFFF',marginRight:i === 2 && '0px'}} onMouseEnter={()=>setCardContentIdx(i)} className="servicesCard ">
                             <div className="servicesCardInner">
                                 <div className="iconContainer">
                                     {v.icon}

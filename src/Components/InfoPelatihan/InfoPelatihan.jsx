@@ -157,8 +157,8 @@ const onApplyFilter =()=>{
               <div className="jumbotronContent">
               <div className='subMenuCampaign'>
               <div className='textWithBtn'>
-                <div className='heroMediumText'>Info</div>
-                <div className='heroOrangeText'>Pelatihan</div>
+                <div className='heroMediumText'>INFO</div>
+                <div className='heroOrangeText'>PELATIHAN</div>
               </div>
             </div>
               </div>
@@ -191,6 +191,7 @@ className = 'infoPelatihanCard'
                     }}
                   >
                     <div className='imageContainer'>
+                
                     <div
                          style={{
                           width: '100%',
@@ -203,6 +204,9 @@ className = 'infoPelatihanCard'
                         }}
                         />
                     </div>
+                    {
+                        v.is_full == 1 ?<div className='fullbooked'>FULL BOOKED</div>:<div className='open'>OPEN</div>
+                      }
                     <div
                       className='pelatihanCardTitle'
                       style={{
