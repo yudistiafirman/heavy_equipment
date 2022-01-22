@@ -14,15 +14,15 @@ const Jumbotron = () => {
     {
       mediumText: 'APAPUN KEPERLUAN ANDA',
       orangeText:'KAMI HADIR UNTUK ANDA',
-      smalltext:'HEC sebagai penyedia alat berat profesional akan menangani semua kebutuhan alat berat anda',
+      smalltext:'HEC sebagai perusahaan jasa layanan support alat berat profesional akan menangani semua kebutuhan anda',
       description:
         'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras justo odio, dapibus ac facilisis.',
       button: 'Read More',
       image: J1
     },
     {
-      mediumText: 'KAMI ADALAH SOLUSI',
-      orangeText:'KEBUTUHAN ALAT BERAT ANDA',
+      mediumText: 'KAMI ADALAH SOLUSI KEBUTUHAN',
+      orangeText:'ALAT BERAT ANDA',
       smalltext:'HEC selalu siap dan selalu ada sebagai solusi semua kebutuhan alat berat anda  ',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.',
@@ -30,8 +30,8 @@ const Jumbotron = () => {
       image: J2
     },
     {
-      mediumText: 'PENYEDIA FASILITAS ',
-      orangeText:'DAN PENDIDIKAN ALAT BERAT UNTUK ANDA',
+      mediumText: 'PENYEDIA FASILITAS DAN',
+      orangeText:'PENDIDIKAN ALAT BERAT',
       smalltext:' HEC turut andil dalam meningkatkan SDM Indonesia dengan program pendidikan dan pelatihan alat berat yang didukung dengan fasilitas mumpuni',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.',
