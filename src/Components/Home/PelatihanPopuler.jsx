@@ -102,7 +102,7 @@ const PelatihanPopuler = () => {
                       <div
                         className='cardBtnTitle'
                       >
-                      <a onClick={()=> navigate('/infoPelatihan/detailPelatihan/'+v.id+'/'+v.name)} style={{textDecoration:'none',  color: cardIdx === i ? '#FDC232' : '#000000',cursor:'pointer'}} >
+                      <a onClick={()=> navigate('/info/detailPelatihan/'+v.id+'/'+v.name)} style={{textDecoration:'none',  color: cardIdx === i ? '#FDC232' : '#000000',cursor:'pointer'}} >
                       Lihat Detail
                       </a>
                     

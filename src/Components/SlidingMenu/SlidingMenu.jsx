@@ -38,7 +38,7 @@ const SlidingMenu = ({onPressDropDownTentang, onPressDropDownPelayanan}) => {
      },
      {
          title:'Info Pelatihan',
-         to:'/infoPelatihan'
+         to:'/info'
      },
      {
          title:'Career',
@@ -139,7 +139,7 @@ const onChangeRouteSideMenu=()=>{
                 {
                 tentangHecNav.map((value,index)=>{
                   return  <div className='link-Container'   >
-                        <Link onClick={onChangeRouteSideMenu} style={{color: location.pathname === value.to ?"#FDC232":"" ,display:'flex',alignItems:'center',justifyContent:'flex-start',width:'210px'}}  to={value.to}>{value.title.toUpperCase()}
+                        <Link  style={{color: location.pathname === value.to ?"#FDC232":"" ,display:'flex',alignItems:'center',justifyContent:'flex-start',width:'210px'}}  to={value.to}>{value.title.toUpperCase()}
                         </Link>
                      
                     </div>
@@ -155,7 +155,7 @@ const onChangeRouteSideMenu=()=>{
                 {
                 pelayanContent.map((value,index)=>{
                   return  <div className='link-Container'   >
-                        <Link onClick={onChangeRouteSideMenu} style={{ color: location.pathname === value.to ?"#FDC232":"" ,display:'flex',alignItems:'center',justifyContent:'flex-start',width:'210px'}}  to={value.to}>{value.title.toUpperCase()}
+                        <Link  style={{ color: location.pathname === value.to ?"#FDC232":"" ,display:'flex',alignItems:'center',justifyContent:'flex-start',width:'210px'}}  to={value.to}>{value.title.toUpperCase()}
                         </Link>
                      
                     </div>

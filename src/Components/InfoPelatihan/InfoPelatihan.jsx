@@ -227,7 +227,7 @@ className = 'infoPelatihanCard'
                         className='cardBtnTitle'
                     
                       >
-                        <a onClick={()=>navigate('/infoPelatihan/detailPelatihan/'+v.id+'/'+v.name)}   style={{
+                        <a onClick={()=>navigate('/info/detailPelatihan/'+v.id+'/'+v.name)}   style={{
                           color: cardIdx === i ? '#FDC232' : '#000000',
                           cursor:'pointer'
                         }} >

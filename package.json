@@ -1,6 +1,7 @@
 {
   "name": "heavy_equiment_centre",
   "version": "0.1.0",
+  "homepage": "https://hec.co.id",
   "private": true,
   "dependencies": {
     "@emailjs/browser": "^3.4.0",

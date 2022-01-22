@@ -33,7 +33,7 @@ const MenuList = ({onPressDropDownTentang, onPressDropDownPelayanan}) => {
      },
      {
          title:'Info Pelatihan',
-         to:'/infoPelatihan'
+         to:'/info'
      },
      {
          title:'Career',
