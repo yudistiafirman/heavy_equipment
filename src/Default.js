@@ -1,1 +1,1 @@
-export const apiUrl = 'http://localhost:2000'
+export const apiUrl = 'https://api.hec.co.id'
