@@ -50,14 +50,11 @@ const CareerDetail = () => {
             <div className="detailImage">
             <div
             style={{
-                              width:'100%',
                               height:'100%',
                             backgroundImage:`url(${apiUrl}/${pekerjaanDetail[0].image})`,
                             backgroundRepeat:'no-repeat',
-                            backgroundSize: "cover",
-                            backgroundPosition: "left",
-                            borderRadius:'10px',
-                            cursor:'pointer'
+                            backgroundSize: "contain",
+                            backgroundPosition: "left"
                             }}></div>
             </div>
             <div style={{textAlign:'justify'}} className="detailDesc">

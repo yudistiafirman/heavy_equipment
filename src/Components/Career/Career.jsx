@@ -177,6 +177,7 @@ const resetPencarian =()=>{
                     }}
                     />
                 </div>
+                
                       <div
                         className='pelatihanCardTitle'
                         style={{
@@ -187,7 +188,7 @@ const resetPencarian =()=>{
                       </div>
                       <div className='pelatihanCardDesc'>{cardDescSlicer(v.job_description)}</div>
                       <div
-                      style={{padding:'40px 0'}}
+                      style={{padding:'41px 0'}}
                         className={
                           cardIdx === i
                             ? 'pelatihanCardBtn active'

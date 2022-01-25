@@ -7,8 +7,8 @@ export const stringSlicer=(string)=>{
 }
 
 export const cardDescSlicer=(string)=>{
-    if(string.length >= 70){
-        return string.slice(0,70)+'...'
+    if(string.length >= 60){
+        return string.slice(0,60)+'...'
     }else{
         return string
     }

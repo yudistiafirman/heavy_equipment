@@ -65,16 +65,17 @@ const DetailPelatihan = () => {
                 <div>       {`${moment(pelatihanData[0].start_date).format('Do MMMM YYYY')} - ${moment(pelatihanData[0].end_date).format('Do MMMM YYYY')}`}</div>
             </div>
             <div className="detailImage">
+                <div>
+                    
+                </div>
             <div
             style={{
-                              width:'100%',
+                            
                               height:'100%',
                             backgroundImage:`url(${apiUrl}/${pelatihanData[0].image})`,
                             backgroundRepeat:'no-repeat',
-                            backgroundSize: "cover",
-                            backgroundPosition: "left",
-                            borderRadius:'10px',
-                            cursor:'pointer'
+                            backgroundSize: "contain",
+                            backgroundPosition: "left"
                             }}></div>
             </div>
             <div style={{textAlign:'justify'}} className="detailDesc">
@@ -149,7 +150,7 @@ const DetailPelatihan = () => {
                         }
                     </div>
                     <div className="bestOffer">
-                        <div className="bestOfferTitle">Dapatkan Penawaran Terbaik</div>
+                        <div className="bestOfferTitle">Daftarkan Segera</div>
                         <div className="hubungiBtn">
                             <a href='tel:+68112131122' className="hubungiBtnTitle">HUBUNGI KAMI</a>
                         </div>
