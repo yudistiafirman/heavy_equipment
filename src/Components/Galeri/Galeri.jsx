@@ -92,45 +92,47 @@ const Galeri = () => {
          
             </div>
         <div  className="galeriContent">
-
-     
-        <Slider className='galeriCardSlider'  {...settings}  >
             {
-                galeriContent.map((v,i)=>{
-                 
-                  return (<div
-                  style={{border:'1px solid black'}}
-                  onClick={()=>SetShowImages(`${apiUrl}/${v.image}`)}
-                  onMouseEnter={() => setCardContentIdx(i)}>
-                    <div className='galeriCard'>
-                    <div 
-                    
-                    className="galeriCardImgContainer"
-                    style={{
-                      backgroundImage:`url(${apiUrl}/${v.image})`,
-                      backgroundRepeat:'no-repeat',
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                    }}
-                    
-                    >
-                         
+              galeriContent.length > 0 &&   <Slider className='galeriCardSlider'  {...settings}  >
+              {
+                  galeriContent.map((v,i)=>{
+                   
+                    return (<div
+                    style={{border:'1px solid black'}}
+                    onClick={()=>SetShowImages(`${apiUrl}/${v.image}`)}
+                    onMouseEnter={() => setCardContentIdx(i)}>
+                      <div className='galeriCard'>
+                      <div 
+                      
+                      className="galeriCardImgContainer"
+                      style={{
+                        backgroundImage:`url(${apiUrl}/${v.image})`,
+                        backgroundRepeat:'no-repeat',
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                      }}
+                      
+                      >
+                           
+                        </div>
+                        <div className="galeriCardTitleContainer">
+                          <div 
+                               style={{
+                                color: cardIdx === i ? '#FDC232' : '#000000'
+                              }}
+                          className='galeriCardTitle' >{v.title}</div>
+                        </div>
                       </div>
-                      <div className="galeriCardTitleContainer">
-                        <div 
-                             style={{
-                              color: cardIdx === i ? '#FDC232' : '#000000'
-                            }}
-                        className='galeriCardTitle' >{v.title}</div>
-                      </div>
+                   
                     </div>
-                 
-                  </div>
-                  )
-                  
-                })
+                    )
+                    
+                  })
+              }
+          </Slider>
             }
-        </Slider>
+     
+      
         </div>
         {showImage && (
         <Dialog

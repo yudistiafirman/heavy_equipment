@@ -330,7 +330,6 @@ const onFilterCategory=useCallback((value)=>{
       valueToSend =0
     }
     axios.patch(`${apiUrl}/pelatihan/full?id=${name}&value=${valueToSend}`).then((response)=>{
-      console.log(response)
       getAllvacancies('','','')
     }).catch((err)=>{
       console.log(err)
