@@ -1,387 +1,375 @@
-.infoCard{
-    width: 220px;
-    height: 335px;
-    border:1px solid black
+.infoCard {
+  width: 220px;
+  height: 335px;
+  border: 1px solid black;
 }
 
-.fullbooked{
-    margin: 8px 8px 0px 16px;
-    font-size: 12px;
-    font-weight: 800;
-    color:  #EB5757;
-    font-family: 'inter',sans-serif;
+.fullbooked {
+  margin: 8px 8px 0px 16px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #eb5757;
+  font-family: "inter", sans-serif;
 }
 
-.open{
-    margin: 8px 8px 0px 16px;
-    font-size: 12px;
-    font-weight: 800;
-    color:   #071243;
-    font-family: 'inter',sans-serif;
+.open {
+  margin: 8px 8px 0px 16px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #071243;
+  font-family: "inter", sans-serif;
 }
 
-.infoPelatihanCard{
-    width: 220px;
-    height: 335px;
-    border: 1px solid #C4C4C4;
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-    margin-bottom:20px;
+.infoPelatihanCard {
+  width: 220px;
+  height: 335px;
+  border: 1px solid #c4c4c4;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 20px;
 }
 
-.detailPelatihanContainer{
-    margin: 0px 90px 178px 90px;
-    padding-top: 182px;
-    display: flex;
-    justify-content: space-between;
-} 
-
-.detailInnerContainer{
-    margin-top: 40px;
-    margin-right: 80px;
-    width: 100%;
+.detailPelatihanContainer {
+  margin: 0px 90px 178px 90px;
+  padding-top: 182px;
+  display: flex;
+  justify-content: space-between;
 }
 
-.routingDetail{
-    display: flex;
-    justify-content: flex-start;
-    width:100%;
-    margin-bottom:40px
+.detailInnerContainer {
+  margin-top: 40px;
+  margin-right: 80px;
+  width: 100%;
 }
 
-.routingInActive{
-    font-size: 14px;
-    font-weight: 600;
-    font-family: 'inter',sans-serif;
-    line-height: 19.6px;
-    color: #6B7280;
-    cursor: pointer;
-    margin-right: 5px;
+.routingDetail {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: 40px;
 }
 
-.detailTitle{
-    font-weight: 800;
-    font-family: 'inter',sans-serif;
-    line-height: 19.6px;
-    font-size: 30px;
-    color: #071243;
-    cursor: pointer;
-    line-height: 39px;
-    letter-spacing: -0.64px;
+.routingInActive {
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "inter", sans-serif;
+  line-height: 19.6px;
+  color: #6b7280;
+  cursor: pointer;
+  margin-right: 5px;
 }
 
-.detailContentContainer{
-    width: 100%;
+.detailTitle {
+  font-weight: 800;
+  font-family: "inter", sans-serif;
+  line-height: 19.6px;
+  font-size: 30px;
+  color: #071243;
+  cursor: pointer;
+  line-height: 39px;
+  letter-spacing: -0.64px;
 }
 
-.detailTitleContainer{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
+.detailContentContainer {
+  width: 100%;
 }
 
-.titleIconContainer{
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border:0.5px solid #071243;
-    border-radius: 8px;
-    cursor: pointer;
+.detailTitleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
-.titleCategory{
-    width:120px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #FFB226;
-    border-radius: 60px;
-    color: #ffffff;
-    cursor: pointer;
-    font-size: 12px;
-    font-weight: 600;
-    font-family: 'inter',sans-serif;
-    line-height: 15.6px;
-    letter-spacing: 0.01px;
-    margin-bottom: 32px;
-    padding:10px
+.titleIconContainer {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.5px solid #071243;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-.detailImage{
-    height: 436px;
-    margin-bottom: 40px;
-
+.titleCategory {
+  width: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffb226;
+  border-radius: 60px;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: "inter", sans-serif;
+  line-height: 15.6px;
+  letter-spacing: 0.01px;
+  margin-bottom: 32px;
+  padding: 10px;
 }
 
-.detailDesc{
-    font-family: 'inter',sans-serif;
-    font-weight: 400;
-    font-size: 14px;
-    color:#777777;
-    line-height: 140%;
-    letter-spacing: -0.09px;
-    margin-bottom: 40px;
+.detailImage {
+  height: 436px;
+  margin-bottom: 40px;
 }
 
-.advantagesPelatihanContainer{
-    border-radius: 8px;
-    border: 1px solid #ECECEC;
-
-}
-.advantagesPelatihanInnerContainer{
-    margin: 20px 23px 20px 16px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.nilaiPlusContainer{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin-right: 20px;
+.detailDesc {
+  font-family: "inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #777777;
+  line-height: 140%;
+  letter-spacing: -0.09px;
+  margin-bottom: 40px;
 }
 
-.nilaiPlustitle{
-    font-family: 'inter',sans-serif;
-    font-weight: 600;
-    font-size: 14px;
-    color:#000000;
-    line-height: 140%;
-    letter-spacing: -0.09px;
-    margin-bottom: 16px;
+.advantagesPelatihanContainer {
+  border-radius: 8px;
+  border: 1px solid #ececec;
+}
+.advantagesPelatihanInnerContainer {
+  margin: 20px 23px 20px 16px;
+  display: flex;
+  justify-content: space-between;
 }
 
-.checkListContainer{
-    display: flex;
-    margin-bottom: 12px;
+.nilaiPlusContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-right: 20px;
 }
 
-.checkDesc{
-    font-family: 'inter',sans-serif;
-    font-weight: 400;
-    font-size: 12px;
-    color:#000000;
-    line-height: 15.6px;
-    letter-spacing: -0.09px;
+.nilaiPlustitle {
+  font-family: "inter", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #000000;
+  line-height: 140%;
+  letter-spacing: -0.09px;
+  margin-bottom: 16px;
 }
 
-.bestOfferTitle{
-    font-family: 'inter',sans-serif;
-    font-weight: 600;
-    font-size: 18px;
-    color:#FFB226;
-    line-height: 135%;
-    letter-spacing: -0.26px;
-    margin-bottom: 16px;
+.checkListContainer {
+  display: flex;
+  margin-bottom: 12px;
 }
 
-.hubungiBtn{
-    height: 44px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #071243;
-    border-radius: 4px;
-    width: 244px;
-    cursor: pointer;
+.checkDesc {
+  font-family: "inter", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: #000000;
+  line-height: 15.6px;
+  letter-spacing: -0.09px;
 }
 
-.hubungiBtnTitle{
-    font-family: 'roboto',sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    color:#FFFFFF;
-    line-height: 98%;
-    letter-spacing: -1.25px;
+.bestOfferTitle {
+  font-family: "inter", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: #ffb226;
+  line-height: 135%;
+  letter-spacing: -0.26px;
+  margin-bottom: 16px;
 }
 
-.lihatPelatihanPopular{
-    margin-top: 40px;
-    width: 320px;
-    background-color: #FBFBFB;
-    height: 228px;
-    border-radius: 10px;
+.hubungiBtn {
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #071243;
+  border-radius: 4px;
+  width: 244px;
+  cursor: pointer;
 }
 
-.lihatPelatihanInnerContainer{
-    margin: 20px;
-}
-.lihatPelatihanContent{
-    font-family: 'inter',sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-    color:#FDC232;
-    line-height: 20.25px;
-    letter-spacing: -0.18px;
-    margin-bottom: 20px;
-    cursor: pointer;
+.hubungiBtnTitle {
+  font-family: "roboto", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #ffffff;
+  line-height: 98%;
+  letter-spacing: -1.25px;
 }
 
-.infoContainer{
-    width: 80%;
+.lihatPelatihanPopular {
+  margin-top: 40px;
+  width: 320px;
+  background-color: #fbfbfb;
+  height: 228px;
+  border-radius: 10px;
 }
 
-.infoContentContainer{
-    margin: 100px 90px 120px 90px;
-    display: flex;
-    justify-content: space-between;
+.lihatPelatihanInnerContainer {
+  margin: 20px;
+}
+.lihatPelatihanContent {
+  font-family: "inter", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: #fdc232;
+  line-height: 20.25px;
+  letter-spacing: -0.18px;
+  margin-bottom: 20px;
+  cursor: pointer;
 }
 
-.titlePencarian{
-
-        height: 68px;
-        color: #000000;
-        font-size: 15px;
-        font-weight: bold;
-        font-family: "inter;sans-serif";
-        border-bottom: 1px solid #F5F5F5 ;
-        display: flex;
-        align-items: center
-      
+.infoContainer {
+  width: 80%;
 }
 
-.filterPencarianContainer{
-    
-        width: 280px;
-        height: 440px;
-        border: 1px solid #F5F5F5;
-        margin-top: 26px;
-        overflow: scroll;
-        border-radius: 10px;
-        background-color: #FFFFFF;
-    
+.infoContentContainer {
+  margin: 100px 90px 120px 90px;
+  display: flex;
+  justify-content: space-between;
 }
 
-.filterPencarianBtnMobile{
-    width: 100%;
-    height: 36px;
-    border-radius: 6px;
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    margin-top:24px;
-    margin-bottom: 40px;
-    font-size: 14px;
-    color:#071243;
-    display: none;
+.titlePencarian {
+  height: 68px;
+  color: #000000;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: "inter;sans-serif";
+  border-bottom: 1px solid #f5f5f5;
+  display: flex;
+  align-items: center;
 }
 
-.filterModal{
-    width: 300px;
-    height: 640px;
+.filterPencarianContainer {
+  width: 280px;
+  height: 440px;
+  border: 1px solid #f5f5f5;
+  margin-top: 26px;
+  overflow: scroll;
+  border-radius: 10px;
+  background-color: #ffffff;
 }
 
-.filterModalTitle{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12); 
+.filterPencarianBtnMobile {
+  width: 100%;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  margin-top: 24px;
+  margin-bottom: 40px;
+  font-size: 14px;
+  color: #071243;
+  display: none;
 }
 
-.tampilkanBerdasarkanContent{
-    color: #FDC232;
-    font-size: 14px;
-    font-weight: 800;
-    font-family: "inter,sans-serif";
-    border: 1px solid #071243;
-    border-radius: 40px;
-    padding:10px;
-  
-  }
-
-.tampilkanBerdasarkanBtn{
-   
-    cursor:pointer;
-    margin-left:16px;
-    margin-right:16px
-  }
-
-  .tampilkanBerdasarkanBtn :hover{
-      color: #FFFFFF;
-      background-color: #FDC232;
-      padding:10px;
-      border: 1px solid #ffffff;
-  }
-
-  .careerCard{
-    width: 220px;
-    height: 210px;
-    border: 1px solid #C4C4C4;
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-    margin-bottom: 40px;
-  }
-.inputPencarianContainer{
-    width: 280px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+.filterModal {
+  width: 300px;
+  height: 640px;
 }
 
-.categoryContainer{
-    height: 240px;
-    overflow: scroll;
-    
+.filterModalTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
+.tampilkanBerdasarkanContent {
+  color: #fdc232;
+  font-size: 14px;
+  font-weight: 800;
+  font-family: "inter,sans-serif";
+  border: 1px solid #071243;
+  border-radius: 40px;
+  padding: 10px;
+}
+
+.tampilkanBerdasarkanBtn {
+  cursor: pointer;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.tampilkanBerdasarkanBtn :hover {
+  color: #ffffff;
+  background-color: #fdc232;
+  padding: 10px;
+  border: 1px solid #ffffff;
+}
+
+.careerCard {
+  width: 220px;
+  height: 210px;
+  border: 1px solid #c4c4c4;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 40px;
+}
+.inputPencarianContainer {
+  width: 280px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.categoryContainer {
+  height: 240px;
+  overflow: scroll;
+}
 
 @media only screen and (max-width: 969px) {
-    .detailPelatihanContainer{
-        margin: 0px 16px 178px 16px;
-        padding-top: 88px;
-        flex-direction: column;
-    } 
+  .detailPelatihanContainer {
+    margin: 0px 16px 178px 16px;
+    padding-top: 88px;
+    flex-direction: column;
+  }
 
+  .routingInActive {
+    margin-right: 20px;
+  }
 
-    .routingInActive{
-        margin-right: 20px;
-    }
+  .nilaiPlusContainer {
+    margin-bottom: 70px;
+  }
 
-    .nilaiPlusContainer{
-        margin-bottom: 70px;
-    }
-
-    .inputPencarianContainer{
-        width: 100%;
-    }
+  .inputPencarianContainer {
+    width: 100%;
+  }
 }
-@media only screen and (max-width: 490px){
-    .infoPelatihanCard{
-        width: 98%;
-    }
+@media only screen and (max-width: 490px) {
+  .infoPelatihanCard {
+    width: 98%;
+  }
 
-    .careerCard{
-        width: 98%;
-    }
+  .careerCard {
+    width: 98%;
+  }
 }
-@media only screen and (max-width: 976px){
-    .infoContainer{
-        width: 100%;
-    }
+@media only screen and (max-width: 976px) {
+  .infoContainer {
+    width: 100%;
+  }
 
-    .infoContentContainer{
-        flex-direction: column-reverse;
-        margin: 48px 16px 96px 16px;
-    }
-    .filterPencarianContainer{
-        display: none;
-    }
+  .infoContentContainer {
+    flex-direction: column-reverse;
+    margin: 48px 16px 96px 16px;
+  }
+  .filterPencarianContainer {
+    display: none;
+  }
 
-    .filterPencarianBtnMobile{
-        display: inline;
-    }
+  .filterPencarianBtnMobile {
+    display: inline;
+  }
 
-    .lihatPelatihanPopular{
-        width: 100%;
-    }
-    .advantagesPelatihanInnerContainer{
-        flex-direction: column;
-    }
-    .hubungiBtn{
-        width: 100%;
-    }
+  .lihatPelatihanPopular {
+    width: 100%;
+  }
+  .advantagesPelatihanInnerContainer {
+    flex-direction: column;
+  }
+  .hubungiBtn {
+    width: 100%;
+  }
 }
-

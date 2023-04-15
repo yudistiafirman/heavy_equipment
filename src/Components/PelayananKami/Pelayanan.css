@@ -1,100 +1,96 @@
-.pelayananContainer{
-    width: 306px;
-    height: 244px;
-    background-color: #071243;
-    position:absolute;
-    left:25%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+.pelayananContainer {
+  width: 306px;
+  height: 244px;
+  background-color: #071243;
+  position: absolute;
+  left: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-.pelayananContainer a{
-    font-family: 'inter',sans-serif;
-    font-size: 14px;
-    text-align: left;
-    line-height: 19.6px;
-    font-weight: 600;
-    color: #ffffff;
-margin-left: 16px;
+.pelayananContainer a {
+  font-family: "inter", sans-serif;
+  font-size: 14px;
+  text-align: left;
+  line-height: 19.6px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-left: 16px;
 }
 
-.pelayananCampaign{
-    position: absolute;
-    width: 100%;
-    height: 50px;
-    z-index: 1;
-    top:25%;
-    bottom:60%;
-    margin-left: 90px;
+.pelayananCampaign {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  z-index: 1;
+  top: 25%;
+  bottom: 60%;
+  margin-left: 90px;
 }
 
-.pelayanList :hover{
-    color: #FDC232;
+.pelayanList :hover {
+  color: #fdc232;
 }
 
-.accordion{
-    width:96%;
-    margin-bottom:24px
+.accordion {
+  width: 96%;
+  margin-bottom: 24px;
 }
 
 /* PENJUALAN SECTION */
 
 .penjualanCard {
-    width: 360px;
-    height: 272px;
-    cursor: pointer;
+  width: 360px;
+  height: 272px;
+  cursor: pointer;
+}
+
+.penjualanCard .penjualanCardInner {
+  padding: 32px 24px 32px 24px;
+}
+
+.lihatDetailPelayananCard {
+  border-radius: 4px;
+  width: 131px;
+  height: 44px;
+  background-color: #071243;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lihatDetailDesc {
+  color: #ffffff;
+  font-weight: 500;
+  font-family: "roboto", sans-serif;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.penjualanDanServiceList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+/* PENJUALAN SECTION */
+
+@media only screen and (max-width: 751px) {
+  .penjualanDanServiceList {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
   }
-
-  .penjualanCard .penjualanCardInner {
-    padding: 32px 24px 32px 24px;
+}
+@media only screen and (max-width: 969px) {
+  .pelayananCampaign {
+    margin-left: 16px;
+    top: 13%;
   }
-
-  .lihatDetailPelayananCard{
-      border-radius: 4px;
-      width: 131px;
-      height: 44px;
-      background-color: #071243;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+}
+@media only screen and (max-width: 390px) {
+  .penjualanCard {
+    width: 100%;
   }
-
-  .lihatDetailDesc{
-      color: #ffffff;
-      font-weight: 500;
-      font-family: 'roboto',sans-serif;
-      font-size: 14px;
-      line-height: 16px;
-  }
-
-  .penjualanDanServiceList{
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-  }
-
-  /* PENJUALAN SECTION */
-
-
-  @media only screen and (max-width: 751px) {
-      .penjualanDanServiceList{
-          align-items: center;
-          display: flex;
-          flex-direction: column;
-          
-      }
-  }
-  @media only screen and (max-width: 969px){
-    .pelayananCampaign{
-        margin-left: 16px;
-        top:13%
-    }
-
- 
-  } 
-  @media only screen and (max-width: 390px){
-    .penjualanCard{
-        width: 100%;
-    }
-  }
+}

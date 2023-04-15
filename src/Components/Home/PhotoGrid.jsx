@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid,Dialog, } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
+import { Grid, Dialog } from "@material-ui/core";
 import { apiUrl } from "../../Default";
-import { ImageListItem } from "@mui/material";
 
 export default function PictureGrid(props) {
   const useStyles = makeStyles((theme) => ({
@@ -288,7 +286,7 @@ export default function PictureGrid(props) {
         );
       } else {
         return (
-          <Grid  container spacing={1}>
+          <Grid container spacing={1}>
             <Grid item md={6} lg={6} xl={6} xs={12} sm={12}>
               <Grid
                 container
@@ -309,7 +307,7 @@ export default function PictureGrid(props) {
               ></Grid>
             </Grid>{" "}
             <Grid item md={6} lg={6} xl={6} xs={12} sm={12}>
-              <Grid container  spacing={1}>
+              <Grid container spacing={1}>
                 {images.map((image, index) => {
                   if (index != 0) {
                     if (index > 3 && images.length > 5) {
@@ -324,22 +322,25 @@ export default function PictureGrid(props) {
                               style={{
                                 backgroundImage: `url(${apiUrl}/${image}`,
                                 width: "auto",
-                                opacity:'0.4',
+                                opacity: "0.4",
                                 height: 195,
                                 borderRadius: 5,
                                 cursor: "pointer",
                                 // // marginBottom: 5,
-                               backgroundSize: "cover",
+                                backgroundSize: "cover",
                                 backgroundRepeat: "no-repeat",
-                                backgroundPosition: "center", 
+                                backgroundPosition: "center",
                               }}
                             >
-                              <a onClick={()=>window.location = '/galeri'}
-                              
-                                style={{ color: "white",fontSize:'14px',color:'#FDC232' }}
+                              <a
+                                onClick={() => (window.location = "/galeri")}
+                                style={{
+                                  color: "white",
+                                  fontSize: "14px",
+                                  color: "#FDC232",
+                                }}
                                 className={classes.title}
                               >
-                                
                                 Lihat Lainnya
                               </a>
                             </Grid>
@@ -455,7 +456,7 @@ export default function PictureGrid(props) {
     }
   };
   return (
-    <div style={{ width: '100%', maxWidth: props.maxWidth }}>
+    <div style={{ width: "100%", maxWidth: props.maxWidth }}>
       {showGallaryView === false
         ? displayImage(props.images) != null && (
             <div>{displayImage(props.images)}</div>

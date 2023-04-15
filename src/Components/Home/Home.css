@@ -9,8 +9,7 @@
   height: 460px;
 }
 
-
-.jumbotronContent{
+.jumbotronContent {
   flex-direction: column;
   justify-content: center;
   display: flex;
@@ -25,15 +24,13 @@
   height: 50px;
   z-index: 1;
   margin-left: 90px;
- 
 }
 
-.subMenuCampaign{
+.subMenuCampaign {
   width: 100%;
   height: 50px;
   z-index: 1;
   margin-left: 90px;
- 
 }
 
 .textWithBtn {
@@ -60,14 +57,13 @@
   z-index: 2;
 }
 
-.btnHero.left{
+.btnHero.left {
   margin-left: 40px;
 }
 
-.btnHero.right{
+.btnHero.right {
   margin-right: 40px;
 }
-
 
 .btnHero :active {
   background-color: #ffffff;
@@ -81,7 +77,7 @@
   color: #ffffff;
   font-weight: 600;
   font-size: 36px;
-  font-family: 'inter', sans-serif;
+  font-family: "inter", sans-serif;
   margin-bottom: 16px;
 }
 
@@ -89,7 +85,7 @@
   color: #fdc232;
   font-weight: 800;
   font-size: 48px;
-  font-family: 'inter', sans-serif;
+  font-family: "inter", sans-serif;
   margin-bottom: 40px;
 }
 
@@ -98,7 +94,7 @@
   font-weight: 500;
   font-size: 15px;
   width: 100%;
-  font-family: 'inter', sans-serif;
+  font-family: "inter", sans-serif;
 }
 
 .heroDots {
@@ -147,14 +143,14 @@
 .titleForYou {
   font-size: 30px;
   font-weight: 800;
-  font-family: 'inter', sans-serif;
+  font-family: "inter", sans-serif;
   color: #071244;
 }
 
 .forYouDesc {
   font-size: 15px;
   font-weight: 500;
-  font-family: 'inter', sans-serif;
+  font-family: "inter", sans-serif;
   line-height: 20.25px;
   color: #6b7280;
   width: 300px;
@@ -189,7 +185,7 @@
 .servicesCardTitle {
   font-size: 18px;
   font-weight: 600;
-  font-family: 'inter', sans-serif;
+  font-family: "inter", sans-serif;
   color: #071244;
 }
 
@@ -200,242 +196,228 @@
 .servicesCardDesc {
   font-size: 14px;
   font-weight: 400;
-  font-family: 'inter', sans-serif;
+  font-family: "inter", sans-serif;
   color: #6b7280;
   line-height: 19.6px;
 }
 /* SERVICES */
 
 /* PELATIHAN POPULER */
-.pelatihanContainer{
-   height: 528px;
-   width: 100%;
-   box-sizing: border-box;
-   position: relative;
+.pelatihanContainer {
+  height: 528px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
 }
 
-.pelatihanInnerContainer{
-    margin: 90px 90px 90px 103px ;
-    display: flex;
-    justify-content: space-between;
- 
+.pelatihanInnerContainer {
+  margin: 90px 90px 90px 103px;
+  display: flex;
+  justify-content: space-between;
 }
 
-.pelatihanCardContainer{
-    width: 60%;
-    height: 100%;
+.pelatihanCardContainer {
+  width: 60%;
+  height: 100%;
 }
- .pelatihanCard{
-
-    height: 335px;
-  
+.pelatihanCard {
+  height: 335px;
 }
 
-.pelatihanCardInner{
+.pelatihanCardInner {
   border-radius: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    margin-right: 10px;
-    margin-left: 10px;
-    height: 335px;
-    overflow: hidden;
-    position: relative;
-    background-color: #ffffff;
-
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-right: 10px;
+  margin-left: 10px;
+  height: 335px;
+  overflow: hidden;
+  position: relative;
+  background-color: #ffffff;
 }
 
-.imageContainer{
+.imageContainer {
   height: 123px;
-  background-color: #C4C4C4;
-  ;
+  background-color: #c4c4c4;
 }
-.pelatihanCardTitle{
+.pelatihanCardTitle {
   width: 181px;
   height: 48px;
-  font-family: 'inter',sans-serif;
+  font-family: "inter", sans-serif;
   font-size: 18px;
   font-weight: 600;
   color: #000000;
-  margin: 8px 23px 12px 16px 
+  margin: 8px 23px 12px 16px;
 }
 
-.pelatihanCardDesc{
+.pelatihanCardDesc {
   margin: 0px 15px 16px 16px;
   width: 184px;
   font-size: 14px;
   font-weight: 400;
-  font-family: 'inter',sans-serif;
+  font-family: "inter", sans-serif;
   line-height: 19.6px;
-
 }
 
-.pelatihanCardBtn{
+.pelatihanCardBtn {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute; 
-  bottom: 0; 
+  position: absolute;
+  bottom: 0;
   left: 0;
-  width: 100%; 
-  text-align: center; 
-  margin: 0; padding: 30px 0; 
-	
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 30px 0;
+
   /* "transparent" only works here because == rgba(0,0,0,0) */
   background-image: linear-gradient(to top, transparent, #fff);
 }
 
-
-.cardBtnTitle{
+.cardBtnTitle {
   font-size: 14px;
   font-weight: 800;
-  font-family: 'inter',sans-serif;
+  font-family: "inter", sans-serif;
   line-height: 19.6px;
-  color:#000000;
-  ;
+  color: #000000;
 }
 
-.ellipseOrange{
+.ellipseOrange {
   position: absolute;
-  top:20%;
-  left:0;
+  top: 20%;
+  left: 0;
   right: 0;
   z-index: 1;
 }
 
-.ellipseBlue{
+.ellipseBlue {
   position: absolute;
-  top:50%;
-  left:-2%;
+  top: 50%;
+  left: -2%;
   right: 0;
   z-index: 1;
 }
 /* PELATIHAN POPULER */
 
-
 /* HOME GALERI */
 
-.homeGaleriContainer{
-  margin:0px 90px 0px 90px
+.homeGaleriContainer {
+  margin: 0px 90px 0px 90px;
 }
 /* HOME GALERI */
 
-.clientContainer{
+.clientContainer {
   width: 100%;
   height: 222px;
- display: flex;
- flex-direction: row;
- justify-content: space-around;
- align-items: center;
- overflow: scroll;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  overflow: scroll;
 }
 
-.logo{
-  flex:1;
+.logo {
+  flex: 1;
   height: 100px;
   border-radius: 10px;
   margin: 10px;
 }
 
-
-
 @media only screen and (max-width: 969px) {
-  .homeContainer{
+  .homeContainer {
     padding-top: 88px;
   }
 
-  .servicesCard{
+  .servicesCard {
     margin-bottom: 20px;
   }
 
-  .heroMediumText{
+  .heroMediumText {
     font-size: 16px;
   }
 
-  .heroOrangeText{
+  .heroOrangeText {
     font-size: 24px;
   }
 
-  .heroSmallText{
+  .heroSmallText {
     font-size: 14px;
     width: 328px;
   }
 
   #ourServices {
-    margin:0px 16px 160px 16px
+    margin: 0px 16px 160px 16px;
   }
 
-  .servicesContainer{
+  .servicesContainer {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
   }
 
-  .pelatihanCardContainer{
+  .pelatihanCardContainer {
     width: 50%;
     height: 100%;
     z-index: 2;
-}
+  }
 
-  .pelatihanInnerContainer{
+  .pelatihanInnerContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .ourServicesCardContainer{
+  .ourServicesCardContainer {
     flex-wrap: nowrap;
     height: 100%;
   }
 
-  .jumbotron{
+  .jumbotron {
     height: 360px;
   }
 
-  .pelatihanInnerContainer{
-    margin: 90px 0px 90px 0px ;
+  .pelatihanInnerContainer {
+    margin: 90px 0px 90px 0px;
     display: flex;
     flex-direction: column;
     z-index: 2;
- 
-}
-.pelatihanCardInner{
-  width: 220px;
-  margin:auto
-}
-.galeriGrid{
-  width: 100%;
-  
+  }
+  .pelatihanCardInner {
+    width: 220px;
+    margin: auto;
+  }
+  .galeriGrid {
+    width: 100%;
+  }
+
+  .homeGaleriContainer {
+    margin: 0px 16px 0px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .campaign {
+    margin-left: 50px;
+  }
+
+  .btnHero.left {
+    margin-left: 5px;
+  }
+
+  .heroBtnContainer {
+    top: 40%;
+  }
+
+  .subMenuCampaign {
+    margin-left: 16px;
+  }
 }
 
-.homeGaleriContainer{
-  margin:0px 16px 0px 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.campaign{
-  margin-left: 50px;
-}
-
-.btnHero.left{
-  margin-left: 5px;
-}
-
-.heroBtnContainer{
-  top:40%
-}
-
-.subMenuCampaign{
-  margin-left: 16px;
-}
-
-  
-}
-
-@media only screen and (max-width: 475px){
-  .pelatihanCardInner{
+@media only screen and (max-width: 475px) {
+  .pelatihanCardInner {
     width: 100%;
   }
 }

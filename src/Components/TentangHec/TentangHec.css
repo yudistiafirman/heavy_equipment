@@ -1,123 +1,122 @@
-.tentangContainer{
-    width: 231px;
-    height: 210px;
-    background-color: #071243;
-    position:absolute;
-    left:13%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+.tentangContainer {
+  width: 231px;
+  height: 210px;
+  background-color: #071243;
+  position: absolute;
+  left: 13%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-.tentangContainer a{
-        font-family: 'inter',sans-serif;
-        font-size: 14px;
-        text-align: left;
-        line-height: 19.6px;
-        font-weight: 600;
-        color: #ffffff;
+.tentangContainer a {
+  font-family: "inter", sans-serif;
+  font-size: 14px;
+  text-align: left;
+  line-height: 19.6px;
+  font-weight: 600;
+  color: #ffffff;
 }
 
- .linkContainer :hover{
-    color: #FDC232;
+.linkContainer :hover {
+  color: #fdc232;
 }
 
-.latarContainer{
-    padding-top: 182px;
-    position: relative;
+.latarContainer {
+  padding-top: 182px;
+  position: relative;
 }
-.latarCampaign{
-    position: absolute;
-    width: 100%;
-    height: 50px;
-    z-index: 1;
-    top:33%;
-    bottom:60%;
-    margin-left: 90px;
+.latarCampaign {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  z-index: 1;
+  top: 33%;
+  bottom: 60%;
+  margin-left: 90px;
 }
-.latarContentContainer{
-    margin: 100px 90px 120px 90px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.latarContentDesc{
-    width: 780px;
+.latarContentContainer {
+  margin: 100px 90px 120px 90px;
+  display: flex;
+  justify-content: space-between;
 }
 
-.latarTitle{
-    font-size: 18px;
-    font-family: 'inter',sans-serif;
-    font-weight: 800;
-    color: #6B7280;
-    margin-bottom: 16px;
+.latarContentDesc {
+  width: 780px;
 }
 
-.latarContent{
-    font-size: 15px;
-    font-family: 'inter',sans-serif;
-    font-weight: 500;
-    color: #6B7280;
-    line-height: 22px;
+.latarTitle {
+  font-size: 18px;
+  font-family: "inter", sans-serif;
+  font-weight: 800;
+  color: #6b7280;
+  margin-bottom: 16px;
 }
 
-.lihatJuga{
-    width: 320px;
-    height: 188px;
-    background-color: #FBFBFB;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+.latarContent {
+  font-size: 15px;
+  font-family: "inter", sans-serif;
+  font-weight: 500;
+  color: #6b7280;
+  line-height: 22px;
 }
 
-.lihatJugaTitle{
-    font-size: 18px;
-    font-family: 'inter',sans-serif;
-    font-weight: 800;
-    color: #6B7280;
-    line-height: 24.3px;
-    margin-left: 20px;
+.lihatJuga {
+  width: 320px;
+  height: 188px;
+  background-color: #fbfbfb;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-.lihatJugaContent{
-    font-size: 15px;
-    font-family: 'inter',sans-serif;
-    font-weight: 600;
-    color:  #FDC232;
-    line-height: 20.25px;
-    margin-left: 20px;
-    cursor: pointer;
+.lihatJugaTitle {
+  font-size: 18px;
+  font-family: "inter", sans-serif;
+  font-weight: 800;
+  color: #6b7280;
+  line-height: 24.3px;
+  margin-left: 20px;
 }
 
-.strukturPict{
-    width: 90%;
+.lihatJugaContent {
+  font-size: 15px;
+  font-family: "inter", sans-serif;
+  font-weight: 600;
+  color: #fdc232;
+  line-height: 20.25px;
+  margin-left: 20px;
+  cursor: pointer;
 }
 
+.strukturPict {
+  width: 90%;
+}
 
 @media only screen and (max-width: 969px) {
-    .latarContainer{
-        padding-top: 88px;
-    }
+  .latarContainer {
+    padding-top: 88px;
+  }
 
-    .strukturPict{
-        width: 100%;
-    }
-    .latarContentContainer{
-        margin: 48px 16px 96px 16px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-    .latarContentDesc{
-        width: 100%;
-        margin-bottom: 40px;
-    }
-    .latarCampaign{
-        top:23%;
-        margin-left: 16px;
-    }
-    .lihatJuga{
-        width: 100%;
-    }
+  .strukturPict {
+    width: 100%;
+  }
+  .latarContentContainer {
+    margin: 48px 16px 96px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .latarContentDesc {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+  .latarCampaign {
+    top: 23%;
+    margin-left: 16px;
+  }
+  .lihatJuga {
+    width: 100%;
+  }
 }

@@ -1,99 +1,94 @@
 .Menu {
-    position: relative;
-    background-color: #FBFBFB;
-    color: var(--light-text-color);
-    height: 100%;
-    padding-top: 23px;
-    
-  }
-
-  .sideBarImageLogo{
-    height: 64px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    border-bottom: 1px solid #E4E4E4;
-  }
-
-
-  .sideMenu{
-    height:498px;
-    border-bottom: 1px solid #E4E4E4;
-    position: relative;
-  }
-.sideMenuInner{
-  position: absolute;
-  margin: 24px 16px 0px 16px;
-  height: '100%';
+  position: relative;
+  background-color: #fbfbfb;
+  color: var(--light-text-color);
+  height: 100%;
+  padding-top: 23px;
 }
 
-.sideMenuList{
+.sideBarImageLogo {
+  height: 64px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.sideMenu {
+  height: 498px;
+  border-bottom: 1px solid #e4e4e4;
+  position: relative;
+}
+.sideMenuInner {
+  position: absolute;
+  margin: 24px 16px 0px 16px;
+  height: "100%";
+}
+
+.sideMenuList {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
 }
 
-.link-Container{
+.link-Container {
   display: block;
-  font-family: 'inter',sans-serif;
+  font-family: "inter", sans-serif;
   font-weight: 600;
   font-size: 14px;
   line-height: 19.6px;
   margin-bottom: 26px;
-  color: #061E5C;
+  color: #061e5c;
   justify-content: flex-start;
   align-items: flex-start;
-
 }
 
 .sideMenuInner .link-Container a {
-  color: #061E5C;
+  color: #061e5c;
 }
 
-.sideMenuInner .link-Container :hover{
-  color:#FDC232
+.sideMenuInner .link-Container :hover {
+  color: #fdc232;
 }
 
-.sideMenuTentang{
-    position: absolute;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    background-color:#FBFBFB;
-    top: 0;
-    left: 0;
-    transform: translateX(0%);
-    
-}
-
-.sideMenuTentang.inactive{
-  transform: translateX(-120%);
-  display: none;
-}
-
-.sideMenuPelayanan{
+.sideMenuTentang {
   position: absolute;
   z-index: 1;
   width: 100%;
   height: 100%;
-  background-color:#FBFBFB;
+  background-color: #fbfbfb;
   top: 0;
   left: 0;
   transform: translateX(0%);
 }
 
-.sideMenuPelayanan.inactive{
+.sideMenuTentang.inactive {
   transform: translateX(-120%);
   display: none;
 }
 
-.slidingSocialMedia{
+.sideMenuPelayanan {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: #fbfbfb;
+  top: 0;
+  left: 0;
+  transform: translateX(0%);
+}
+
+.sideMenuPelayanan.inactive {
+  transform: translateX(-120%);
+  display: none;
+}
+
+.slidingSocialMedia {
   height: 64px;
   display: flex;
   margin-left: 16px;
   margin-top: 5px;
   justify-content: flex-start;
   align-items: flex-start;
-
 }

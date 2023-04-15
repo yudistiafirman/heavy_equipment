@@ -1,24 +1,9 @@
-import Navbar from './Components/Navbar/Navbar'
-import AdminRoute from './Route/AdminRoute';
-import Routing from './Route/Routing';
-
-
-
-
-
-
-
+import AdminRoute from "./Route/AdminRoute";
+import Routing from "./Route/Routing";
 
 function App() {
-
   return (
-    <div >
-     {
-       localStorage.getItem('user') ? <AdminRoute/> :    <Routing/>
-     }
-   
- 
-    </div>
+    <div>{localStorage.getItem("user") ? <AdminRoute /> : <Routing />}</div>
   );
 }
 

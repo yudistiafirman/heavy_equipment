@@ -1,194 +1,188 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-.navbar{
-    height: 182;
-    position: fixed;
-    width: 100%;
-    background-color: #ffffff;
-    z-index: 99;
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+.navbar {
+  height: 182;
+  position: fixed;
+  width: 100%;
+  background-color: #ffffff;
+  z-index: 99;
 }
 
-.navbarInfoContainer{
-    display: flex;
-    margin: 39px 0px 44px 0px;
-    align-items: center
+.navbarInfoContainer {
+  display: flex;
+  margin: 39px 0px 44px 0px;
+  align-items: center;
 }
 
-.header{
-    height: 126px;
-    background-color: #ffffff;
-    margin:0px 90px 0px 90px;
-    flex-direction: row;
-    justify-content: space-between;
-    display: flex;
-
+.header {
+  height: 126px;
+  background-color: #ffffff;
+  margin: 0px 90px 0px 90px;
+  flex-direction: row;
+  justify-content: space-between;
+  display: flex;
 }
 
-.contactSeparator{
-    width: 1px;
-    height: 48px;
-    margin: 0px 48px 0px 48px;
-    background-color: #E5E7EB;
-    align-items: center;
+.contactSeparator {
+  width: 1px;
+  height: 48px;
+  margin: 0px 48px 0px 48px;
+  background-color: #e5e7eb;
+  align-items: center;
 }
 
-.imageLogo{
-    width: 194px;
-    height: 80px;
-    margin: 23px 0px 23px 0px;
+.imageLogo {
+  width: 194px;
+  height: 80px;
+  margin: 23px 0px 23px 0px;
 }
 
-.hamburgerMenu{
-    display: none;
+.hamburgerMenu {
+  display: none;
 }
 
-.callMe{
-    font-family:  'Inter', sans-serif;
-    font-size: 14px;
-    text-align: right;
-    line-height: 19.6px;
-    font-weight: 600;
+.callMe {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  text-align: right;
+  line-height: 19.6px;
+  font-weight: 600;
 }
 
-.phoneAndEmail{
-    display: flex;
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 15.6px;
-    margin-top: 7px;
+.phoneAndEmail {
+  display: flex;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15.6px;
+  margin-top: 7px;
 }
 
-.phoneInformation{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 25px;
-   border: none;
-   color: #4B5563;
+.phoneInformation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 25px;
+  border: none;
+  color: #4b5563;
 }
 
-.emailInformation{
-    margin-right: 0px;
+.emailInformation {
+  margin-right: 0px;
 }
 
-.phoneLogo{
-    width: 10px;
-    height: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 6px;
+.phoneLogo {
+  width: 10px;
+  height: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 6px;
 }
 
-.transBtn{
-    width: 80px;
-    height: 30px;
-    border: 1px solid #F1F5F9;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    overflow: hidden;
-    cursor: pointer;
-    margin-top: 35px;
-    margin-bottom: 12px;
+.transBtn {
+  width: 80px;
+  height: 30px;
+  border: 1px solid #f1f5f9;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  cursor: pointer;
+  margin-top: 35px;
+  margin-bottom: 12px;
 }
 
-.translate{
-    display: flex;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    font-family: 'inter',sans-serif;
-    flex: 0.5;
-    font-weight: 400;
+.translate {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  font-family: "inter", sans-serif;
+  flex: 0.5;
+  font-weight: 400;
 }
 
-.navigation{
-    height: 56px;
-    flex-direction: row;
-   background-color: #071243;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   border-bottom: 1px solid #FDC234;
- 
+.navigation {
+  height: 56px;
+  flex-direction: row;
+  background-color: #071243;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #fdc234;
 }
 
-.mobileInfoContainer{
-    display: none;
+.mobileInfoContainer {
+  display: none;
 }
 
-.navigation ul{
-    display: flex;
-    justify-content: space-between;
+.navigation ul {
+  display: flex;
+  justify-content: space-between;
 }
 
-.navigation ul li{
-    display: inline-flex;
-    font-family: 'inter',sans-serif;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 19.6px;
-    margin-right: 45px;
-    color: #ffffff;
-    justify-content: center;
-    align-items: center;
-
+.navigation ul li {
+  display: inline-flex;
+  font-family: "inter", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19.6px;
+  margin-right: 45px;
+  color: #ffffff;
+  justify-content: center;
+  align-items: center;
 }
 
 .navigation li a {
-    color: #ffffff;
+  color: #ffffff;
 }
 
-.navigation li :hover{
-    color:#FDC232
+.navigation li :hover {
+  color: #fdc232;
 }
 
-.socialMedia{
-    display: flex;
+.socialMedia {
+  display: flex;
 }
 
 /* BREAK POINTS */
 
 @media only screen and (max-width: 969px) {
-    .navigation{
-        display: none;
-    }
-
-    .navbarInfoContainer{
-        display: none;
-    }
-
-    .header{
-        height: 100%;
-        align-items: center;
-        margin: 0px 18px 0px 18px
-    }
-
-    .hamburgerMenu{
-        display: block;
-        width: 18px;
-        margin-right: 27px;
-        margin-top: 5px;
-    }
-
-    .imageLogo{
-        width: 102px;
-        height: 42px;
-    }
-
-    .navbar{
-        height: 88px;
-    }
-
-    .mobileInfoContainer{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 5px;
-    }
-    
+  .navigation {
+    display: none;
   }
 
+  .navbarInfoContainer {
+    display: none;
+  }
 
+  .header {
+    height: 100%;
+    align-items: center;
+    margin: 0px 18px 0px 18px;
+  }
+
+  .hamburgerMenu {
+    display: block;
+    width: 18px;
+    margin-right: 27px;
+    margin-top: 5px;
+  }
+
+  .imageLogo {
+    width: 102px;
+    height: 42px;
+  }
+
+  .navbar {
+    height: 88px;
+  }
+
+  .mobileInfoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+  }
+}

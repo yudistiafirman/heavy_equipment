@@ -1,9 +1,9 @@
-import { useEffect, useCallback, useState, useMemo } from 'react'
-import { addResizeHandler, removeResizeHandler } from '../utils/resizeListener'
+import { useEffect, useCallback, useState, useMemo } from "react";
+import { addResizeHandler, removeResizeHandler } from "../utils/resizeListener";
 
 const useResponsiveLayout = (breakpointList = []) => {
-  const [currentBreakpointSetting, setCurrentBreakpointSetting] = useState()
-  const random = useMemo(() => `${Math.random()}-${Math.random()}`, [])
+  const [currentBreakpointSetting, setCurrentBreakpointSetting] = useState();
+  const random = useMemo(() => `${Math.random()}-${Math.random()}`, []);
 
   const sortedBreakpointList = useMemo(
     () =>
@@ -11,35 +11,35 @@ const useResponsiveLayout = (breakpointList = []) => {
         (a, b) => (b.breakpoint || 0) - (a.breakpoint || 0)
       ),
     [breakpointList]
-  )
+  );
 
   const handleResize = useCallback(() => {
-    const windowWidth = window.innerWidth
-    let matchedSetting
+    const windowWidth = window.innerWidth;
+    let matchedSetting;
 
-    sortedBreakpointList.find(setting => {
+    sortedBreakpointList.find((setting) => {
       if (windowWidth <= setting.breakpoint) {
-        matchedSetting = setting
+        matchedSetting = setting;
       } else {
-        return true
+        return true;
       }
-    })
+    });
 
-    setCurrentBreakpointSetting(matchedSetting)
-  }, [sortedBreakpointList])
+    setCurrentBreakpointSetting(matchedSetting);
+  }, [sortedBreakpointList]);
 
   useEffect(() => {
     if (breakpointList.length) {
-      handleResize()
-      addResizeHandler(`responsiveLayout-${random}`, handleResize)
+      handleResize();
+      addResizeHandler(`responsiveLayout-${random}`, handleResize);
 
       return () => {
-        removeResizeHandler(`responsiveLayout-${random}`)
-      }
+        removeResizeHandler(`responsiveLayout-${random}`);
+      };
     }
-  }, [breakpointList, handleResize, random])
+  }, [breakpointList, handleResize, random]);
 
-  return currentBreakpointSetting
-}
+  return currentBreakpointSetting;
+};
 
-export default useResponsiveLayout
+export default useResponsiveLayout;

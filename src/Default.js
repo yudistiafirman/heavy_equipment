@@ -1,1 +1,1 @@
-export const apiUrl = 'https://api.hec.co.id'
+export const apiUrl = "https://api.hec.co.id";
