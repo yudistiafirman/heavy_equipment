@@ -14,11 +14,17 @@ import Checkbox from "@mui/material/Checkbox";
 import { FaSearch } from "react-icons/fa";
 import Slider from "react-slick";
 import { AiOutlineClose } from "react-icons/ai";
-import { Dialog } from "@mui/material";
+import { Dialog, MenuItem, Select } from "@mui/material";
 import axios from "axios";
 import { apiUrl } from "../../Default";
 import { useNavigate } from "react-router-dom";
 import { cardDescSlicer, cardTitleSlicer } from "../utils/funcHelper";
+import { getAllJob, getCategories } from "../../AsyncActions/JobActions";
+
+const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? process.env.REACT_APP_API_URL_PROD
+    : process.env.REACT_APP_API_URL_DEV;
 function useWindowSize() {
   const [size, setSize] = useState([0, 0]);
   useLayoutEffect(() => {
@@ -35,67 +41,45 @@ const Career = () => {
   const [cardIdx, setCardContentIdx] = useState(0);
   const [pageHoverIdx, SetPageHoverIdx] = useState(0);
   const [width, height] = useWindowSize();
-  const [filter, SetFilter] = useState(false);
   const [infoCareer, setInfoCareer] = useState([]);
   const [category, setCategory] = useState([]);
+  const [categoryValue, setCategoryValue] = useState("");
   const [inputSearch, setInputSearch] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    getAllvacancies("", "", "");
-    getCategory();
-  }, []);
-  const getAllvacancies = (searchValue, date, category) => {
-    axios
-      .get(
-        `${apiUrl}/vacancies/all?&name=${searchValue}&date=${date}&category=${category}`
-      )
-      .then((response) => {
-        setInfoCareer(response.data.data);
-      });
+    getAllvacancies();
+    getJobCategory();
+  }, [inputSearch, categoryValue]);
+  const getAllvacancies = async () => {
+    try {
+      const response = await getAllJob(inputSearch, "", "", categoryValue);
+      setInfoCareer(response.data.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const getCategory = () => {
-    axios.get(`${apiUrl}/vacancies/category`).then((response) => {
-      const categoryName = response.data.data.map((v, i) => ({
-        value: false,
-        category: v.category_name,
-      }));
-      setCategory(categoryName);
-    });
-  };
-  const onClickCategory = useCallback(
-    (idx, name) => {
-      const arrCategory = [];
-      for (var i = 0; i < category.length; i++) {
-        if (i === idx) {
-          category[i].value = true;
-        } else {
-          category[i].value = false;
-        }
-        arrCategory.push(category[i]);
-      }
-      setCategory(arrCategory);
-    },
-    [category]
-  );
+  const getJobCategory = async () => {
+    try {
+      const response = await getCategories();
+      const categories = [{ id: "", category_name: "Semua" }];
+      categories.push(...response.data.data);
 
-  const onApplyFilter = () => {
-    const categoryName = category.filter((v, i) => v.value === true);
-    getAllvacancies("", "", categoryName[0].category);
-    SetFilter(false);
+      setCategory(categories);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onChangeCategories = (e) => {
+    setCategoryValue(e.target.value);
   };
 
   const onSearchVacancy = (e) => {
     setInputSearch(e.target.value);
-    getAllvacancies(e.target.value, "", "");
   };
 
-  const resetPencarian = () => {
-    setInputSearch("");
-    getAllvacancies("", "", "");
-    getCategory();
-  };
   const settings = {
     dots: true,
     arrows: false,
@@ -154,7 +138,7 @@ const Career = () => {
           <div style={{ marginBottom: "40px" }} className="latarTitle">
             Semua Karir
           </div>
-          {infoCareer.length > 0 ? (
+          {infoCareer && infoCareer.length > 0 ? (
             <Slider {...settings}>
               {infoCareer.length > 0 &&
                 infoCareer.map((v, i) => {
@@ -176,7 +160,7 @@ const Career = () => {
                             style={{
                               width: "100%",
                               height: "100%",
-                              backgroundImage: `url(${apiUrl}/${v.image})`,
+                              backgroundImage: `url(${BASE_URL}/${v.file_url})`,
                               backgroundRepeat: "no-repeat",
                               backgroundSize: "cover",
                               backgroundPosition: "center",
@@ -191,10 +175,10 @@ const Career = () => {
                             color: cardIdx === i ? "#FDC232" : "#000000",
                           }}
                         >
-                          {cardTitleSlicer(v.job_name)}
+                          {cardTitleSlicer(v.name)}
                         </div>
                         <div className="pelatihanCardDesc">
-                          {cardDescSlicer(v.job_description)}
+                          {cardDescSlicer(v.description)}
                         </div>
                         <div
                           style={{ padding: "41px 0" }}
@@ -210,11 +194,7 @@ const Career = () => {
                                 color: cardIdx === i ? "#FDC232" : "#000000",
                                 cursor: "pointer",
                               }}
-                              onClick={() =>
-                                navigate(
-                                  "detailCareer/" + v.id + "/" + v.job_name
-                                )
-                              }
+                              onClick={() => navigate("detailCareer/" + v.id)}
                             >
                               Lihat Detail
                             </a>
@@ -246,7 +226,6 @@ const Career = () => {
             </InputLabel>
             <FilledInput
               type="text"
-              onFocus={resetPencarian}
               value={inputSearch}
               onChange={onSearchVacancy}
               style={{ height: "56px" }}
@@ -263,117 +242,24 @@ const Career = () => {
             />
           </FormControl>
 
-          <button
-            onClick={() => SetFilter(true)}
-            className="filterPencarianBtnMobile"
-          >
-            FILTER PENCARIAN
-          </button>
-
-          <Dialog open={filter} onClose={() => SetFilter(false)}>
-            <div className="filterModal">
-              <div className="filterModalTitle">
-                <div style={{ marginLeft: "16px" }} className="titlePencarian">
-                  Filter Pencarian
-                </div>
-                <AiOutlineClose
-                  onClick={() => SetFilter(false)}
-                  style={{ marginRight: "16px", cursor: "pointer" }}
-                />
-              </div>
-              <div className="optionsFilterModal">
-                <div className="categoryContainer">
-                  <div
-                    style={{
-                      marginTop: "24px",
-                      marginLeft: "16px",
-                      marginBottom: "15px",
-                      color: "#000000",
-                      fontSize: "14px",
-                      fontWeight: "400",
-                      fontFamily: "'inter',sans-serif",
-                    }}
-                  >
-                    Kategori
-                  </div>
-                  <div style={{ marginLeft: "5px" }}>
-                    {category.map((v, i) => {
-                      return (
-                        <div style={{ display: "flex", alignItems: "center" }}>
-                          <Checkbox
-                            onClick={() => onClickCategory(i, v.category)}
-                            checked={v.value === true}
-                          />
-                          <div
-                            style={{
-                              color: "#000000",
-                              fontSize: "14px",
-                              fontWeight: "400",
-                              fontFamily: "'inter',sans-serif",
-                            }}
-                          >
-                            {v.category}
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-                <div onClick={onApplyFilter} className="hubungiBtn">
-                  <div className="hubungiBtnTitle">TERAPKAN</div>
-                </div>
-              </div>
-            </div>
-          </Dialog>
-          <div className="filterPencarianContainer">
-            <div className="titlePencarian">
-              <div style={{ marginLeft: "16px" }}>Filter Pencarian</div>
-            </div>
-            <div className="categoryContainer">
-              <div
-                style={{
-                  marginTop: "24px",
-                  marginLeft: "16px",
-                  marginBottom: "15px",
-                  color: "#000000",
-                  fontSize: "14px",
-                  fontWeight: "400",
-                  fontFamily: "'inter',sans-serif",
-                }}
-              >
-                Kategori
-              </div>
-              <div style={{ marginLeft: "5px" }}>
-                {category.map((v, i) => {
+          <FormControl sx={{ marginTop: 2 }} fullWidth>
+            <InputLabel>Filter Berdasar Kategori</InputLabel>
+            <Select
+              onChange={onChangeCategories}
+              value={categoryValue}
+              label="Filter Berdasar Kategori"
+            >
+              {category &&
+                category.length > 0 &&
+                category.map((v, i) => {
                   return (
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <Checkbox
-                        onClick={() => onClickCategory(i, v.category)}
-                        checked={v.value === true}
-                      />
-                      <div
-                        style={{
-                          color: "#000000",
-                          fontSize: "14px",
-                          fontWeight: "400",
-                          fontFamily: "'inter',sans-serif",
-                        }}
-                      >
-                        {v.category}
-                      </div>
-                    </div>
+                    <MenuItem key={i} value={v.id}>
+                      {v.category_name}
+                    </MenuItem>
                   );
                 })}
-              </div>
-            </div>
-            <div
-              style={{ marginLeft: "16px", marginTop: "50px" }}
-              onClick={onApplyFilter}
-              className="hubungiBtn"
-            >
-              <div className="hubungiBtnTitle">TERAPKAN</div>
-            </div>
-          </div>
+            </Select>
+          </FormControl>
         </div>
       </div>
     </div>

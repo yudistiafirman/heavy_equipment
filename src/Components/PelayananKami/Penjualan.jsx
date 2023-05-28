@@ -9,14 +9,14 @@ const Penjualan = () => {
   const [cardIdx, setCardContentIdx] = useState(0);
   const [penjualanContent, setPenjualanContent] = useState([]);
 
-  useEffect(() => {
-    getAllPenjualan();
-  }, []);
-  const getAllPenjualan = () => {
-    axios.get(`${apiUrl}/alat/all`).then((response) => {
-      setPenjualanContent(response.data.data);
-    });
-  };
+  // useEffect(() => {
+  //   getAllPenjualan();
+  // }, []);
+  // const getAllPenjualan = () => {
+  //   axios.get(`${apiUrl}/alat/all`).then((response) => {
+  //     setPenjualanContent(response.data.data);
+  //   });
+  // };
   return (
     <div className="latarContainer">
       <div
@@ -45,7 +45,7 @@ const Penjualan = () => {
             dan synergi dengan customer di seluruh Indonesia.
           </div>
           <div className="penjualanDanServiceList">
-            {penjualanContent.length > 0 &&
+            {penjualanContent.length > 0 ? (
               penjualanContent.map((v, i) => {
                 return (
                   <div
@@ -106,7 +106,20 @@ const Penjualan = () => {
                     </div>
                   </div>
                 );
-              })}
+              })
+            ) : (
+              <div
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <div className="latarTitle">-Fitur Belum Tersedia-</div>
+              </div>
+            )}
           </div>
         </div>
         <div className="lihatJuga">

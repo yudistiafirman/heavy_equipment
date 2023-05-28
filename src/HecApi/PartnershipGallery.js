@@ -5,7 +5,7 @@ const API_URL_PARTNERSHIP_GALLERY =
 console.log(API_URL_PARTNERSHIP_GALLERY);
 export default class PartnershipGalleryApi {
   static getAllPartnershipGallery = (search, page, limit, filterBy) => {
-    const url = new URL(`${API_URL_PARTNERSHIP_GALLERY}/all`);
+    const url = new URL(`${API_URL_PARTNERSHIP_GALLERY}/all?status=PUBLISHED`);
 
     const params = url.searchParams;
     if (search) {
@@ -18,7 +18,7 @@ export default class PartnershipGalleryApi {
       params.append("limit", limit);
     }
     if (filterBy) {
-      params.append("filterBy", filterBy);
+      params.append("filterby", filterBy);
     }
 
     return url.toString();

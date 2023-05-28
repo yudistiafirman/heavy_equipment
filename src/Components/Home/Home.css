@@ -307,13 +307,14 @@
 /* HOME GALERI */
 
 .clientContainer {
-  width: 100%;
+  min-width: 100vh;
   height: 222px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
   overflow: scroll;
+  padding-left: 200px;
 }
 
 .logo {

@@ -1,10 +1,4 @@
-import React, {
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-  useCallback,
-} from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import PelatihanPict from "./assets/Pelatihan.jpg";
 
@@ -13,20 +7,23 @@ import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
-import Checkbox from "@mui/material/Checkbox";
-import TextField from "@mui/material/TextField";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import { FaSearch } from "react-icons/fa";
-import { AiOutlineClose } from "react-icons/ai";
 import Slider from "react-slick";
-import { Dialog } from "@mui/material";
-import axios from "axios";
-import { apiUrl } from "../../Default";
+import { MenuItem, Select } from "@mui/material";
 import { cardDescSlicer, cardTitleSlicer } from "../utils/funcHelper";
-import moment from "moment";
 import { useNavigate } from "react-router-dom";
+import {
+  getAllTraining,
+  getTrainingCategories,
+} from "../../AsyncActions/TrainingActions";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import dayjs from "dayjs";
+const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? process.env.REACT_APP_API_URL_PROD
+    : process.env.REACT_APP_API_URL_DEV;
 function useWindowSize() {
   const [size, setSize] = useState([0, 0]);
   useLayoutEffect(() => {
@@ -44,12 +41,12 @@ const InfoPelatihan = () => {
   const [cardIdx, setCardContentIdx] = useState(0);
   const [pageHoverIdx, SetPageHoverIdx] = useState(0);
   const [width, height] = useWindowSize();
-  const [filter, SetFilter] = useState(false);
-  const [startDate, SetStartDate] = useState(new Date());
+  const [startDate, SetStartDate] = useState(null);
   const [infoPelatihanContent, setInfoPelatihanContent] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const slide = useRef();
   const [category, setCategory] = useState([]);
+  const [categoryValue, setCategoryValue] = useState("");
   const navigate = useNavigate();
   const settings = {
     dots: true,
@@ -87,76 +84,46 @@ const InfoPelatihan = () => {
   };
 
   useEffect(() => {
-    getAllPelatihan("", "", "");
-    getCategory();
-  }, []);
-  const getAllPelatihan = (queryValue, date, category) => {
-    axios
-      .get(
-        `${apiUrl}/pelatihan/all?&name=${queryValue}&date=${date}&category=${category}`
-      )
-      .then((response) => {
-        setInfoPelatihanContent(response.data.data);
-      });
+    getAllPelatihan();
+    getCategoriesData();
+  }, [searchInput, categoryValue, startDate]);
+  const getAllPelatihan = async () => {
+    try {
+      const response = await getAllTraining(
+        searchInput,
+        "",
+        "",
+        categoryValue,
+        startDate ? dayjs(startDate).format() : startDate
+      );
+      setInfoPelatihanContent(response.data.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const onChangePencarian = useCallback(
-    (e) => {
-      setSearchInput(e.target.value);
-      getAllPelatihan(e.target.value, "", "");
-    },
-    [searchInput]
-  );
+  const getCategoriesData = async () => {
+    try {
+      const response = await getTrainingCategories();
+      const categories = [{ id: "", category_name: "Semua" }];
+      categories.push(...response.data.data);
 
-  const onChangeDate = useCallback(
-    (newDate) => {
-      SetStartDate(newDate);
-    },
-    [startDate]
-  );
-
-  const getCategory = () => {
-    axios.get(`${apiUrl}/pelatihan/category`).then((response) => {
-      const categoryName = response.data.data.map((v, i) => ({
-        value: false,
-        category: v.category_name,
-      }));
-      setCategory(categoryName);
-    });
+      setCategory(categories);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const onClickCategory = useCallback(
-    (idx, name) => {
-      const arrCategory = [];
-      for (var i = 0; i < category.length; i++) {
-        if (i === idx) {
-          category[i].value = true;
-        } else {
-          category[i].value = false;
-        }
-        arrCategory.push(category[i]);
-      }
-      setCategory(arrCategory);
-    },
-    [category]
-  );
-
-  const resetPencarian = () => {
-    setSearchInput("");
-    SetStartDate(new Date());
-    getAllPelatihan("", "", "");
-    getCategory();
-    SetFilter(false);
+  const onChangeCategories = (e) => {
+    setCategoryValue(e.target.value);
   };
 
-  const onApplyFilter = () => {
-    const categoryName = category.filter((v, i) => v.value === true);
-    getAllPelatihan(
-      "",
-      moment(startDate).format("YYYY-MM-DD"),
-      categoryName[0].category
-    );
-    SetFilter(false);
+  const onChangeSearch = (e) => {
+    setSearchInput(e.target.value);
+  };
+
+  const onChangeStartDate = (newDate) => {
+    SetStartDate(newDate);
   };
 
   return (
@@ -205,7 +172,7 @@ const InfoPelatihan = () => {
                           style={{
                             width: "100%",
                             height: "100%",
-                            backgroundImage: `url(${apiUrl}/${v.image})`,
+                            backgroundImage: `url(${BASE_URL}/${v.training_image})`,
                             backgroundRepeat: "no-repeat",
                             backgroundSize: "cover",
                             backgroundPosition: "center",
@@ -213,7 +180,7 @@ const InfoPelatihan = () => {
                           }}
                         />
                       </div>
-                      {v.is_full == 1 ? (
+                      {v.isFull == 1 ? (
                         <div className="fullbooked">FULL BOOKED</div>
                       ) : (
                         <div className="open">OPEN</div>
@@ -239,9 +206,7 @@ const InfoPelatihan = () => {
                         <div className="cardBtnTitle">
                           <a
                             onClick={() =>
-                              navigate(
-                                "/info/detailPelatihan/" + v.id + "/" + v.name
-                              )
+                              navigate("/info/detailPelatihan/" + v.id)
                             }
                             style={{
                               color: cardIdx === i ? "#FDC232" : "#000000",
@@ -267,7 +232,7 @@ const InfoPelatihan = () => {
                 alignItems: "center",
               }}
             >
-              <div className="latarTitle">Pencarian Tidak Ditemukan</div>
+              <div className="latarTitle">Data Belum Ditemukan</div>
             </div>
           )}
         </div>
@@ -277,10 +242,10 @@ const InfoPelatihan = () => {
               Cari Pelatihan
             </InputLabel>
             <FilledInput
-              onFocus={resetPencarian}
               type="text"
               value={searchInput}
-              onChange={onChangePencarian}
+              onChange={onChangeSearch}
+              // onChange={onChangePencarian}
               style={{ height: "56px" }}
               endAdornment={
                 <InputAdornment position="end">
@@ -295,162 +260,33 @@ const InfoPelatihan = () => {
             />
           </FormControl>
 
-          <button
-            onClick={() => SetFilter(true)}
-            className="filterPencarianBtnMobile"
-          >
-            FILTER PENCARIAN
-          </button>
-
-          <Dialog open={filter} onClose={() => SetFilter(false)}>
-            <div className="filterModal">
-              <div className="filterModalTitle">
-                <div style={{ marginLeft: "16px" }} className="titlePencarian">
-                  Filter Pencarian
-                </div>
-                <AiOutlineClose
-                  onClick={() => SetFilter(false)}
-                  style={{ marginRight: "16px", cursor: "pointer" }}
-                />
-              </div>
-              <div className="optionsFilterModal">
-                <div
-                  style={{
-                    height: "120px",
-                    borderBottom: "1px solid #F5F5F5 ",
-                  }}
-                >
-                  <div style={{ marginLeft: "16px", marginRight: "16px" }}>
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                      <DesktopDatePicker
-                        label="Tanggal Mulai Pelatihan"
-                        value={startDate}
-                        minDate={new Date("2017-01-01")}
-                        onChange={(newValue) => {
-                          onChangeDate(newValue);
-                        }}
-                        renderInput={(params) => (
-                          <TextField
-                            style={{ marginTop: "20px" }}
-                            fullWidth
-                            {...params}
-                          />
-                        )}
-                      />
-                    </LocalizationProvider>
-                  </div>
-                </div>
-                <div className="categoryContainer">
-                  <div
-                    style={{
-                      marginTop: "24px",
-                      marginLeft: "16px",
-                      marginBottom: "15px",
-                      color: "#000000",
-                      fontSize: "14px",
-                      fontWeight: "400",
-                      fontFamily: "'inter',sans-serif",
-                    }}
-                  >
-                    Kategori
-                  </div>
-                  <div style={{ marginLeft: "5px" }}>
-                    {category.map((v, i) => {
-                      return (
-                        <div style={{ display: "flex", alignItems: "center" }}>
-                          <Checkbox
-                            onClick={() => onClickCategory(i, v.category)}
-                            checked={v.value === true}
-                          />
-                          <div
-                            style={{
-                              color: "#000000",
-                              fontSize: "14px",
-                              fontWeight: "400",
-                              fontFamily: "'inter',sans-serif",
-                            }}
-                          >
-                            {v.category}
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-                <div onClick={onApplyFilter} className="hubungiBtn">
-                  <div className="hubungiBtnTitle">TERAPKAN</div>
-                </div>
-              </div>
-            </div>
-          </Dialog>
-          <div className="filterPencarianContainer">
-            <div className="titlePencarian">
-              <div style={{ marginLeft: "16px" }}>Filter Pencarian</div>
-            </div>
-            <div style={{ marginLeft: "16px", marginRight: "16px" }}>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DesktopDatePicker
-                  label="Tanggal Mulai Pelatihan"
-                  value={startDate}
-                  minDate={new Date("2017-01-01")}
-                  onChange={(newValue) => {
-                    onChangeDate(newValue);
-                  }}
-                  renderInput={(params) => (
-                    <TextField
-                      style={{ marginTop: "20px" }}
-                      fullWidth
-                      {...params}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
-            </div>
-            <div className="categoryContainer">
-              <div
-                style={{
-                  marginTop: "24px",
-                  marginLeft: "16px",
-                  marginBottom: "15px",
-                  color: "#000000",
-                  fontSize: "14px",
-                  fontWeight: "400",
-                  fontFamily: "'inter',sans-serif",
-                }}
-              >
-                Kategori
-              </div>
-              <div style={{ marginLeft: "5px" }}>
-                {category.map((v, i) => {
+          <FormControl sx={{ marginTop: 2 }} fullWidth>
+            <InputLabel>Filter Berdasar Kategori</InputLabel>
+            <Select
+              onChange={onChangeCategories}
+              label="Filter Berdasar Kategori"
+              value={categoryValue}
+            >
+              {category &&
+                category.length > 0 &&
+                category.map((v, i) => {
                   return (
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <Checkbox
-                        onClick={() => onClickCategory(i, v.category)}
-                        checked={v.value === true}
-                      />
-                      <div
-                        style={{
-                          color: "#000000",
-                          fontSize: "14px",
-                          fontWeight: "400",
-                          fontFamily: "'inter',sans-serif",
-                        }}
-                      >
-                        {v.category}
-                      </div>
-                    </div>
+                    <MenuItem key={i} value={v.id}>
+                      {v.category_name}
+                    </MenuItem>
                   );
                 })}
-              </div>
-            </div>
-            <div
-              style={{ marginLeft: "16px" }}
-              onClick={onApplyFilter}
-              className="hubungiBtn"
-            >
-              <div className="hubungiBtnTitle">TERAPKAN</div>
-            </div>
-          </div>
+            </Select>
+          </FormControl>
+          <FormControl sx={{ marginTop: 2 }} fullWidth>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DatePicker
+                onChange={onChangeStartDate}
+                value={startDate}
+                defaultValue={dayjs()}
+              />
+            </LocalizationProvider>
+          </FormControl>
         </div>
       </div>
     </div>

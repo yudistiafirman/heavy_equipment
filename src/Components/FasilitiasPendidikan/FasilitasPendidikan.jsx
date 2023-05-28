@@ -6,18 +6,29 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import { AiFillCaretDown } from "react-icons/ai";
 import "./Fasilitas.css";
-import axios from "axios";
-import { apiUrl } from "../../Default";
 import { Dialog, Grid } from "@mui/material";
+import { getAllFacility } from "../../AsyncActions/facilityActions";
+
+const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? process.env.REACT_APP_API_URL_PROD
+    : process.env.REACT_APP_API_URL_DEV;
 const FasilitasPendidikan = () => {
   const [fasilitasData, setFasilitasData] = useState([]);
   const [showImage, SetShowImages] = useState(null);
 
   useEffect(() => {
-    axios.get(`${apiUrl}/fasilitas/all?name=`).then((response) => {
+    getAllFacilityData();
+  }, []);
+
+  const getAllFacilityData = async () => {
+    try {
+      const response = await getAllFacility("", "", "");
       setFasilitasData(response.data.data);
-    });
-  });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="latarContainer">
       <Dialog
@@ -58,89 +69,74 @@ const FasilitasPendidikan = () => {
             Menjadi perusahaan jasa layanan support alat berat yang professional
             dan synergi dengan customer di seluruh Indonesia.
           </div>
-          {fasilitasData.map((v, i) => {
-            return (
-              <div className="accordion">
-                <Accordion>
-                  <AccordionSummary
-                    expandIcon={<AiFillCaretDown />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                  >
-                    <Typography
-                      style={{
-                        fontSize: "18px",
-                        fontWeight: "800",
-                        color: "#6B7280",
-                        fontFamily: '"inter",sans-serif',
-                        lineHeight: "24.3px",
-                      }}
+          {fasilitasData && fasilitasData.length > 0 ? (
+            fasilitasData.map((v, i) => {
+              return (
+                <div className="accordion">
+                  <Accordion>
+                    <AccordionSummary
+                      expandIcon={<AiFillCaretDown />}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
                     >
-                      {v.name}
-                    </Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <div className="fasilitasListImageContainer">
-                      <div
-                        className="fasilitasImage"
-                        onClick={() => SetShowImages(`${apiUrl}/${v.image_1}`)}
+                      <Typography
                         style={{
-                          backgroundImage: `url(${apiUrl}/${v.image_1})`,
-                          backgroundRepeat: "no-repeat",
-                          backgroundSize: "cover",
-                          backgroundPosition: "center",
+                          fontSize: "18px",
+                          fontWeight: "800",
+                          color: "#6B7280",
+                          fontFamily: '"inter",sans-serif',
+                          lineHeight: "24.3px",
                         }}
-                      ></div>
-
-                      <div
-                        className="fasilitasImage"
-                        onClick={
-                          v.image_2 !== null
-                            ? () => SetShowImages(`${apiUrl}/${v.image_2}`)
-                            : null
-                        }
+                      >
+                        {v.name}
+                      </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <div className="fasilitasListImageContainer">
+                        <div
+                          className="fasilitasImage"
+                          onClick={() =>
+                            SetShowImages(`${BASE_URL}/${v.file_url}`)
+                          }
+                          style={{
+                            backgroundImage: `url(${BASE_URL}/${v.file_url})`,
+                            backgroundRepeat: "no-repeat",
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                          }}
+                        />
+                      </div>
+                      <Typography
                         style={{
-                          backgroundImage:
-                            v.image_2 !== null && `url(${apiUrl}/${v.image_2})`,
-                          backgroundRepeat: "no-repeat",
-                          backgroundSize: "cover",
-                          backgroundPosition: "center",
+                          fontSize: "15px",
+                          fontWeight: "400",
+                          color: "#6B7280",
+                          fontFamily: '"inter",sans-serif',
+                          lineHeight: "22px",
+                          textAlign: "justify",
                         }}
-                      ></div>
-                      <div
-                        className="fasilitasImage"
-                        onClick={
-                          v.image_3 !== null
-                            ? () => SetShowImages(`${apiUrl}/${v.image_3}`)
-                            : null
-                        }
-                        style={{
-                          backgroundImage:
-                            v.image_3 !== null && `url(${apiUrl}/${v.image_3})`,
-                          backgroundRepeat: "no-repeat",
-                          backgroundSize: "cover",
-                          backgroundPosition: "center",
-                        }}
-                      ></div>
-                    </div>
-                    <Typography
-                      style={{
-                        fontSize: "15px",
-                        fontWeight: "400",
-                        color: "#6B7280",
-                        fontFamily: '"inter",sans-serif',
-                        lineHeight: "22px",
-                        textAlign: "justify",
-                      }}
-                      className="latarContent"
-                    >
-                      {v.descriptions}
-                    </Typography>
-                  </AccordionDetails>
-                </Accordion>
-              </div>
-            );
-          })}
+                        className="latarContent"
+                      >
+                        {v.descriptions}
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
+                </div>
+              );
+            })
+          ) : (
+            <div
+              style={{
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <div className="latarTitle">Data Belum Ditemukan</div>
+            </div>
+          )}
         </div>
       </div>
     </div>

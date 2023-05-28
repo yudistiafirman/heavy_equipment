@@ -1,12 +1,9 @@
 import React, { useState, useLayoutEffect, useEffect } from "react";
 import GaleriPict from "./assets/Galeri.jpg";
 import "./Galeri.css";
-import { Grid, Dialog } from "@material-ui/core";
-import J1 from "../Home/assets/J1.jpg";
-import J2 from "../Home/assets/J2.jpg";
 import Slider from "react-slick";
-import axios from "axios";
-import { apiUrl } from "../../Default";
+import { Dialog, Grid } from "@mui/material";
+import { getAllTrainingGallery } from "../../AsyncActions/trainingGalleryActions";
 function useWindowSize() {
   const [size, setSize] = useState([0, 0]);
   useLayoutEffect(() => {
@@ -19,6 +16,11 @@ function useWindowSize() {
   }, []);
   return size;
 }
+
+const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? process.env.REACT_APP_API_URL_PROD
+    : process.env.REACT_APP_API_URL_DEV;
 const Galeri = () => {
   const [cardIdx, setCardContentIdx] = useState(0);
   const [showImage, SetShowImages] = useState(null);
@@ -27,10 +29,17 @@ const Galeri = () => {
   const [galeriContent, setGaleriContent] = useState([]);
 
   useEffect(() => {
-    axios.get(`${apiUrl}/galeri/all?title=`).then((response) => {
-      setGaleriContent(response.data.data);
-    });
+    getAllTrainingGalleryData();
   }, []);
+
+  const getAllTrainingGalleryData = async () => {
+    try {
+      const response = await getAllTrainingGallery("", "", "", "");
+      setGaleriContent(response.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const settings = {
     dots: true,
@@ -87,20 +96,20 @@ const Galeri = () => {
         </div>
       </div>
       <div className="galeriContent">
-        {galeriContent.length > 0 && (
+        {galeriContent.length > 0 ? (
           <Slider className="galeriCardSlider" {...settings}>
             {galeriContent.map((v, i) => {
               return (
                 <div
                   style={{ border: "1px solid black" }}
-                  onClick={() => SetShowImages(`${apiUrl}/${v.image}`)}
+                  onClick={() => SetShowImages(`${BASE_URL}/${v.file_url}`)}
                   onMouseEnter={() => setCardContentIdx(i)}
                 >
                   <div className="galeriCard">
                     <div
                       className="galeriCardImgContainer"
                       style={{
-                        backgroundImage: `url(${apiUrl}/${v.image})`,
+                        backgroundImage: `url(${BASE_URL}/${v.file_url})`,
                         backgroundRepeat: "no-repeat",
                         backgroundSize: "cover",
                         backgroundPosition: "center",
@@ -113,7 +122,7 @@ const Galeri = () => {
                         }}
                         className="galeriCardTitle"
                       >
-                        {v.title}
+                        {v.name}
                       </div>
                     </div>
                   </div>
@@ -121,6 +130,18 @@ const Galeri = () => {
               );
             })}
           </Slider>
+        ) : (
+          <div
+            style={{
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <div className="latarTitle">Data Belum Ditemukan</div>
+          </div>
         )}
       </div>
       {showImage && (

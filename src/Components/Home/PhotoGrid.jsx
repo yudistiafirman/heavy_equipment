@@ -1,19 +1,13 @@
 import React, { useState } from "react";
 
-import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Dialog } from "@material-ui/core";
-import { apiUrl } from "../../Default";
+import { Dialog, Grid, makeStyles } from "@mui/material";
+
+const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? process.env.REACT_APP_API_URL_PROD
+    : process.env.REACT_APP_API_URL_DEV;
 
 export default function PictureGrid(props) {
-  const useStyles = makeStyles((theme) => ({
-    title: {
-      color: "black",
-      marginRight: 10,
-      fontWeight: 600,
-      fontSize: 25,
-    },
-  }));
-  const classes = useStyles();
   const [showImage, setShowImage] = useState(null);
   const [showGallaryView, setShowGallaryView] = useState(false);
 
@@ -24,7 +18,7 @@ export default function PictureGrid(props) {
         return (
           <div
             style={{
-              backgroundImage: `url(${apiUrl}/${images[0]})`,
+              backgroundImage: `url(${BASE_URL}/${images[0].file_url})`,
               backgroundSize: "cover",
               width: "100%",
               height: 300,
@@ -39,20 +33,20 @@ export default function PictureGrid(props) {
   };
 
   const isAVideo = (path) => {
-    if (path.includes(".mp4") || path.includes(".mov")) {
-      return true;
-    }
+    // if (path.includes(".mp4") || path.includes(".mov")) {
+    //   return true;
+    // }
     return false;
   };
 
   const hasAVideo = (paths) => {
     var hasVideo = false;
-    paths.map((path) => {
-      if (path.includes(".mp4") || path.includes(".mov")) {
-        console.log("checking videos", path);
-        hasVideo = true;
-      }
-    });
+    // paths.map((path) => {
+    //   if (path.file_url.includes(".mp4") || path.file_url.includes(".mov")) {
+    //     console.log("checking videos", path);
+    //     hasVideo = true;
+    //   }
+    // });
 
     return hasVideo;
   };
@@ -61,17 +55,22 @@ export default function PictureGrid(props) {
     if (images) {
       // console.log("images", images);
       if (images.length === 1) {
-        if (isAVideo(images[0])) {
+        if (isAVideo(images[0].file_url)) {
           return (
             <Grid container direction="row" justifyContent="center">
-              <video width="95%" height="400" src={images[0]} controls />
+              <video
+                width="95%"
+                height="400"
+                src={images[0].file_url}
+                controls
+              />
             </Grid>
           );
         } else {
           return (
             <div
               style={{
-                backgroundImage: `url(${apiUrl}/${images[0]})`,
+                backgroundImage: `url(${BASE_URL}/${images[0].file_url})`,
                 backgroundSize: "cover",
                 width: "100%",
                 height: 300,
@@ -80,7 +79,7 @@ export default function PictureGrid(props) {
                 backgroundPosition: "center",
               }}
               onDoubleClick={() => {
-                setShowImage(`${apiUrl}/${images[0]}`);
+                setShowImage(`${BASE_URL}/${images[0].file_url}`);
               }}
             ></div>
           );
@@ -90,11 +89,16 @@ export default function PictureGrid(props) {
           return (
             <Grid container spacing={1}>
               {images.map((image, index) => {
-                if (isAVideo(image)) {
+                if (isAVideo(image.file_url)) {
                   return (
                     <Grid item md={12} lg={12} xl={12} xs={12} sm={12}>
                       <Grid container direction="row" justifyContent="center">
-                        <video width="100%" height="290" src={image} controls />
+                        <video
+                          width="100%"
+                          height="290"
+                          src={image.file_url}
+                          controls
+                        />
                       </Grid>
                     </Grid>
                   );
@@ -106,7 +110,7 @@ export default function PictureGrid(props) {
                       direction="row"
                       justifyContent="center"
                       style={{
-                        backgroundImage: `url(${apiUrl}/${image}`,
+                        backgroundImage: `url(${BASE_URL}/${image.file_url}`,
                         width: "auto",
                         height: 200,
                         borderRadius: 5,
@@ -116,7 +120,7 @@ export default function PictureGrid(props) {
                         backgroundPosition: "center",
                       }}
                       onDoubleClick={() => {
-                        setShowImage(`${apiUrl}/${image}`);
+                        setShowImage(`${BASE_URL}/${image.file_url}`);
                       }}
                     ></Grid>
                   </Grid>
@@ -135,7 +139,7 @@ export default function PictureGrid(props) {
                       direction="row"
                       justifyContent="center"
                       style={{
-                        backgroundImage: `url(${apiUrl}/${image}`,
+                        backgroundImage: `url(${BASE_URL}/${image.file_url}`,
                         width: "auto",
                         height: 400,
                         borderRadius: 5,
@@ -145,7 +149,7 @@ export default function PictureGrid(props) {
                         backgroundPosition: "center",
                       }}
                       onDoubleClick={() => {
-                        setShowImage(`${apiUrl}/${image}`);
+                        setShowImage(`${BASE_URL}/${image.file_url}`);
                       }}
                     ></Grid>
                   </Grid>
@@ -163,7 +167,7 @@ export default function PictureGrid(props) {
                 direction="row"
                 justifyContent="center"
                 style={{
-                  backgroundImage: `url(${apiUrl}/${images[0]}`,
+                  backgroundImage: `url(${BASE_URL}/${images[0].file_url}`,
                   // width: 250,
                   height: 400,
                   borderRadius: 5,
@@ -172,14 +176,14 @@ export default function PictureGrid(props) {
                   backgroundPosition: "center",
                 }}
                 onDoubleClick={() => {
-                  setShowImage(`${apiUrl}/${images[0]}`);
+                  setShowImage(`${BASE_URL}/${images[0].file_url}`);
                 }}
               ></Grid>
             </Grid>{" "}
             <Grid item md={6} lg={6} xl={6} xs={6} sm={6}>
               {images.map((image, index) => {
                 if (index != 0) {
-                  if (isAVideo(image)) {
+                  if (isAVideo(image.file_url)) {
                     return (
                       <Grid item md={12} lg={12} xl={12} xs={12} sm={12}>
                         <Grid container direction="row" justifyContent="center">
@@ -187,7 +191,7 @@ export default function PictureGrid(props) {
                             width="100%"
                             height="auto"
                             style={{ maxHeight: 205 }}
-                            src={image}
+                            src={image.file_url}
                             controls
                           />
                         </Grid>
@@ -200,7 +204,7 @@ export default function PictureGrid(props) {
                         direction="row"
                         justifyContent="center"
                         style={{
-                          backgroundImage: `url(${apiUrl}/${image}`,
+                          backgroundImage: `url(${BASE_URL}/${image.file_url}`,
                           width: "auto",
                           height: 195,
                           borderRadius: 5,
@@ -210,7 +214,7 @@ export default function PictureGrid(props) {
                           backgroundPosition: "center",
                         }}
                         onDoubleClick={() => {
-                          setShowImage(`${apiUrl}/${image}`);
+                          setShowImage(`${BASE_URL}/${image.file_url}`);
                         }}
                       ></Grid>
                     );
@@ -229,7 +233,7 @@ export default function PictureGrid(props) {
                 direction="row"
                 justifyContent="center"
                 style={{
-                  backgroundImage: `url(${apiUrl}/${images[0]}`,
+                  backgroundImage: `url(${BASE_URL}/${images[0].file_url}`,
                   // width: 250,
                   height: 400,
                   borderRadius: 5,
@@ -238,21 +242,21 @@ export default function PictureGrid(props) {
                   backgroundPosition: "center",
                 }}
                 onDoubleClick={() => {
-                  setShowImage(`${apiUrl}/${images[0]}`);
+                  setShowImage(`${BASE_URL}/${images[0].file_url}`);
                 }}
               ></Grid>
             </Grid>{" "}
             <Grid item md={6} lg={6} xl={6} xs={6} sm={6}>
               {images.map((image, index) => {
                 if (index != 0) {
-                  if (isAVideo(image)) {
+                  if (isAVideo(image.file_url)) {
                     return (
                       <Grid item md={12} lg={12} xl={12} xs={12} sm={12}>
                         <Grid container direction="row" justifyContent="center">
                           <video
                             width="100%"
                             height="auto"
-                            src={image}
+                            src={image.file_url}
                             controls
                           />
                         </Grid>
@@ -265,7 +269,7 @@ export default function PictureGrid(props) {
                       direction="row"
                       justifyContent="center"
                       style={{
-                        backgroundImage: `url(${apiUrl}/${image}`,
+                        backgroundImage: `url(${BASE_URL}/${image.file_url}`,
                         width: "auto",
                         height: 130,
                         borderRadius: 5,
@@ -275,7 +279,7 @@ export default function PictureGrid(props) {
                         backgroundPosition: "center",
                       }}
                       onDoubleClick={() => {
-                        setShowImage(`${apiUrl}/${image}`);
+                        setShowImage(`${BASE_URL}/${image.file_url}`);
                       }}
                     ></Grid>
                   );
@@ -293,7 +297,7 @@ export default function PictureGrid(props) {
                 direction="column"
                 justifyContent="center"
                 style={{
-                  backgroundImage: `url(${apiUrl}/${images[0]}`,
+                  backgroundImage: `(${BASE_URL}/${images[0].file_url}`,
                   // width: 250,
                   height: 400,
                   borderRadius: 5,
@@ -302,7 +306,7 @@ export default function PictureGrid(props) {
                   backgroundPosition: "center",
                 }}
                 onDoubleClick={() => {
-                  setShowImage(`${apiUrl}/${images[0]}`);
+                  setShowImage(`${BASE_URL}/${images[0]?.file_url}`);
                 }}
               ></Grid>
             </Grid>{" "}
@@ -320,7 +324,7 @@ export default function PictureGrid(props) {
                               justifyContent="center"
                               alignItems="center"
                               style={{
-                                backgroundImage: `url(${apiUrl}/${image}`,
+                                backgroundImage: `url(${BASE_URL}/${image.file_url}`,
                                 width: "auto",
                                 opacity: "0.4",
                                 height: 195,
@@ -339,7 +343,6 @@ export default function PictureGrid(props) {
                                   fontSize: "14px",
                                   color: "#FDC232",
                                 }}
-                                className={classes.title}
                               >
                                 Lihat Lainnya
                               </a>
@@ -351,7 +354,7 @@ export default function PictureGrid(props) {
                       if (hasAVideo(images) && images.length <= 5) {
                         if (index > 2) {
                           // alert("it coming herer");
-                          if (isAVideo(image)) {
+                          if (isAVideo(image.file_url)) {
                             return (
                               <Grid
                                 item
@@ -369,7 +372,7 @@ export default function PictureGrid(props) {
                                   <video
                                     width="100%"
                                     height="130"
-                                    src={image}
+                                    src={image.file_url}
                                     controls
                                   />
                                 </Grid>
@@ -383,7 +386,7 @@ export default function PictureGrid(props) {
                                 direction="row"
                                 justifyContent="center"
                                 style={{
-                                  backgroundImage: `url(${apiUrl}/${image}`,
+                                  backgroundImage: `url(${BASE_URL}/${image.file_url}`,
                                   width: "auto",
                                   height: 105,
                                   borderRadius: 5,
@@ -393,7 +396,7 @@ export default function PictureGrid(props) {
                                   backgroundPosition: "center",
                                 }}
                                 onDoubleClick={() => {
-                                  setShowImage(`${apiUrl}/${image}`);
+                                  setShowImage(`${BASE_URL}/${image.file_url}`);
                                 }}
                               ></Grid>
                             </Grid>
@@ -406,7 +409,7 @@ export default function PictureGrid(props) {
                               direction="row"
                               justifyContent="center"
                               style={{
-                                backgroundImage: `url(${apiUrl}/${image}`,
+                                backgroundImage: `url(${BASE_URL}/${image.file_url}`,
                                 width: "auto",
                                 height: 155,
                                 borderRadius: 5,
@@ -416,7 +419,7 @@ export default function PictureGrid(props) {
                                 backgroundPosition: "center",
                               }}
                               onDoubleClick={() => {
-                                setShowImage(`${apiUrl}/${image}`);
+                                setShowImage(`${BASE_URL}/${image.file_url}`);
                               }}
                             ></Grid>
                           </Grid>
@@ -429,7 +432,7 @@ export default function PictureGrid(props) {
                               direction="row"
                               justifyContent="center"
                               style={{
-                                backgroundImage: `url(${apiUrl}/${image}`,
+                                backgroundImage: `url(${BASE_URL}/${image.file_url}`,
                                 width: "auto",
                                 height: 195,
                                 borderRadius: 5,
@@ -439,7 +442,7 @@ export default function PictureGrid(props) {
                                 backgroundPosition: "center",
                               }}
                               onDoubleClick={() => {
-                                setShowImage(`${apiUrl}/${image}`);
+                                setShowImage(`${BASE_URL}/${image.file_url}`);
                               }}
                             ></Grid>
                           </Grid>

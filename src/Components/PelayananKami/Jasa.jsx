@@ -9,15 +9,6 @@ const Jasa = () => {
   const [cardIdx, setCardContentIdx] = useState(0);
   const [jasaContent, setJasaContent] = useState([]);
 
-  useEffect(() => {
-    getAllJasa();
-  }, []);
-
-  const getAllJasa = () => {
-    axios.get(`${apiUrl}/jasa/all?`).then((response) => {
-      setJasaContent(response.data.data);
-    });
-  };
   return (
     <div className="latarContainer">
       <div
@@ -46,7 +37,7 @@ const Jasa = () => {
             dan synergi dengan customer di seluruh Indonesia.
           </div>
           <div className="penjualanDanServiceList">
-            {jasaContent.length > 0 &&
+            {jasaContent.length > 0 ? (
               jasaContent.map((v, i) => {
                 return (
                   <div
@@ -103,7 +94,20 @@ const Jasa = () => {
                     </div>
                   </div>
                 );
-              })}
+              })
+            ) : (
+              <div
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <div className="latarTitle">-Fitur Belum Tersedia-</div>
+              </div>
+            )}
           </div>
         </div>
         <div className="lihatJuga">

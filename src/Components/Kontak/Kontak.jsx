@@ -2,14 +2,13 @@ import React, { useRef, useState } from "react";
 import TextField from "@mui/material/TextField";
 import KontakPict from "./assets/kontak.jpg";
 import { init } from "@emailjs/browser";
-import { Alert, FormControl, Snackbar } from "@mui/material";
 import emailjs from "@emailjs/browser";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { apiUrl } from "../../Default";
-init("user_F9FUG8QkPkFceIrGy3zC6");
 const Kontak = () => {
   const [name, setName] = useState("");
+  const formRef = useRef(null);
   const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -21,7 +20,6 @@ const Kontak = () => {
   const [errorPhone, setErrorPhone] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
 
-  const form = useRef();
   const sendEmail = () => {
     const emailRegex = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
     if (!name) {
@@ -37,33 +35,35 @@ const Kontak = () => {
     } else if (!message) {
       setErrorMessage(true);
     } else {
+      const data = new FormData();
       setErrorName(false);
       setErrorCompany(false);
       setErrorEmail(false);
       setErrorEmaiValue(false);
       setErrorPhone(false);
       setErrorMessage(false);
-      const emailMessage = {
-        name: name,
-        company,
-        email,
-        phone,
-        message,
-      };
 
-      axios.post(`${apiUrl}/email/sendemail`, emailMessage).then((response) => {
-        if (response.data.error) {
-          Swal.fire({
-            icon: "error",
-            title: "Something went wrong",
-          });
-        } else {
-          Swal.fire({
-            icon: "success",
-            title: "Terima Kasih kami telah menerima pesan anda",
-          });
-        }
-      });
+      emailjs
+        .sendForm(
+          "service_mvp9acl",
+          "template_z61imxk",
+          formRef.current,
+          "bM0ObLWWxVzYi8pAk"
+        )
+        .then(
+          (result) => {
+            Swal.fire({
+              icon: "success",
+              title: "Terima Kasih kami telah menerima pesan anda",
+            });
+          },
+          (error) => {
+            Swal.fire({
+              icon: "error",
+              title: "Something went wrong",
+            });
+          }
+        );
     }
   };
 
@@ -131,7 +131,7 @@ const Kontak = () => {
             lanjut, Anda dapat menghubungi kami melalui telepon atau mengirim
             email dengan mengisinya pada formulir dibawah ini
           </div>
-          <form ref={form}>
+          <form ref={formRef}>
             <div style={{ width: "97%", marginBottom: "40px" }}>
               <TextField
                 fullWidth
@@ -139,6 +139,7 @@ const Kontak = () => {
                 variant="filled"
                 color="success"
                 type="text"
+                name="name"
                 value={name}
                 helperText={`${name.length}/45`}
                 onChange={onChangeName}
@@ -163,6 +164,7 @@ const Kontak = () => {
                 label="Perusahaan"
                 variant="filled"
                 color="success"
+                name="company"
                 type="text"
                 helperText={`${company.length}/45`}
                 onChange={onChangeCompany}
@@ -188,6 +190,7 @@ const Kontak = () => {
                 variant="filled"
                 color="success"
                 type="email"
+                name="email"
                 helperText={`${email.length}/45`}
                 value={email}
                 onChange={onChangeEmail}
@@ -223,6 +226,7 @@ const Kontak = () => {
                 label="Nomor Telepon*"
                 variant="filled"
                 color="success"
+                name="phone"
                 type="number"
                 helperText={`${phone.length}/15`}
                 value={phone}
@@ -249,6 +253,7 @@ const Kontak = () => {
                 variant="filled"
                 color="success"
                 type="text"
+                name="message"
                 multiline
                 helperText={`${message.length}/255`}
                 value={message}

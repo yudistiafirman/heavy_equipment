@@ -57,14 +57,11 @@ const Routing = () => {
             />
             <Route path="/info" element={<InfoPelatihan />} />
             <Route
-              path="/info/detailPelatihan/:id/:name"
+              path="/info/detailPelatihan/:pelatihanId"
               element={<DetailPelatihan />}
             />
             <Route path="/career" element={<Career />} />
-            <Route
-              path="/career/detailCareer/:id/:name"
-              element={<CareerDetail />}
-            />
+            <Route path="/career/detailCareer/:id" element={<CareerDetail />} />
             <Route path="/kontak" element={<Kontak />} />
           </Routes>
           <Footer />
