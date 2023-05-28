@@ -5,7 +5,7 @@ const API_URL_JOB =
 
 export default class JobApi {
   static getAllJob = (search, page, limit, filterBy) => {
-    const url = new URL(`${API_URL_JOB}/get`);
+    const url = new URL(`${API_URL_JOB}/get?status=PUBLISHED`);
     const params = url.searchParams;
     if (search) {
       params.append("search", search);

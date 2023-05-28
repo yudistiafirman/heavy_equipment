@@ -12,7 +12,7 @@ export default class TrainingApi {
     startDate,
     isPopular
   ) => {
-    const url = new URL(`${API_URL_TRAINING}/all`);
+    const url = new URL(`${API_URL_TRAINING}/all?status=PUBLISHED`);
     const params = url.searchParams;
     if (search) {
       params.append("search", search);

@@ -5,7 +5,7 @@ const API_URL_TRAINING_GALLERY =
 
 export default class TrainingGalleryApi {
   static getAllTrainingGallery = (search, page, limit, filterBy) => {
-    const url = new URL(`${API_URL_TRAINING_GALLERY}/all`);
+    const url = new URL(`${API_URL_TRAINING_GALLERY}/all?status=PUBLISHED`);
     const params = url.searchParams;
     if (search) {
       params.append("search", search);
