@@ -6,6 +6,7 @@ import emailjs from "@emailjs/browser";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { apiUrl } from "../../Default";
+import { Backdrop, CircularProgress } from "@mui/material";
 const Kontak = () => {
   const [name, setName] = useState("");
   const formRef = useRef(null);
@@ -19,6 +20,7 @@ const Kontak = () => {
   const [errorEmailValue, setErrorEmaiValue] = useState(false);
   const [errorPhone, setErrorPhone] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const sendEmail = () => {
     const emailRegex = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
@@ -35,7 +37,7 @@ const Kontak = () => {
     } else if (!message) {
       setErrorMessage(true);
     } else {
-      const data = new FormData();
+      setOpen(true);
       setErrorName(false);
       setErrorCompany(false);
       setErrorEmail(false);
@@ -52,12 +54,14 @@ const Kontak = () => {
         )
         .then(
           (result) => {
+            setOpen(false);
             Swal.fire({
               icon: "success",
               title: "Terima Kasih kami telah menerima pesan anda",
             });
           },
           (error) => {
+            setOpen(false);
             Swal.fire({
               icon: "error",
               title: "Something went wrong",
@@ -326,6 +330,12 @@ const Kontak = () => {
           </div>
         </div>
       </div>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={open}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 };
