@@ -30,6 +30,8 @@ const DetailPelatihan = () => {
   const getPelatihanData = async () => {
     try {
       const response = await getOneTraining(pelatihanId);
+      const nilaiplus = response.data.data.plusValues.join(",").split(",");
+      console.log(nilaiplus);
       setPelatihanData(response.data.data);
     } catch (error) {
       console.log(error);
@@ -119,27 +121,30 @@ const DetailPelatihan = () => {
                 <div className="nilaiPlustitle">Nilai Plus Pelatihan HEC</div>
                 {pelatihanData.plusValues &&
                   pelatihanData.plusValues.length > 0 &&
-                  pelatihanData.plusValues.map((v) => {
-                    return (
-                      <div key={v.id} className="checkListContainer">
-                        <img
-                          src={CheckIcon}
-                          style={{
-                            width: "16px",
-                            height: "16px",
-                            marginLeft: "7px",
-                            marginRight: "5px",
-                          }}
-                        />
-                        <div
-                          style={{ textAlign: "justify" }}
-                          className="checkDesc"
-                        >
-                          {v}
+                  pelatihanData.plusValues
+                    .join(",")
+                    .split(",")
+                    .map((v) => {
+                      return (
+                        <div key={v.id} className="checkListContainer">
+                          <img
+                            src={CheckIcon}
+                            style={{
+                              width: "16px",
+                              height: "16px",
+                              marginLeft: "7px",
+                              marginRight: "5px",
+                            }}
+                          />
+                          <div
+                            style={{ textAlign: "justify" }}
+                            className="checkDesc"
+                          >
+                            {v}
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
               </div>
               <div className="bestOffer">
                 <div className="bestOfferTitle">Daftarkan Segera</div>

@@ -86,30 +86,33 @@ const CareerDetail = () => {
                 <div className="nilaiPlustitle">Persyaratan</div>
                 {pekerjaanDetail.requirements &&
                   pekerjaanDetail.requirements.length > 0 &&
-                  pekerjaanDetail.requirements.map((v) => {
-                    return (
-                      <div
-                        style={{ alignItems: "center" }}
-                        className="checkListContainer"
-                      >
-                        <img
-                          src={CheckIcon}
-                          style={{
-                            width: "16px",
-                            height: "16px",
-                            marginLeft: "7px",
-                            marginRight: "5px",
-                          }}
-                        />
+                  pekerjaanDetail.requirements
+                    .join(",")
+                    .split(",")
+                    .map((v) => {
+                      return (
                         <div
-                          style={{ textAlign: "justify" }}
-                          className="checkDesc"
+                          style={{ alignItems: "center" }}
+                          className="checkListContainer"
                         >
-                          {v}
+                          <img
+                            src={CheckIcon}
+                            style={{
+                              width: "16px",
+                              height: "16px",
+                              marginLeft: "7px",
+                              marginRight: "5px",
+                            }}
+                          />
+                          <div
+                            style={{ textAlign: "justify" }}
+                            className="checkDesc"
+                          >
+                            {v}
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
               </div>
             </div>
           </div>
@@ -120,30 +123,33 @@ const CareerDetail = () => {
                 <div className="nilaiPlustitle">Tanggung Jawab</div>
                 {pekerjaanDetail.responsibilities &&
                   pekerjaanDetail.responsibilities.length > 0 &&
-                  pekerjaanDetail.responsibilities.map((v) => {
-                    return (
-                      <div
-                        style={{ alignItems: "center" }}
-                        className="checkListContainer"
-                      >
-                        <img
-                          src={CheckIcon}
-                          style={{
-                            width: "16px",
-                            height: "16px",
-                            marginLeft: "7px",
-                            marginRight: "5px",
-                          }}
-                        />
+                  pekerjaanDetail.responsibilities
+                    .join(",")
+                    .split(",")
+                    .map((v) => {
+                      return (
                         <div
-                          style={{ textAlign: "justify" }}
-                          className="checkDesc"
+                          style={{ alignItems: "center" }}
+                          className="checkListContainer"
                         >
-                          {v}
+                          <img
+                            src={CheckIcon}
+                            style={{
+                              width: "16px",
+                              height: "16px",
+                              marginLeft: "7px",
+                              marginRight: "5px",
+                            }}
+                          />
+                          <div
+                            style={{ textAlign: "justify" }}
+                            className="checkDesc"
+                          >
+                            {v}
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
 
                 <div className="checkDesc">
                   Jangan lupa untuk melampirkan CV terbaru anda dan rekrutmen

@@ -7,19 +7,42 @@ const BASE_URL =
 
 const Client = ({ logo }) => {
   return (
-    <div className="clientContainer">
-      {logo && logo.length > 0
-        ? logo.map((v, i) => {
-            return (
-              <img
-                src={`${BASE_URL}/${v.file_url}`}
-                loading="lazy"
-                alt="#"
-                className="logo"
-              />
-            );
-          })
-        : null}
+    <div className="homeGaleriContainer">
+      <div className="servicesTitle">
+        <div className="marginSeparator" />
+        <div className="titleContainer">
+          <div className="titleForYou">Partner</div>
+          <p className="forYouDesc">
+            HEC telah bekerja sama dengan perusahaan perusahaan ternama di
+            Indonesia, alumni kami bekerja di
+          </p>
+        </div>
+      </div>
+      <div style={{ display: "flex", flexWrap: "wrap", flexDirection: "row" }}>
+        {logo && logo.length > 0
+          ? logo.map((v, i) => {
+              return (
+                <div
+                  style={{
+                    padding: "10px",
+                    width: "150px",
+
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <img
+                    style={{ width: "100%", resize: "block" }}
+                    src={`${BASE_URL}/${v.file_url}`}
+                    loading="lazy"
+                    alt="#"
+                  />
+                </div>
+              );
+            })
+          : null}
+      </div>
     </div>
   );
 };
