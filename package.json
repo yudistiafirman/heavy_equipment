@@ -39,7 +39,8 @@
     "smoothscroll-polyfill": "^0.4.4",
     "styled-components": "^5.3.3",
     "sweetalert2": "^11.3.4",
-    "web-vitals": "^2.1.2"
+    "web-vitals": "^2.1.2",
+    "zustand": "^4.5.2"
   },
   "scripts": {
     "start": "react-scripts start",

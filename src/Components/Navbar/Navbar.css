@@ -146,6 +146,12 @@
   display: flex;
 }
 
+.searchFieldContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* BREAK POINTS */
 
 @media only screen and (max-width: 969px) {
@@ -185,4 +191,12 @@
     align-items: center;
     margin-top: 5px;
   }
+
+
+}
+
+@media (max-width: 768px) { /* Adjust the max-width as needed for your design */
+  .searchFieldContainer {
+    display: none;
+}
 }
