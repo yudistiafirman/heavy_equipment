@@ -87,7 +87,7 @@ const Navbar = () => {
 				setOpenSnackbar({
 					openSnackbar: true,
 					type: "error",
-					message: "No Sertifikat tidak boleh kurang dari 5 digit",
+					message: "No Sertifikat tidak boleh kurang dari 5 karakter",
 				});
 			} else {
 				const response = await searchCertificate(certificateNumber);
@@ -136,7 +136,6 @@ const Navbar = () => {
 					<TextField
 						id="standard-start-adornment"
 						placeholder="No Sertifikat"
-						type="number"
 						value={certificateNumber}
 						onChange={(e) => setCertificateNumber(e.target.value)}
 						InputProps={{
